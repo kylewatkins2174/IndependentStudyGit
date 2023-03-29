@@ -1,5 +1,6 @@
 import db from "../connect.js";
-import bc from "bcryptjs"
+import bc from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const register = (req,res) => {
     const q = "SELECT * FROM users WHERE email = ?";
@@ -26,7 +27,41 @@ export const register = (req,res) => {
 }
 
 export const login = (req,res) => {
-    console.log("TODO")
+    
+    const q = "SELECT * FROM users WHERE email = ?"
+
+    db.query(q, [req.body.email], (error, rows, field) => {
+
+        //check if email exists
+        if(error){
+            return res.status(500).json(error);
+        }
+
+        if(rows.length === 0){
+            return res.status(404).json("user not found");
+        }
+
+        //return res.status(200).json(rows);
+        //return res.status(200).json(rows[0]);
+
+        //check if password is correct
+        const hash = rows[0].passHash;
+        const isValidPassword = bc.compareSync(req.body.password, hash);
+
+        if(!isValidPassword){
+            return res.status(404).json("username or email is incorrect");
+        }
+
+        //provide access token
+        const {password, ...others} = rows[0];
+        const token = jwt.sign(others, "jwtpass");
+
+        return res.cookie("accessToken", token, {
+            maxAge: 30*24*60*60*1000,
+            httpOnly: true
+        }).json(`Welcome ${rows[0].firstname} ${rows[0].lastname}!`);
+
+    })
 }
 
 export const logout = (req,res) => {
