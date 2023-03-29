@@ -1,5 +1,5 @@
-import Register from "./Components/Register.jsx";
-import Login from "./Components/Login.jsx";
+import Register from "./Pages/Register.jsx";
+import Login from "./Pages/Login.jsx";
 import LogoBar from "./Components/LogoBar";
 import {
   createBrowserRouter,

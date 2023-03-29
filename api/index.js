@@ -4,8 +4,14 @@ import cors from 'cors';
 
 //middleware
 const app = express();
+app.use((req,res,next) => {
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",
+}));
 
 //paths
 app.use("/api/authentication", registerRoute);

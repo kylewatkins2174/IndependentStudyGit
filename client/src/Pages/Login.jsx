@@ -1,12 +1,34 @@
 import "./Register.scss";
+import { useState } from "react";
 
 
 const Login = () => {
 
+    const [inputs, setInputs] = useState({
+        "username" : "",
+        "password" : ""
+    });
+
+    const [err, setErr] = useState(null)
+
+    const handleChange = (e) => {
+        setInputs((prev) => {
+            return {...prev, [e.target.name]: e.target.value}
+        })
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        
+    }
 
     return(
+
         
         <div className="RegisterContainer">
+
+            <h1>This is in "Login.jsx" -- use /Register</h1>
 
 
             <div className="RegisterBottom">
