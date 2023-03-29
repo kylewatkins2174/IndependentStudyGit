@@ -1,8 +1,28 @@
 import "./Register.scss";
-import IHSLogo from "../Assets/IHS_transparent.png";
-
+import { useState } from "react";
+import queryServer from "../axios.js"
 
 const Register = () => {
+
+    const [inputs, setInputs] = useState({
+        "username" : "",
+        "password" : ""
+    });
+
+    const [err, setErr] = useState(null)
+
+    const handleChange = (e) => {
+        setInputs((prev) => {
+            return {...prev, [e.target.name]: e.target.value}
+        })
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        queryServer.post("/auth/login")
+        
+    }
 
 
     return(
@@ -16,19 +36,19 @@ const Register = () => {
                     <hr className="RegisterTitleHr"/>
                     <form>
 
-                        <input type="text" placeholder="email" className="RegisterFormInput"></input>
+                        <input onChange={handleChange}type="text" placeholder="email" className="RegisterFormInput"></input>
                         <hr className="RegisterHr"/>
 
-                        <input type="text" placeholder="firstname" className="RegisterFormInput"></input>
+                        <input onChange={handleChange}type="text" placeholder="firstname" className="RegisterFormInput"></input>
                         <hr className="RegisterHr"/>
                         
-                        <input type="text" placeholder="lastname" className="RegisterFormInput"></input>
+                        <input onChange={handleChange}type="text" placeholder="lastname" className="RegisterFormInput"></input>
                         <hr className="RegisterHr"/>
 
-                        <input type="text" placeholder="password" className="RegisterFormInput"></input>
+                        <input onChange={handleChange}type="text" placeholder="password" className="RegisterFormInput"></input>
                         <hr className="RegisterHr"/>
 
-                        <input type="text" placeholder="re-enter password" className="RegisterFormInput"></input>
+                        <input placeholder="re-enter password" className="RegisterFormInput"></input>
                         <hr className="RegisterHr"/>
 
 
@@ -40,7 +60,7 @@ const Register = () => {
 
 
 
-                    <button className="SubmitButton">Submit</button>
+                    <button onClick={handleSubmit} className="SubmitButton">Submit</button>
                 </div>
             </div>
         </div>

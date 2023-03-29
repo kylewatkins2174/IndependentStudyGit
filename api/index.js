@@ -1,5 +1,5 @@
 import express from 'express';
-import registerRoute from "./Routes/register.js";
+import authRoute from "./Routes/auth.js";
 import cors from 'cors';
 
 //middleware
@@ -14,7 +14,7 @@ app.use(cors({
 }));
 
 //paths
-app.use("/api/authentication", registerRoute);
+app.use("/api/auth", authRoute);
 
 const port = 8800;
 
