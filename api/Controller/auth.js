@@ -65,5 +65,23 @@ export const login = (req,res) => {
 }
 
 export const logout = (req,res) => {
-    console.log("TODO")
+    return res.clearCookie("accessToken").status(200).send("Logged Out");
 }
+
+export const checkLogin = (req, res) => {
+    const accessToken = req.cookies.accessToken;
+
+    //checks if access token exists
+    if(!accessToken)
+    {
+        return false;
+    }
+
+    //verifies access token
+    try{
+        jwt.verify(accessToken, "jwtpass");
+    }catch{
+        return false;
+    }
+}
+

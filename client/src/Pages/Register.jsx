@@ -1,4 +1,4 @@
-import "./Register.scss";
+import "./register.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import queryServer from "../axios.js";
@@ -40,20 +40,27 @@ const Register = () => {
                     <hr className="RegisterTitleHr"/>
                     <form>
 
-                        <input onChange={handleChange} type="text" placeholder="email" className="RegisterFormInput" name="email"></input>
+                        <input onChange={handleChange} type="text" placeholder="email" className="RegisterFormInput" autoComplete="true" name="email"></input>
                         <hr className="RegisterHr"/>
 
-                        <input onChange={handleChange} type="text" placeholder="firstname" className="RegisterFormInput" name="firstname"></input>
+                        <input onChange={handleChange} type="text" placeholder="firstname" className="RegisterFormInput" autoComplete="true" name="firstname"></input>
                         <hr className="RegisterHr"/>
                         
-                        <input onChange={handleChange} type="text" placeholder="lastname" className="RegisterFormInput" name="lastname"></input>
+                        <input onChange={handleChange} type="text" placeholder="lastname" className="RegisterFormInput" autoComplete="true" name="lastname"></input>
                         <hr className="RegisterHr"/>
 
-                        <input onChange={handleChange} type="text" placeholder="password" className="RegisterFormInput" name="password"></input>
+                        <input onChange={handleChange} type="text" placeholder="password" className="RegisterFormInput" autoComplete="true" name="password"></input>
                         <hr className="RegisterHr"/>
 
-                        <input placeholder="re-enter password" className="RegisterFormInput"></input>
+                        <input placeholder="re-enter password" className="RegisterFormInput" autoComplete="true"></input>
                         <hr className="RegisterHr"/>
+
+
+                        <label>What Department?</label><br/>
+
+                        <select>
+                            <option value="Department1">Department1</option>
+                        </select>
 
 
                     </form>

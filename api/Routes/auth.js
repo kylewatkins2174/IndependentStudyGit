@@ -9,7 +9,7 @@ route.post("/register", register);
 
 route.post("/login", login);
 
-route.post("/logout", logout);
+route.get("/logout", logout);
 
 
 export default route;
