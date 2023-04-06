@@ -17,7 +17,7 @@ export const register = (req,res) => {
     const hash = bc.hashSync(req.body.password, salt);
 
     const insertQ = "INSERT INTO users VALUES(?)";
-    db.query(insertQ, [[null, req.body.email, req.body.firstname, req.body.lastname, hash]], (error,rows,fields) => {
+    db.query(insertQ, [[null, req.body.email, req.body.firstname, req.body.lastname, req.body.department, req.body.username, hash, false]], (error,rows,fields) => {
         if(error){
             return res.status(500).json(error);
         }
@@ -28,9 +28,9 @@ export const register = (req,res) => {
 
 export const login = (req,res) => {
     
-    const q = "SELECT * FROM users WHERE email = ?"
+    const q = "SELECT * FROM users WHERE username = ?"
 
-    db.query(q, [req.body.email], (error, rows, field) => {
+    db.query(q, [req.body.username], async (error, rows, field) => {
 
         //check if email exists
         if(error){
@@ -41,15 +41,13 @@ export const login = (req,res) => {
             return res.status(404).json("user not found");
         }
 
-        //return res.status(200).json(rows);
-        //return res.status(200).json(rows[0]);
-
         //check if password is correct
-        const hash = rows[0].passHash;
+        const hash = rows[0].password;
+        console.log(`${rows[0].firstname}`);
         const isValidPassword = bc.compareSync(req.body.password, hash);
 
         if(!isValidPassword){
-            return res.status(404).json("username or email is incorrect");
+            return res.status(404).json("username or password is incorrect");
         }
 
         //provide access token
@@ -59,7 +57,7 @@ export const login = (req,res) => {
         return res.cookie("accessToken", token, {
             maxAge: 30*24*60*60*1000,
             httpOnly: true
-        }).json(`Welcome ${rows[0].firstname} ${rows[0].lastname}!`);
+        }).json(`Welcome ${rows[0].firstName} ${rows[0].lastName}!`);
 
     })
 }

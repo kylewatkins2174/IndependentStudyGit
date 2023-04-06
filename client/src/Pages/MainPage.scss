@@ -1,0 +1,32 @@
+.main{
+    background-color: #11192e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100vh;
+    height:100vh;
+    gap:30px;
+
+    img{
+        border:5px solid white;
+        width:300px;
+        
+    }
+
+    span{
+    font-family: 'proxima-nova', sans-serif;
+    font-weight: bold;
+    color:white;
+    font-size:24px;
+    }
+
+    button{
+        border:none;
+        padding:10px 30px;
+        border-radius:20px;
+        border:none;
+        background-color: #F05432;
+        font-size: 1.25em;
+    }
+}

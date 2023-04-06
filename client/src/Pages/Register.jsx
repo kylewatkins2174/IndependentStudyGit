@@ -10,6 +10,8 @@ const Register = () => {
         "email" : "",
         "firstname" : "",
         "lastname" : "",
+        "department" : "",
+        "username" : "",
         "password" : ""
     });
 
@@ -49,18 +51,14 @@ const Register = () => {
                         <input onChange={handleChange} type="text" placeholder="lastname" className="RegisterFormInput" autoComplete="true" name="lastname"></input>
                         <hr className="RegisterHr"/>
 
+                        <input onChange={handleChange} type="text" placeholder="department" className="RegisterFormInput" autoComplete="true" name="department"/>
+                        <hr className="RegisterHr"/>
+
+                        <input onChange={handleChange} type="text" placeholder="username" className="RegisterFormInput" autoComplete="true" name="username"/>
+                        <hr className="RegisterHr"/>
+
                         <input onChange={handleChange} type="text" placeholder="password" className="RegisterFormInput" autoComplete="true" name="password"></input>
                         <hr className="RegisterHr"/>
-
-                        <input placeholder="re-enter password" className="RegisterFormInput" autoComplete="true"></input>
-                        <hr className="RegisterHr"/>
-
-
-                        <label>What Department?</label><br/>
-
-                        <select>
-                            <option value="Department1">Department1</option>
-                        </select>
 
 
                     </form>

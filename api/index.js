@@ -1,5 +1,6 @@
 import express from 'express';
 import authRoute from "./Routes/auth.js";
+import facilityRoute from "./Routes/facility.js"
 import cors from 'cors';
 
 //middleware
@@ -15,6 +16,7 @@ app.use(cors({
 
 //paths
 app.use("/api/auth", authRoute);
+app.use("/api/facility", facilityRoute);
 
 const port = 8800;
 

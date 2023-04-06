@@ -8,7 +8,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
-        "email" : "",
+        "username" : "",
         "password" : ""
     })
 
@@ -49,10 +49,10 @@ const Login = () => {
                     <hr className="LoginTitleHr"/>
                     <form>
 
-                        <input type="text" placeholder="email" className="LoginFormInput" onChange={handleChange} name="email"></input>
+                        <input type="text" placeholder="username" className="LoginFormInput" onChange={handleChange} name="username"></input>
                         <hr className="LoginHr"/>
 
-                        <input type="text" placeholder="firstname" className="LoginFormInput" onChange={handleChange} name="password"></input>
+                        <input type="text" placeholder="password" className="LoginFormInput" onChange={handleChange} name="password"></input>
                         <hr className="LoginHr"/>
 
                     </form>
