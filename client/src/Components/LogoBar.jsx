@@ -1,13 +1,11 @@
 import IHSLogo from "../Assets/IHS_transparent.png";
-import "./LogoBar.scss";
-
-
+import "./logoBar.scss";
 
 const LogoBar = () => {
 
     return(
         <div className="LogoContainer">
-            <img src={IHSLogo} className=""/>
+            <img src={IHSLogo} alt="logo" className=""/>
         </div>
     )
 }

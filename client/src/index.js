@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {MapContextProvider} from "./Contexts/showMapContext";
+import {FacilityContextProvider} from "./Contexts/FacilityContext";
+import {ContactContextProvider} from "./Contexts/ContactContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <FacilityContextProvider>
+    <ContactContextProvider>
+    <MapContextProvider>
     <App />
+    </MapContextProvider>
+    </ContactContextProvider>
+    </FacilityContextProvider>
   </React.StrictMode>
 );
 

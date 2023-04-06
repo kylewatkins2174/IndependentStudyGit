@@ -1,14 +1,22 @@
 import express from 'express';
-import registerRoute from "./Routes/register.js";
+import authRoute from "./Routes/auth.js";
+import facilityRoute from "./Routes/facility.js"
 import cors from 'cors';
 
 //middleware
 const app = express();
+app.use((req,res,next) => {
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",
+}));
 
 //paths
-app.use("/api/authentication", registerRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/facility", facilityRoute);
 
 const port = 8800;
 

@@ -1,0 +1,53 @@
+.LoginContainer{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #292929;
+
+    .LoginBottom{
+        background-color: #13192C;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        gap: 50px;
+        //justify-content: center;
+        //align-items: center;
+        //padding-left: 10px;
+        min-width: 500px;
+        min-height: 400px;
+        color: white;
+
+        .LoginTitleHeading{
+            //text-align: center;
+            padding-left: 10px;
+        }
+
+        .LoginTitleHr{
+            margin-right: 10px;
+        }
+
+        .LoginForm{
+            align-items: center;
+            padding-left: 10px;
+
+            .LoginHr{
+                border: none;
+                padding: 1px;
+            }
+
+            .LoginFormInput{
+                border-radius: 5px;     
+                width: 200px;      
+
+            }
+        }
+        .SubmitButton{
+            text-align: center;
+        }
+        .ErrorMessage{
+            color: red;
+        }
+    }
+}

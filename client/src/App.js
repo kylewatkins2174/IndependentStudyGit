@@ -1,11 +1,15 @@
-import Register from "./Components/Register.jsx";
-import Login from "./Components/Login.jsx";
-import LogoBar from "./Components/LogoBar";
+//my imports
+import Register from "./Pages/register.jsx";
+import Login from "./Pages/login.jsx";
+import Home from "./Pages/home.jsx";
+import LogoBar from "./Components/logoBar";
+import MainPage from './Pages/MainPage.jsx';
+import SearchFacility from './Pages/searchFacility.jsx';
+
+//via react
 import {
   createBrowserRouter,
   RouterProvider,
-  Outlet,
-  Navigate
 } from "react-router-dom"
 
 function App() {
@@ -14,13 +18,25 @@ function App() {
     {
       path: "/login",
       element: (
-        <Login/>
+          <Login/>
       ),
     },
     {
       path: "/register",
       element: (
         <Register/>
+      )
+    },
+    {
+      path: "/home",
+      element: (
+        <MainPage/>
+      )
+    },
+    {
+      path: "/search",
+      element: (
+        <SearchFacility/>
       )
     }
   ])
