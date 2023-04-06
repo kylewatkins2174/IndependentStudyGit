@@ -1,22 +1,29 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const FacilityContext = createContext();
 
 export const FacilityContextProvider = ({children}) => {
-    const [facility, setFacility] = useState(localStorage.getItem("facility") || ""
-    );
+    const [facility, setFacility] = useState({
+        fId: "",
+        fName: "",
+        fAddr: "",
+        fCity: "",
+        fState: "",
+        fZip: 0,
+        lat: 0, 
+        longitude: 0,
+        maxOccupants: 0
+    })
+    ;
 
-    const toggleFacility = (id) => {
-        setFacility(id);
-        console.log(id);
+    const updateFacility = (fac) => {
+        setFacility(fac);
     }
 
-    useEffect(()=>{
-        localStorage.setItem("facility", facility);
-    }, [facility]);
+    const fId = facility.fId;
 
     return(
-        <FacilityContext.Provider value={{facility, toggleFacility}}>
+        <FacilityContext.Provider value={{facility, fId, updateFacility}}>
             {children}
         </FacilityContext.Provider>
     )
