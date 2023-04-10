@@ -5,6 +5,7 @@ import Home from "./Pages/home.jsx";
 import LogoBar from "./Components/logoBar";
 import MainPage from './Pages/MainPage.jsx';
 import SearchFacility from './Pages/searchFacility.jsx';
+import FacilityPage from "./Pages/FacilityPage.jsx";
 
 //via react
 import {
@@ -37,6 +38,12 @@ function App() {
       path: "/search",
       element: (
         <SearchFacility/>
+      )
+    },
+    {
+      path: "/facility",
+      element: (
+        <FacilityPage />
       )
     }
   ])

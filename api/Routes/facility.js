@@ -6,6 +6,6 @@ const route = express.Router();
 
 route.post("/search", searchFacility);
 
-route.post("/search/contacts", searchContacts);
+route.post("/contacts", searchContacts);
 
 export default route;

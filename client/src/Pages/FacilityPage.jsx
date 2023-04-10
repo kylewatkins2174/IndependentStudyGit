@@ -1,6 +1,6 @@
 import "./FacilityPage.scss";
 import {Link} from "react-router-dom";
-import MoreInfoFacility from "../components/MoreInfoFacility";
+import MoreInfoFacility from "../Components/MoreInfoFacility";
 
 const FacilityPage = () => {
 
