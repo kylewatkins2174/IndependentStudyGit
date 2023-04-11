@@ -8,8 +8,8 @@ import axios from "axios";
 
 const ContainerStyle = {                       //creates a style for the Google Maps object
     position: 'relative',                      //
-    width:'90%',                               //
-    height:'300px',                            //
+    width: '97.3%',
+    height:'80vh',                            //
     padding:'20px'                             //
 }                                              //
                                                //

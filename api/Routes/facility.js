@@ -1,5 +1,5 @@
 import express from 'express';
-import { searchFacility, searchContacts } from '../Controller/facility.js';
+import { searchFacility, searchContacts, searchChemicals } from '../Controller/facility.js';
 
 
 const route = express.Router();
@@ -7,5 +7,7 @@ const route = express.Router();
 route.post("/search", searchFacility);
 
 route.post("/contacts", searchContacts);
+
+route.post("/chemicals", searchChemicals)
 
 export default route;

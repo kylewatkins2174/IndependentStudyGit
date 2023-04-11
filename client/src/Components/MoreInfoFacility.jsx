@@ -18,7 +18,7 @@ const MoreInfoFacility = () => {                        // A Functional Componen
                                                         //
     return(                                             //
         <div className="moreInfo">
-            <CloseIcon onClick={setInvisible}/>
+            <CloseIcon className="close" onClick={setInvisible}/>
             <table>
             <tbody>
                 {/* Generates the first <tbody> with the information about the Facility. */}

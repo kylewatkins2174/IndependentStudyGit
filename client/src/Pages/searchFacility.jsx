@@ -5,7 +5,6 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import MapContainer from '../Components/GoogleMaps';
 import {Link} from "react-router-dom";
-import Header from "../Components/Header";
 import {MapContext} from "../Contexts/showMapContext";
 import MoreInfoFacility from "../Components/MoreInfoFacility"
 
@@ -60,8 +59,6 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 //
     return (                                    // the rendering of SearchFacility.
         <div className="search">
-            <div className="searchFacility">
-                <Header />
                 <div className="searchBar">
                     <Link to="/" >
                         <button><HomeIcon /></button>
@@ -69,7 +66,6 @@ const SearchFacility = () => {                  // The main star of the app. The
                     <input type="text" name="keyword" placeholder="Search for facility..." onChange={handleChange}/>
                     <button onClick={searchClick}><SearchOutlinedIcon/></button>
                 </div>
-            </div>
             <div className="contents">
                 <div className="map">
                     <MapContainer markers={rows} />

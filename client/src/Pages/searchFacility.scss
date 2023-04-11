@@ -1,59 +1,49 @@
 @import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
 
 .search{
-    overflow-y:scroll;
-    .searchFacility{
-        font-family: 'proxima-nova', sans-serif;
-        font-weight: bold;
-        background-color: #11192e;
-        color:white;
+    font-family: 'proxima-nova', sans-serif;
+    font-weight: bold;
+    background-color: #11192e;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    justify-content: center;
+
+    .searchBar{
         display: flex;
-        flex-direction: column;
-        padding:20px;
-        
+        justify-content:space-evenly;
 
-        .searchBar{
-            display: flex;
-            justify-content:space-between;
-            position:sticky;
-
-            button{
-                background-color: lightgrey;
-            }
+        button{
+            background-color: lightgrey;
+        }
             
-            input{
-                border:none;
-                background: gray;
-                width:85%;
-            }
-
-            ::placeholder{
-                color:#11192e;
-            }
+        input{
+            border:none;
+            background: gray;
+            width:85%;
         }
-        .rows{
-            margin-top:50px;
-            .row{
-                padding:10px;
-
-                span{
-                    font-size: 20px;
-                    
-                }
-            }
+        ::placeholder{
+            color:#11192e;
         }
+    }
 
-        .contents{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            .map{
-                height:100vh;
-                width:80%
-            }
-            .contact-info{
-                width:50%;
-            }
+    .contents{
+        margin-top:50px;
+        color: black;
+        position: relative;
+        
+        padding:0px 20px;
+        .map{
+            height:100%;
+            z-index:1;
+            width:100%;
+        }
+        .contact-info{
+            z-index: 3;
+            position:absolute;
+            top:0px;
+            right:0px;
         }
     }
 }
