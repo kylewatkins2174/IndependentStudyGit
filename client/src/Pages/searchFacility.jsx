@@ -60,7 +60,7 @@ const SearchFacility = () => {                  // The main star of the app. The
     return (                                    // the rendering of SearchFacility.
         <div className="search">
                 <div className="searchBar">
-                    <Link to="/" >
+                    <Link to="/home" >
                         <button><HomeIcon /></button>
                     </Link>
                     <input type="text" name="keyword" placeholder="Search for facility..." onChange={handleChange}/>

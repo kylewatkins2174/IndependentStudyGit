@@ -6,10 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import {MapContextProvider} from "./Contexts/showMapContext";
 import {FacilityContextProvider} from "./Contexts/FacilityContext";
 import {ContactContextProvider} from "./Contexts/ContactContext";
+import {AuthContextProvider} from "./Contexts/AuthContext"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AuthContextProvider>
     <FacilityContextProvider>
     <ContactContextProvider>
     <MapContextProvider>
@@ -17,6 +19,7 @@ root.render(
     </MapContextProvider>
     </ContactContextProvider>
     </FacilityContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

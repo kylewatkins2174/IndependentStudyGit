@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.scss";
 import queryServer from "../axios.js"
+import {AuthContext} from "../Contexts/AuthContext"; 
 
 
 const Login = () => {
+
+    const {updateUser, updateAuthorization} = useContext(AuthContext);
+
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
@@ -34,6 +38,7 @@ const Login = () => {
 
         queryServer.post("/auth/login", inputs).then(response => {
             console.log(response);
+            updateUser()
             navigate("/home");
         }).catch(err => {
             setErr(err);
@@ -52,7 +57,7 @@ const Login = () => {
                         <input type="text" placeholder="username" className="LoginFormInput" onChange={handleChange} name="username"></input>
                         <hr className="LoginHr"/>
 
-                        <input type="text" placeholder="password" className="LoginFormInput" onChange={handleChange} name="password"></input>
+                        <input type="password" placeholder="password" className="LoginFormInput" onChange={handleChange} name="password"></input>
                         <hr className="LoginHr"/>
 
                     </form>

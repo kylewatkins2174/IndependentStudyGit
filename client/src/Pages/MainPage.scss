@@ -4,29 +4,26 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width:100vh;
     height:100vh;
     gap:30px;
-
-    img{
-        border:5px solid white;
-        width:300px;
-        
-    }
 
     span{
     font-family: 'proxima-nova', sans-serif;
     font-weight: bold;
     color:white;
     font-size:24px;
+    text-align: center;
     }
 
     button{
+        width:250px;
         border:none;
         padding:10px 30px;
-        border-radius:20px;
+        border-radius:10px;
         border:none;
         background-color: #F05432;
         font-size: 1.25em;
+        color:white;
+        font-weight: 600;
     }
 }
