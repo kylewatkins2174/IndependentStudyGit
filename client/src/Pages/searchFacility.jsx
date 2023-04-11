@@ -6,7 +6,7 @@ import { useState, useEffect, useContext } from "react";
 import MapContainer from '../Components/googleMaps';
 import {Link} from "react-router-dom";
 import {MapContext} from "../Contexts/showMapContext";
-import MoreInfoFacility from "../Components/moreInfoFacility"
+import MoreInfoFacility from '../Components/moreInfoFacility';
 
 const SearchFacility = () => {                  // The main star of the app. The ability to search, select, and view
                                                 // information about a facility that stores hazardous chemicals in
