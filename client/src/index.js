@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {MapContextProvider} from "./Contexts/showMapContext";
-import {FacilityContextProvider} from "./Contexts/FacilityContext";
-import {ContactContextProvider} from "./Contexts/ContactContext";
-import {AuthContextProvider} from "./Contexts/AuthContext"
+import {FacilityContextProvider} from "./Contexts/facilityContext";
+import {ContactContextProvider} from "./Contexts/contactContext";
+import {AuthContextProvider} from "./Contexts/authContext"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,7 +1,7 @@
-import "./FacilityPage.scss";
+import "./facilityPage.scss";
 import {Link} from "react-router-dom";
-import FacTable from "../Components/FacTable";
-import {FacilityContext} from "../Contexts/FacilityContext"
+import FacTable from "../Components/facTable";
+import {FacilityContext} from "../Contexts/facilityContext"
 import {useContext, useEffect, useState} from "react"
 import axios from "axios";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';

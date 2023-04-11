@@ -3,10 +3,10 @@ import HomeIcon from '@mui/icons-material/Home';
 import "./searchFacility.scss";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
-import MapContainer from '../Components/GoogleMaps';
+import MapContainer from '../Components/googleMaps';
 import {Link} from "react-router-dom";
 import {MapContext} from "../Contexts/showMapContext";
-import MoreInfoFacility from "../Components/MoreInfoFacility"
+import MoreInfoFacility from "../Components/moreInfoFacility"
 
 const SearchFacility = () => {                  // The main star of the app. The ability to search, select, and view
                                                 // information about a facility that stores hazardous chemicals in

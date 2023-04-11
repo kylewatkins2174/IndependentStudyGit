@@ -1,4 +1,4 @@
-import "./FacTable.scss"
+import "./facTable.scss"
 
 const FacTable = ({chemicalData}) => {
 
