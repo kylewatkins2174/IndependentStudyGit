@@ -3,11 +3,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import "./searchFacility.scss";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
-import MapContainer from '../Components/GoogleMaps';
+import MapContainer from '../Components/googleMaps';
 import {Link} from "react-router-dom";
-import Header from "../Components/Header";
+import Header from "../Components/header";
 import {MapContext} from "../Contexts/showMapContext";
-import MoreInfoFacility from '../Components/MoreInfoFacility';
+import MoreInfoFacility from '../Components/moreInfoFacility';
 
 const SearchFacility = () => {
 

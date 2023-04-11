@@ -2,8 +2,8 @@
 import Register from "./Pages/register.jsx";
 import Login from "./Pages/login.jsx";
 import Home from "./Pages/home.jsx";
-import LogoBar from "./Components/logoBar";
-import MainPage from './Pages/MainPage.jsx';
+import LogoBar from "./Components/logoBar.jsx";
+import MainPage from './Pages/mainPage.jsx';
 import SearchFacility from './Pages/searchFacility.jsx';
 
 //via react

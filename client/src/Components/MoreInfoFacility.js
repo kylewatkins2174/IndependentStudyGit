@@ -1,6 +1,6 @@
-import "./MoreInfoFacility.scss";
-import {ContactContext} from "../Contexts/ContactContext";
-import {FacilityContext} from "../Contexts/FacilityContext";
+import "./moreInfoFacility.scss";
+import {ContactContext} from "../Contexts/contactContext";
+import {FacilityContext} from "../Contexts/facilityContext";
 import {MapContext} from "../Contexts/showMapContext";
 import {useContext} from "react"
 import {Link} from "react-router-dom";

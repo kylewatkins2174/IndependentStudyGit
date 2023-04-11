@@ -1,4 +1,4 @@
-import "./MainPage.scss";
+import "./mainPage.scss";
 import {Link} from "react-router-dom";
 
 const MainPage = () => {

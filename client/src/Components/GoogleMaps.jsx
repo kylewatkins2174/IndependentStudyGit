@@ -1,8 +1,8 @@
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import React from "react";
 import {MapContext} from "../Contexts/showMapContext";
-import {FacilityContext} from "../Contexts/FacilityContext";
-import {ContactContext} from "../Contexts/ContactContext";
+import {FacilityContext} from "../Contexts/facilityContext";
+import {ContactContext} from "../Contexts/contactContext";
 import {useContext, useEffect} from "react";
 import axios from "axios";
 

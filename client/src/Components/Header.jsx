@@ -1,4 +1,4 @@
-import "./Header.scss";
+import "./header.scss";
 import HeaderImg from "../Assets/IHS_transparent.png"
 
 const Header = () => {
