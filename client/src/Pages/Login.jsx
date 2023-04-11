@@ -38,7 +38,7 @@ const Login = () => {
 
         queryServer.post("/auth/login", inputs).then(response => {
             console.log(response);
-            updateUser()
+            updateUser(inputs.username)
             navigate("/home");
         }).catch(err => {
             setErr(err);
