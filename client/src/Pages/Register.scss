@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     background-color: #292929;
+    font-family: 'proxima-nova', sans-serif;
 
     .RegisterBottom{
         background-color: #13192C;
@@ -19,32 +20,47 @@
         min-height: 400px;
         color: white;
 
-        .RegisterTitleHeading{
-            //text-align: center;
-            padding-left: 10px;
-        }
-
-        .RegisterTitleHr{
-            margin-right: 10px;
-        }
-
         .RegisterForm{
             align-items: center;
             padding-left: 10px;
+
+            .RegisterTitleHeading{
+                //text-align: center;
+                padding-left: 10px;
+            }
+
+            .RegisterTitleHr{
+                margin-right: 10px;
+            }
 
             .RegisterHr{
                 border: none;
                 padding: 1px;
             }
 
-            .RegisterFormInput{
-                border-radius: 5px;     
-                width: 200px;      
+            form{
 
+                .RegisterFormInput{
+                    border-radius: 5px;     
+                    width: 200px;      
+    
+                }
+
+                .tip{
+                    color:gray;
+                }
             }
+
         }
         .SubmitButton{
             text-align: center;
+            color:white;
+            background-color: #f05432;
+            border:none;
+            padding:10px 35px;
+            border-radius:10px;
+            font-weight:600;
+            font-size:14px;
         }
     }
 }

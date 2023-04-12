@@ -40,37 +40,41 @@ const Register = () => {
                 <div className="RegisterForm">
                 <h1 className="RegisterTitleHeading">Register</h1>
                     <hr className="RegisterTitleHr"/>
-                    <form>
+                    <form onSubmit={handleSubmit}>
 
-                        <input onChange={handleChange} type="text" placeholder="email" className="RegisterFormInput" autoComplete="true" name="email"></input>
+                        <span>Enter email:</span><br/>
+                        <input onChange={handleChange} type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="(Ex. example@gmail.com)" className="RegisterFormInput" autoComplete="true" name="email"></input>
                         <hr className="RegisterHr"/>
 
-                        <input onChange={handleChange} type="text" placeholder="firstname" className="RegisterFormInput" autoComplete="true" name="firstname"></input>
+                        <span>Enter your first name:</span><br/>
+                        <input onChange={handleChange} type="text" placeholder="(Ex. John)" className="RegisterFormInput" autoComplete="true" name="firstname"></input>
                         <hr className="RegisterHr"/>
                         
-                        <input onChange={handleChange} type="text" placeholder="lastname" className="RegisterFormInput" autoComplete="true" name="lastname"></input>
+                        <span>Enter your last name:</span><br/>
+                        <input onChange={handleChange} type="text" placeholder="(Ex. Smith)" className="RegisterFormInput" autoComplete="true" name="lastname"></input>
+                        <hr className="RegisterHr"/>
+                        
+                        <span>Enter your department:</span><br/>
+                        <input onChange={handleChange} type="text" placeholder="Enter department..." className="RegisterFormInput" autoComplete="true" name="department"/>
                         <hr className="RegisterHr"/>
 
-                        <input onChange={handleChange} type="text" placeholder="department" className="RegisterFormInput" autoComplete="true" name="department"/>
+                        <span>Enter your username:</span><br/>
+                        <input onChange={handleChange} type="text" placeholder="Enter username..." className="RegisterFormInput" autoComplete="true" name="username"/>
                         <hr className="RegisterHr"/>
 
-                        <input onChange={handleChange} type="text" placeholder="username" className="RegisterFormInput" autoComplete="true" name="username"/>
+                        <span>Enter your password:</span><br/>
+                        <input onChange={handleChange} type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%&]).{8,}" placeholder="Enter password..." className="RegisterFormInput" autoComplete="true" name="password"></input>
+                        <br/><span className="tip">Must be 8 characters in length, and include one capital letter,<br/> one number, and one special character (!@#$%&)</span>
                         <hr className="RegisterHr"/>
 
-                        <input onChange={handleChange} type="text" placeholder="password" className="RegisterFormInput" autoComplete="true" name="password"></input>
-                        <hr className="RegisterHr"/>
-
+                    <button className="SubmitButton">Submit</button>
+                    {err && err.response} 
 
                     </form>
                     <hr className="RegisterHr"/>
                     <hr className="RegisterHr"/>
                     <hr className="RegisterHr"/>
                     <hr className="RegisterHr"/>
-
-
-
-                    <button onClick={handleSubmit} className="SubmitButton">Submit</button>
-                    {err && err.response.data}
                 </div>
             </div>
         </div>

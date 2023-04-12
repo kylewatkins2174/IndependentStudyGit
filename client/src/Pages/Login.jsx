@@ -52,14 +52,17 @@ const Login = () => {
                 <div className="LoginForm">
                 <h1 className="LoginTitleHeading">Login</h1>
                     <hr className="LoginTitleHr"/>
-                    <form>
+                    <form onSubmit={handleSubmit}>
 
-                        <input type="text" placeholder="username" className="LoginFormInput" onChange={handleChange} name="username"></input>
+                        <span>Username:</span><br/>
+                        <input type="text" placeholder="Enter username..." className="LoginFormInput" onChange={handleChange} name="username"></input>
                         <hr className="LoginHr"/>
 
-                        <input type="password" placeholder="password" className="LoginFormInput" onChange={handleChange} name="password"></input>
+                        <span>Password:</span><br/>
+                        <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%&]).{8,}" placeholder="Enter password..." className="LoginFormInput" onChange={handleChange} name="password"></input>
                         <hr className="LoginHr"/>
 
+                    <button className="SubmitButton">Submit</button>
                     </form>
 
 
@@ -70,7 +73,6 @@ const Login = () => {
                     <hr className="LoginHr"/>
                     <hr className="LoginHr"/>
                     <hr className="LoginHr"/>
-                    <button onClick={handleSubmit} className="SubmitButton">Submit</button>
                     <br/>
                     <p className="ErrorMessage">{err && err.response.data}</p>
                 </div>

@@ -15,7 +15,7 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 //    -- a MapContainer component, defined in /components/GoogleMaps.jsx.
                                                 //    -- a MoreInfoFacility component, defined in /components/MoreInfoFacility.jsx
                                                 //
-    const {visibility} = useContext(MapContext);// The only useContext on this page. used with the MoreInfoFacility
+    const {visibility, setInvisible} = useContext(MapContext);// The only useContext on this page. used with the MoreInfoFacility
                                                 // component to determine if the component should be visible to the
                                                 // user.
                                                 //
@@ -61,7 +61,7 @@ const SearchFacility = () => {                  // The main star of the app. The
         <div className="search">
                 <div className="searchBar">
                     <Link to="/home" >
-                        <button><HomeIcon /></button>
+                        <button onClick={setInvisible}><HomeIcon /></button>
                     </Link>
                     <input type="text" name="keyword" placeholder="Search for facility..." onChange={handleChange}/>
                     <button onClick={searchClick}><SearchOutlinedIcon/></button>
