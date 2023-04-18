@@ -34,12 +34,10 @@ const FacTable = ({chemicalData}) => {
               <tr>
                 <td className="firstRow">Max Amount:</td><td>{chem.max_Amt}</td>
               </tr>
+              <button><a href={"https://phmsa.dot.gov/erg/material?materialName=" + chem.chName + "&materialUn=" + chem.materialUn} target="_blank" rel="noreferrer" style={{color:"white"}}>ERG</a></button>
             </table>
           )
         })}
-        <button>View SDS</button>
-        <button>View ERG</button>
-        <button>View 3rd option</button>
         </div>
     )
 }

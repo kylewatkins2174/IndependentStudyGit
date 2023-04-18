@@ -8,9 +8,7 @@ import axios from "axios";
 
 const ContainerStyle = {                       //creates a style for the Google Maps object
     position: 'relative',                      //
-    width: '97.3%',
-    height:'80vh',                            //
-    padding:'20px'                             //
+    height:'80vh',                             //
 }                                              //
                                                //
 export const MapContainer = (props) => {       // creating a MapContainer functional component, takes in markers as a prop,
@@ -62,6 +60,7 @@ export const MapContainer = (props) => {       // creating a MapContainer functi
             lng: -95.3698 }}
         streetViewControl={false}
         fullscreenControl={false}
+        mapTypeControl={false}
         >
         {/*
           Creates all the markers. Taking in the markers prop, it renders as many markers as are within the

@@ -5,8 +5,10 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import MapContainer from '../Components/googleMaps';
 import {Link} from "react-router-dom";
-import {MapContext} from "../Contexts/showMapContext";
 import MoreInfoFacility from '../Components/moreInfoFacility';
+import ChemicalView from "../Components/chemicalView";
+import NotVisible from "../Components/notVisible";
+import {MapContext} from "../Contexts/showMapContext"
 
 const SearchFacility = () => {                  // The main star of the app. The ability to search, select, and view
                                                 // information about a facility that stores hazardous chemicals in
@@ -15,9 +17,7 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 //    -- a MapContainer component, defined in /components/GoogleMaps.jsx.
                                                 //    -- a MoreInfoFacility component, defined in /components/MoreInfoFacility.jsx
                                                 //
-    const {visibility, setInvisible} = useContext(MapContext);// The only useContext on this page. used with the MoreInfoFacility
-                                                // component to determine if the component should be visible to the
-                                                // user.
+    const {visibility} = useContext(MapContext);
                                                 //
     const [inputs, setInputs] = useState({      // This useState is used in order to send data to the server in the useEffect
                                                 // defined below.
@@ -61,21 +61,22 @@ const SearchFacility = () => {                  // The main star of the app. The
         <div className="search">
                 <div className="searchBar">
                     <Link to="/home" >
-                        <button onClick={setInvisible}><HomeIcon /></button>
+                        <button><HomeIcon /></button>
                     </Link>
                     <input type="text" name="keyword" placeholder="Search for facility..." onChange={handleChange}/>
                     <button onClick={searchClick}><SearchOutlinedIcon/></button>
                 </div>
             <div className="contents">
+                <div className="chemicals">
+                    {visibility ? <ChemicalView/> : null}
+                </div>
+
                 <div className="map">
                     <MapContainer markers={rows} />
                 </div>
+                
                 <div className="contact-info">
-                    {/*
-                     Using the visibility from MapContext, if visibility = true, then display the
-                     <MoreInfoFacility /> Component. Otherwise, return nothing.
-                    */}
-                    {visibility ? <MoreInfoFacility /> : null}
+                    {visibility ? <MoreInfoFacility/> : <NotVisible/> }
                 </div>
             </div>
         </div>

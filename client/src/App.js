@@ -5,7 +5,6 @@ import Home from "./Pages/home.jsx";
 import LogoBar from "./Components/logoBar";
 import MainPage from './Pages/mainPage.jsx';
 import SearchFacility from './Pages/searchFacility.jsx';
-import FacilityPage from "./Pages/facilityPage.jsx";
 
 //via react
 import {
@@ -40,12 +39,6 @@ function App() {
         <SearchFacility/>
       )
     },
-    {
-      path: "/facility",
-      element: (
-        <FacilityPage />
-      )
-    }
   ])
   
   return (

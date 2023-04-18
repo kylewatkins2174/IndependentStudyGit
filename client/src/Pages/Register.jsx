@@ -42,29 +42,29 @@ const Register = () => {
                     <hr className="RegisterTitleHr"/>
                     <form onSubmit={handleSubmit}>
 
-                        <span>Enter email:</span><br/>
-                        <input onChange={handleChange} type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="(Ex. example@gmail.com)" className="RegisterFormInput" autoComplete="true" name="email"></input>
+                        <span>Enter email <span style={{color:"red"}}>*</span>:</span><br/>
+                        <input onChange={handleChange} type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="(Ex. example@gmail.com)" className="RegisterFormInput" autoComplete="true" name="email" required></input>
                         <hr className="RegisterHr"/>
 
-                        <span>Enter your first name:</span><br/>
-                        <input onChange={handleChange} type="text" placeholder="(Ex. John)" className="RegisterFormInput" autoComplete="true" name="firstname"></input>
+                        <span>Enter your first name <span style={{color:"red"}}>*</span>:</span><br/>
+                        <input onChange={handleChange} type="text" placeholder="(Ex. John)" className="RegisterFormInput" autoComplete="true" name="firstname" required />
                         <hr className="RegisterHr"/>
                         
-                        <span>Enter your last name:</span><br/>
-                        <input onChange={handleChange} type="text" placeholder="(Ex. Smith)" className="RegisterFormInput" autoComplete="true" name="lastname"></input>
+                        <span>Enter your last name <span style={{color:"red"}}>*</span>:</span><br/>
+                        <input onChange={handleChange} type="text" placeholder="(Ex. Smith)" className="RegisterFormInput" autoComplete="true" name="lastname" required />
                         <hr className="RegisterHr"/>
                         
-                        <span>Enter your department:</span><br/>
-                        <input onChange={handleChange} type="text" placeholder="Enter department..." className="RegisterFormInput" autoComplete="true" name="department"/>
+                        <span>Enter your department <span style={{color:"red"}}>*</span>:</span><br/>
+                        <input onChange={handleChange} type="text" placeholder="Enter department..." className="RegisterFormInput" autoComplete="true" name="department" required />
                         <hr className="RegisterHr"/>
 
-                        <span>Enter your username:</span><br/>
-                        <input onChange={handleChange} type="text" placeholder="Enter username..." className="RegisterFormInput" autoComplete="true" name="username"/>
+                        <span>Enter your username <span style={{color:"red"}}>*</span>:</span><br/>
+                        <input onChange={handleChange} type="text" placeholder="Enter username..." className="RegisterFormInput" autoComplete="true" name="username" required />
                         <hr className="RegisterHr"/>
 
-                        <span>Enter your password:</span><br/>
-                        <input onChange={handleChange} type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%&]).{8,}" placeholder="Enter password..." className="RegisterFormInput" autoComplete="true" name="password"></input>
-                        <br/><span className="tip">Must be 8 characters in length, and include one capital letter,<br/> one number, and one special character (!@#$%&)</span>
+                        <span>Enter your password <span style={{color:"red"}}>*</span>:</span><br/>
+                        <input onChange={handleChange} type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%&]).{8,}" placeholder="Enter password..." className="RegisterFormInput" autoComplete="true" name="password" required />
+                        <br/><br/><span className="tip">Must be 8 characters in length, and include one capital letter,<br/> one number, and one special character (!@#$%&).<br/>Fields with a <span style={{color:"red"}}>*</span> are required.</span>
                         <hr className="RegisterHr"/>
 
                     <button className="SubmitButton">Submit</button>

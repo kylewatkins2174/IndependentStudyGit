@@ -9,6 +9,7 @@
     flex-direction: column;
     padding:20px;
     justify-content: center;
+    height:100%;
 
     .searchBar{
         display: flex;
@@ -32,18 +33,97 @@
         margin-top:50px;
         color: black;
         position: relative;
-        
         padding:0px 20px;
-        .map{
-            height:100%;
-            z-index:1;
-            width:100%;
+        display: flex;
+        flex-direction: row;
+        gap:5%;
+        width:calc(100% - 40px);
+        
+        .chemicals{
+            width:25%;
+            z-index:3;
         }
+        
+        .map{
+            width:40%;
+            z-index:1;
+        }
+        
         .contact-info{
-            z-index: 3;
-            position:absolute;
-            top:0px;
-            right:0px;
+            width:25%;
+            z-index:3;
+        }
+    }
+}
+
+@media all and (max-width:1100px){
+    .search{
+        .contents{
+            gap:2.5%;
+            .chemicals{
+                width: 32.5%;
+            }
+            .map{
+                width:30%;
+            }
+            .contact-info{
+                width:32.5%;
+            }
+        }
+    }
+}
+
+@media all and (max-width:784px){
+    .search{
+        .contents{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            width:calc(100% - 40px);
+            gap:10px;
+            .chemicals{
+                order: 3;
+                width:45%;
+            }
+            .map{
+                order:1;
+                width:100%;
+            }
+            .contact-info{
+                order:2;
+                width:45%;
+                .notVisible{
+                    width:100%;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width:585px){
+    .search{
+        .contents{
+            display: flex;
+            flex-direction: column;
+            gap:20px;
+            width:calc(100% - 40px);
+            height:250vh;
+            .chemicals{
+                order: 3;
+                width:100%;
+            }
+            .map{
+                order:1;
+                width:100%;
+            }
+            .contact-info{
+                order:2;
+                width:100%;
+                .notVisible{
+                    width:100%;
+                }
+            }
         }
     }
 }

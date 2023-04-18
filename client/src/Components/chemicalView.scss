@@ -1,0 +1,70 @@
+.chemical-list{
+    background-color: white;
+    border-radius:10px;
+    // width:300px;
+    max-height:600px;
+    box-shadow: 0px 4px 10px 5px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x:hidden;
+    background-color:#f0f0f0;
+
+    
+    .topBar{
+        position:sticky;
+        top:0;
+        align-self:flex-start;
+        z-index:10;
+        background-color:white;
+        width:100%;
+        
+        h3{
+            text-align:center;
+        }
+
+        .chemicalViewSearch{
+            width:calc(100% - 10px);
+            padding:5px;
+            box-shadow: inset 0px 0px 10px 2px rgba(0, 0, 0, 0.25);
+            border-top:1px solid black;
+            border-bottom:1px solid black;
+
+            form{
+                width:calc(100% - 20px);
+                input{
+                    width:100%;
+                    border:none;
+                    padding: 10px;
+                    background:transparent;
+                }
+                
+            }
+        }
+    }
+
+    table{
+        width:100%;
+        font-size: 0.9em;
+
+        tr{
+            .leftRow{
+                width:100px;
+                text-align: left;
+            }
+            
+            td{
+                text-align:center;
+                // width:200px;
+            }
+        }
+        p{
+            text-align:left;
+        }
+    }
+}
+
+.chemical-list::-webkit-scrollbar {
+    display:none;
+  }
+  
