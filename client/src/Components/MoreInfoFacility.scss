@@ -56,6 +56,9 @@
             
             td{
                 text-align:center;
+                a{
+                    color:#f05432;
+                }
             }
         }
         p{
@@ -75,6 +78,16 @@
 }
 
 .moreInfo::-webkit-scrollbar {
-    display:none;
+    width:5px;
+  }
+
+  .moreInfo::-webkit-scrollbar-track{
+    background:transparent;
+  }
+
+  .moreInfo::-webkit-scrollbar-thumb{
+    width:5px;
+    border-radius:10px;
+    background-color: darkgrey;
   }
 

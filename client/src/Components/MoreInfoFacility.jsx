@@ -72,6 +72,7 @@ const MoreInfoFacility = () => {                        // A Functional Componen
             </tbody>
             <p>Contacts:</p>
             {contact.map(c => {
+                const mailto = `mailto:${c.cEmail};`
                 return( // Generates the second <tbody>, focused on the facility contacts. Each facility could have more
                         // than one contact, which is the purpose for the mapping. Most may only have one, however.
                     <tbody key={c.cId} className="end">
@@ -91,7 +92,7 @@ const MoreInfoFacility = () => {                        // A Functional Componen
                         <td className="leftRow">Contact Phone:</td><td>{c.phoneNum}</td>
                     </tr>
                     <tr>
-                        <td className="leftRow">Contact eMail:</td><td>{c.cEmail}</td>
+                        <td className="leftRow">Contact eMail:</td><td><a href={mailto}>{c.cEmail}</a></td>
                     </tr>
                     <br/>
                     </tbody>
