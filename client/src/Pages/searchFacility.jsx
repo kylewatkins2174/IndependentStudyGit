@@ -8,7 +8,8 @@ import {Link} from "react-router-dom";
 import MoreInfoFacility from '../Components/moreInfoFacility';
 import ChemicalView from "../Components/chemicalView";
 import NotVisible from "../Components/notVisible";
-import {MapContext} from "../Contexts/showMapContext"
+import {MapContext} from "../Contexts/showMapContext";
+import {AuthContext} from "../Contexts/authContext";
 
 const SearchFacility = () => {                  // The main star of the app. The ability to search, select, and view
                                                 // information about a facility that stores hazardous chemicals in
@@ -17,7 +18,8 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 //    -- a MapContainer component, defined in /components/GoogleMaps.jsx.
                                                 //    -- a MoreInfoFacility component, defined in /components/MoreInfoFacility.jsx
                                                 //
-    const {visibility} = useContext(MapContext);
+    const {visibility} = useContext(MapContext);//
+    const {deptId} = useContext(AuthContext);   //
                                                 //
     const [inputs, setInputs] = useState({      // This useState is used in order to send data to the server in the useEffect
                                                 // defined below.
@@ -43,9 +45,10 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 // multiple results fro the SQL query/API request as shown in the useEffect below.
                                                 //
     useEffect(() => {                           // useEffect which reloads every time a new keyword is formed by the searchClick
-        const jsonLoad = {keyword};             // function above. Takes in the {keyword} as a JSON and sends to the server with Axios.
+                                                // function above. Takes in the {keyword} as a JSON and sends to the server with Axios.
                                                 // As long as no error occurs, it will call setRows and assign the rows [] to all the
                                                 // data pulled from the server.
+        const jsonLoad = {keyword, deptId}      //
         axios.post('http://localhost:8800/api/facility/search', jsonLoad)
         .then(function (response) {             // 
             setRows(response.data);             // 

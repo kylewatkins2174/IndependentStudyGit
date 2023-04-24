@@ -2,10 +2,11 @@ import db from '../connect.js';
 
 
 export const searchFacility = (req, res) => {
-    const q = "SELECT * FROM facility WHERE fName LIKE ?";
+    const q = "SELECT * FROM facility WHERE fName LIKE ? and departmentId = ?";
     const keyword = req.body.keyword || "";
+    const deptId = req.body.deptId;
 
-    db.query(q, [`%${keyword}%`], (err, rows, fields) => {
+    db.query(q, [`%${keyword}%`, deptId], (err, rows, fields) => {
         if (err) {
             return res.status(500).json(`There was an error finding your facilities. Please try again.`);
         }
@@ -50,7 +51,7 @@ export const searchChemicals = (req, res) => {
 }
 
 export const searchContactsRefined = (req, res) => {
-    const q = "select * from contact join contactinfo where fId = ? and contact.cId = contactinfo.cId and firstName like ?;"
+    const q = "select * from contact join contactinfo where fId = ? and contact.cId = contactinfo.cId and concat(firstName, ' ', lastName) like ?;"
     const q2 = "select * from contact join contactinfo where fId = ? and contact.cId = contactinfo.cId;"
     const fId = req.body.fId;
     const keyword = req.body.keyword;

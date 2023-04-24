@@ -56,8 +56,10 @@
             
             td{
                 text-align:center;
+                border-bottom:1px solid black;
                 a{
                     color:#f05432;
+                    text-decoration: none;
                 }
             }
         }
@@ -88,6 +90,9 @@
   .moreInfo::-webkit-scrollbar-thumb{
     width:5px;
     border-radius:10px;
-    background-color: darkgrey;
+    background-color: #696868;
   }
 
+  .moreInfo::-webkit-scrollbar-thumb:hover{
+    background-color: #3d3d3d;
+  }

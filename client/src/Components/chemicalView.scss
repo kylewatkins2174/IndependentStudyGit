@@ -77,15 +77,19 @@
 
 .chemical-list::-webkit-scrollbar {
     width:5px;
+    // display:none;
   }
 
   .chemical-list::-webkit-scrollbar-track{
-    background: transparent;
+    background:transparent;
   }
 
   .chemical-list::-webkit-scrollbar-thumb{
     width:5px;
-    background-color: darkgray;
-    border-radius: 10px;;
+    border-radius:10px;
+    background-color: #696868;
   }
   
+  .chemical-list::-webkit-scrollbar-thumb:hover{
+    background-color: #393939;
+  }

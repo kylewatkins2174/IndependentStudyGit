@@ -16,8 +16,14 @@ export const AuthContextProvider = ({children}) => {
         setAuthorized(auth);
     }
 
+    const [deptId, setDeptId] = useState(2);
+
+    const updateDepartment = (id) => {
+        setDeptId(id);
+    }
+
     return(
-        <AuthContext.Provider value={{userName, updateUser, authorized, updateAuthorization}}>
+        <AuthContext.Provider value={{userName, updateUser, authorized, updateAuthorization, deptId, updateDepartment}}>
             {children}
         </AuthContext.Provider>
     )
