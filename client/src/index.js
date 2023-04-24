@@ -6,17 +6,25 @@ import reportWebVitals from './reportWebVitals';
 import {MapContextProvider} from "./Contexts/showMapContext";
 import {FacilityContextProvider} from "./Contexts/facilityContext";
 import {ContactContextProvider} from "./Contexts/contactContext";
+import {AuthContextProvider} from "./Contexts/authContext";
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <FacilityContextProvider>
-    <ContactContextProvider>
-    <MapContextProvider>
-    <App />
-    </MapContextProvider>
-    </ContactContextProvider>
-    </FacilityContextProvider>
+    <AuthContextProvider>
+      <FacilityContextProvider>
+        <ContactContextProvider>
+          <MapContextProvider>
+            <QueryClientProvider client={queryClient}>
+              <App />
+            </QueryClientProvider>
+          </MapContextProvider>
+        </ContactContextProvider>
+      </FacilityContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

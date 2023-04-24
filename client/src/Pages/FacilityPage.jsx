@@ -1,4 +1,3 @@
-import "./FacilityPage.scss";
 import {Link} from "react-router-dom";
 import MoreInfoFacility from "../Components/moreInfoFacility";
 
