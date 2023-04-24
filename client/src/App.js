@@ -1,10 +1,11 @@
 //my imports
 import Register from "./Pages/register.jsx";
 import Login from "./Pages/login.jsx";
-import Home from "./Pages/home.jsx";
 import LogoBar from "./Components/logoBar";
 import MainPage from './Pages/mainPage.jsx';
 import SearchFacility from './Pages/searchFacility.jsx';
+import FacilityPage from "./Pages/facilityPage.jsx";
+import AdminPage from './Pages/AdminPage/adminPage.jsx';
 
 //via react
 import {
@@ -37,6 +38,12 @@ function App() {
       path: "/search",
       element: (
         <SearchFacility/>
+      )
+    },
+    {
+      path: "/adminPage",
+      element: (
+        <AdminPage/>
       )
     },
   ])

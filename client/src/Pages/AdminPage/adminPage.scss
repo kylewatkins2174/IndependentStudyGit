@@ -1,0 +1,40 @@
+.infobar{
+    display: flex;
+    gap: 15px;
+}
+
+.row-container{
+    background-color: purple;
+    padding: 5px;
+
+        .requests{
+        background-color: darkgrey;
+        padding: 5px;
+
+        .row{
+            background-color: lightgray;
+            padding: 5px;
+            margin: 5px;
+
+            .more-info-button{
+                text-align: right;
+            }
+        }   
+    }
+
+    .users{
+        background-color: darkgrey;
+        padding: 5px;
+
+        .row{
+            background-color: lightgray;
+            padding: 5px;
+            margin: 5px;
+
+            .more-info-button{
+                text-align: right;
+            }
+        }   
+    }
+}
+

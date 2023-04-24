@@ -65,10 +65,6 @@ const Login = () => {
                     <button className="SubmitButton">Submit</button>
                     </form>
 
-
-
-
-
                     <hr className="LoginHr"/>
                     <hr className="LoginHr"/>
                     <hr className="LoginHr"/>
@@ -77,9 +73,7 @@ const Login = () => {
                     <p className="ErrorMessage">{err && err.response.data}</p>
                 </div>
             </div>
-
         </div>
-
     );
 }
 
