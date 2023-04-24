@@ -1,7 +1,4 @@
-<<<<<<< HEAD:client/src/Pages/FacilityPage.jsx
 import "./facilityPage.scss";
-=======
->>>>>>> dfcc943eb27a4e9732a92c618cff332877e11dd1:client/src/Pages/facilityPage.jsx
 import {Link} from "react-router-dom";
 import FacTable from "../Components/facTable";
 import {FacilityContext} from "../Contexts/facilityContext"
