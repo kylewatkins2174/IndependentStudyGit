@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const MapContext = createContext();               // Creates a new Context named ContactContext to wrap around the App.
                                                          //
-export const MapContextProvider = ({children}) => {      //
+export const MapContextProvider = ({children}) => {      // Creates a provider to wrap around the App (denoted by {children}).
                                                          //
     const [visibility, setVisibility] = useState(false); // This useState generates a Boolean variable "visibility" and a function to 
                                                          // set the visibility to true or false. Used to display MoreInfoFacility on searchFacility.jsx.

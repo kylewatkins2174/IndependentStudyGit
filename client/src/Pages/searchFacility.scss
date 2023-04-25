@@ -1,58 +1,127 @@
 @import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
 
 .search{
-    overflow-y:scroll;
-    .searchFacility{
-        font-family: 'proxima-nova', sans-serif;
-        font-weight: bold;
-        background-color: #11192e;
-        color:white;
+    font-family: 'proxima-nova', sans-serif;
+    font-weight: bold;
+    background-color: #11192e;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    justify-content: center;
+    height:100%;
+
+    .searchBar{
         display: flex;
-        flex-direction: column;
-        padding:20px;
-        
+        justify-content:space-evenly;
 
-        .searchBar{
-            display: flex;
-            justify-content:space-between;
-            position:sticky;
-
-            button{
-                background-color: lightgrey;
-            }
+        button{
+            background-color: lightgrey;
+        }
             
-            input{
-                border:none;
-                background: gray;
-                width:85%;
-            }
+        input{
+            border:none;
+            background: gray;
+            width:85%;
+        }
+        ::placeholder{
+            color:#11192e;
+        }
+    }
 
-            ::placeholder{
-                color:#11192e;
+    .contents{
+        margin-top:50px;
+        color: black;
+        position: relative;
+        padding:0px 20px;
+        display: flex;
+        flex-direction: row;
+        gap:5%;
+        width:calc(100% - 40px);
+        
+        .chemicals{
+            width:25%;
+            z-index:3;
+        }
+        
+        .map{
+            width:40%;
+            z-index:1;
+        }
+        
+        .contact-info{
+            width:25%;
+            z-index:3;
+        }
+    }
+}
+
+@media all and (max-width:1100px){
+    .search{
+        .contents{
+            gap:2.5%;
+            .chemicals{
+                width: 32.5%;
+            }
+            .map{
+                width:30%;
+            }
+            .contact-info{
+                width:32.5%;
             }
         }
-        .rows{
-            margin-top:50px;
-            .row{
-                padding:10px;
+    }
+}
 
-                span{
-                    font-size: 20px;
-                    
+@media all and (max-width:784px){
+    .search{
+        .contents{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            width:calc(100% - 40px);
+            gap:10px;
+            .chemicals{
+                order: 3;
+                width:45%;
+            }
+            .map{
+                order:1;
+                width:100%;
+            }
+            .contact-info{
+                order:2;
+                width:45%;
+                .notVisible{
+                    width:100%;
                 }
             }
         }
+    }
+}
 
+@media all and (max-width:585px){
+    .search{
         .contents{
             display: flex;
-            flex-direction: row;
-            justify-content: center;
+            flex-direction: column;
+            gap:20px;
+            width:calc(100% - 40px);
+            .chemicals{
+                order: 3;
+                width:100%;
+            }
             .map{
-                height:100vh;
-                width:80%
+                order:1;
+                width:100%;
             }
             .contact-info{
-                width:50%;
+                order:2;
+                width:100%;
+                .notVisible{
+                    width:100%;
+                }
             }
         }
     }

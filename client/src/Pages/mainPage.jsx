@@ -1,15 +1,19 @@
 import "./mainPage.scss";
 import {Link} from "react-router-dom";
+import {AuthContext} from "../Contexts/authContext";
+import {useContext} from "react";
 
 const MainPage = () => {
 
+    const {userName, authorized} = useContext(AuthContext);
+
     return(
         <div className="main">
-            <img src="https://ihsonline.org/portals/0/Images/HTML%20Images/IHS_transparent.png" alt="Institute for Homeland Security"/>
-            <span>Welcome to the IHS Tier II App</span>
+            <span>Welcome, {userName}, to the IHS Tier II App!</span>
             <Link to="/search">
-            <button>Lets begin!</button>
+            <button>View Map</button>
             </Link>
+            {authorized ? <button>Manage Accounts</button> : null}
         </div>
     )
 }

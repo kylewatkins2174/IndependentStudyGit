@@ -1,22 +1,44 @@
+import "./facTable.scss"
 
-
-const FacTable = (props) => {
+const FacTable = ({chemicalData}) => {
 
     return(
-        <table>
-        <tr>
-          <td>Facility Name:</td><td>{props.marker.name}</td>
-        </tr>
-        <tr>
-          <td>Facility ID: </td><td>{props.marker.fId}</td>
-          </tr>
-          <tr>
-          <td>Facility Address: </td><td>{props.marker.address}, {props.marker.city}, {props.marker.state}, {props.marker.zip}</td>
-          </tr>
-          <tr>
-          <td>Max Occupancy: </td><td>{props.marker.occ}</td>
-        </tr>
-      </table>
+      <div>
+        {chemicalData.map(chem => {
+          return (
+            <table>
+              <tr>
+                <td className="firstRow">Chemical:</td><td>{chem.chName}</td>
+              </tr>
+              <tr>
+                <td className="firstRow">CAS Number:</td><td>{chem.CAS}</td>
+              </tr>
+              <tr>
+                <td className="firstRow">Extremely Hazardous Substance?</td><td>{chem.EHS}</td>
+              </tr>
+              <tr>
+                <td className="firstRow">Location Type:</td><td>{chem.loc_type}</td>
+              </tr>
+              <tr>
+                <td className="firstRow">CAS Number:</td><td>{chem.loc_pressure}</td>
+              </tr>
+              <tr>
+                <td className="firstRow">Location Temperature:</td><td>{chem.loc_temp}</td>
+              </tr>
+              <tr>
+                <td className="firstRow">Location Pressure:</td><td>{chem.loc_pressure}</td>
+              </tr>
+              <tr>
+                <td className="firstRow">Percent:</td><td>{chem.percent}%</td>
+              </tr>
+              <tr>
+                <td className="firstRow">Max Amount:</td><td>{chem.max_Amt}</td>
+              </tr>
+              <button><a href={"https://phmsa.dot.gov/erg/material?materialName=" + chem.chName + "&materialUn=" + chem.materialUn} target="_blank" rel="noreferrer" style={{color:"white"}}>ERG</a></button>
+            </table>
+          )
+        })}
+        </div>
     )
 }
 

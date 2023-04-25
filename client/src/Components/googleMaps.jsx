@@ -6,54 +6,57 @@ import {ContactContext} from "../Contexts/contactContext";
 import {useContext, useEffect} from "react";
 import axios from "axios";
 
-const ContainerStyle = {                       //creates a style for the Google Maps object
+const ContainerStyle = {                       // Style variable to set the position and height of the Maps Container.
     position: 'relative',                      //
-    width:'90%',                               //
-    height:'300px',                            //
-    padding:'20px'                             //
+    height:'80vh',                             //
 }                                              //
                                                //
-export const MapContainer = (props) => {       // creating a MapContainer functional component, takes in markers as a prop,
-                                               // and uses that to create all the markers, which store all the data about the 
-                                               // facility itself. Generates the map with an initial center in the middle of
+export const MapContainer = (props) => {       // MapContainer is a functional component, as opposed to a class.
+                                               // It takes in markers as a prop, and uses that to render the markers
+                                               // on the map, which store all the data about the facilities in them.
+                                               // It also generates the map with an initial center in the middle of
                                                // Houston.
                                                //
                                                //
-                                               // Three useContexts to pass around data and information about the facilities and
-                                               // their contacts:
+                                               // Three useContexts are initialized to pass around data and 
+                                               // information about the facilities and their contacts:
                                                //    -- setVisible() to set the small info window to visible,
                                                //    -- fId and updateFacility() to set the facility and form API request for contacts
                                                //    -- updateContact() to set the current contact as the one for the selected marker
     const {setVisible} = useContext(MapContext);
-                                               //
     const{fId, updateFacility} = useContext(FacilityContext); 
-                                               //
     const {updateContact} = useContext(ContactContext);
                                                //
-    useEffect(() => {                          // useEffect pulls data from the database, sending in the fId and quering the 
-                                               //contact for the facility with the same fId.
-        const jsonLoad = {fId};                //  
-      axios.post('http://localhost:8800/api/facility/contacts', jsonLoad)
-      .then(function (response) {              //
-          updateContact(response.data);        //
+    useEffect(() => {                          // This useEffect takes in the fId context variable and sets jsonLoad
+                                               // to the same value. jsonLoad is then sent to the server with axios. 
+        const jsonLoad = {fId};                // If there is no error in retrieving the response, the Contact context
+      axios.post('http://localhost:8800/api/facility/contacts', jsonLoad)// variable will be updated. Otherwise, it
+      .then(function (response) {              // catches the error. The useEffect is only triggered when the fId is
+          updateContact(response.data);        // changed, hence the fId in the Dependency Array at the end.
       })                                       //  
       .catch(function (error) {                //
           console.log(error);                  //
       })                                       //
     }, [fId])                                  //
                                                //
-    const onMarkerClick = (props, marker) => { // function to set the current facility to all the information
-                                               // given in the marker. It then sets the visibility of the 
-                                               // information.
-        updateFacility(marker)                 //  
-        setVisible();                          //
+    const onMarkerClick = (props, marker) => { // onMarkerClick is a function, taking in props and marker, in order
+                                               // update the Facility using the updateFacility() context function. 
+        updateFacility(marker)                 // It also sets the Visibility context variable to true by using
+        setVisible();                          // setVisible().
     };                                         //  
-    return(                                    // MapContainer render. Requires a <Map /> component.
-                                               // google={props.google} is important to get it to function.
-                                               // Set streetViewControl and fullscreenControl to false to limit user's
-                                               // capabilities with the google map.
+                                               //
+    return(                                    // This is the MapContainer rendering. Within, there is found:
                                                // 
-        <Map 
+                                               // 1.  <Map/> React Component, which requires google={props.google}
+                                               //     in order to function. The street view, full screen, and map type
+                                               //     controls have all been disabled. The initial center is in the middle of Houston.
+                                               //
+                                               // 2. <Marker> React Component. Using the .map() function, for every marker 
+                                               //    gathered in the <SearchFacility> Component saved as the markers prop.
+                                               //    Calls the onMarkerClick method and contains all the information about
+                                               //    a facility. 
+        // {/* 1 */}
+        <Map
         google={props.google} 
         containerStyle={ContainerStyle}
         zoom={9} 
@@ -62,11 +65,9 @@ export const MapContainer = (props) => {       // creating a MapContainer functi
             lng: -95.3698 }}
         streetViewControl={false}
         fullscreenControl={false}
+        mapTypeControl={false}
         >
-        {/*
-          Creates all the markers. Taking in the markers prop, it renders as many markers as are within the
-          jurisdiction. Each marker takes in all the necessary information to pass around to other pages.
-        */}
+        {/* 2 */}
         {props.markers.map(marker => {
             return (
             <Marker 
@@ -89,8 +90,8 @@ export const MapContainer = (props) => {       // creating a MapContainer functi
     )
 }
 
-export default GoogleApiWrapper({ // The API Wrapper. Without this, the Google Maps would not work. 
-                                  // Requires an API key in order to display, and then wraps around the
-                                  // MapContainer. 
+export default GoogleApiWrapper({ // This is the Google API Wrapper for the map. Using the given API key,
+                                  // it wraps around the MapContainer, which enables the Google Maps API
+                                  // to function.
     apiKey: 'AIzaSyAyJTyMNsRkZ8FXk3hpGs3CGlplmw6oJnE'
   })(MapContainer)
