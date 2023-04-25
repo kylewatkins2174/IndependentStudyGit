@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useContext } from 'react';
 import { AuthContext } from "../../Contexts/authContext";
 import requestServer from "../../axios";
+import './map.scss';
 
 
 export const ActiveRequests = (error) => {   
@@ -47,11 +48,21 @@ export const ActiveRequests = (error) => {
     return(
         <div>
             {userQuery.data.map(user => (
-                <div key={user.userId}>
-                    <span>{user.userId}</span>|<span>{user.lastName}</span>|<span>{user.firstName}</span>
-                    <button key="moreinfobutton" className="more-info-button" onClick={moreInfoClick}>more information</button>
-                    <button key="giveaccessbutton" index={user.userId} onClick={() => denyUser.mutate(user.userId)}>Reject</button>
-                    <button key="denyaccessbutton" index={user.userId} onClick={() => acceptUser.mutate(user.userId)}>Accept</button>
+                <div key={user.userId} className='row-container'>
+                    <div className='left-row'>
+                        <span>{user.lastName}</span><span>{user.firstName}</span>
+
+                    </div>
+                    
+
+                    <div className='right-row'>
+                        <button className='row-button' key="moreinfobutton" onClick={moreInfoClick}>more information</button>
+                        <button className='row-button' key="giveaccessbutton" index={user.userId} onClick={() => denyUser.mutate(user.userId)}>Reject</button>
+                        <button className='row-button' key="denyaccessbutton" index={user.userId} onClick={() => acceptUser.mutate(user.userId)}>Accept</button>
+                    </div>
+
+                    <br></br>
+
                 </div>
             ))}
         </div>

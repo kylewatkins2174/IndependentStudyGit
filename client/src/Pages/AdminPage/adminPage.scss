@@ -3,11 +3,11 @@
     gap: 15px;
 }
 
-.row-container{
-    background-color: purple;
+.container{
+    background-color: darkgrey;
     padding: 5px;
 
-        .requests{
+        .map-container{
         background-color: darkgrey;
         padding: 5px;
 
@@ -15,6 +15,10 @@
             background-color: lightgray;
             padding: 5px;
             margin: 5px;
+
+            .row-break{
+                background-color: black;
+            }
 
             .more-info-button{
                 text-align: right;

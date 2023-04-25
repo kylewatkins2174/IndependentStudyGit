@@ -11,9 +11,7 @@ export const requests = (req,res) => {
             console.log("error");
             return res.status(500).json(error);
         }
-        if(rows.length === 0){
-            return res.status(404).json("No requests available");
-        }
+
 
         return res.status(200).json(rows);
     })
@@ -67,9 +65,6 @@ export const activeUsers = (req,res) => {
         if(error){
             console.log("error");
             return res.status(500).json(error);
-        }
-        if(rows.length === 0){
-            return res.status(404).json("No requests available");
         }
 
         return res.status(200).json(rows);

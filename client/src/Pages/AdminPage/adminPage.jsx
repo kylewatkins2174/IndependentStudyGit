@@ -18,14 +18,14 @@ const AdminPage = () => {
 
             <h1>admin page</h1>
 
-            <div className="row-container">
-                <div className="requests">
-                    <h1>Access Requests</h1>
+            <div className="container">
+                <h1>Access Requests</h1>
+                <div className="map-container">
                     <ActiveRequests/>
                 </div>
 
-                <div className="users">
-                    <h1>Active Users</h1>
+                <h1>Active Users</h1>
+                <div className="map-container">
                     <ActiveUsers/>
                 </div>
             </div>
