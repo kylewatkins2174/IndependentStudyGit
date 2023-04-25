@@ -7,7 +7,7 @@ import {AuthContext} from "../Contexts/authContext";
 
 const Login = () => {
 
-    const {updateUser, updateAuthorization} = useContext(AuthContext);
+    const {updateUser} = useContext(AuthContext);
 
     const navigate = useNavigate();
 

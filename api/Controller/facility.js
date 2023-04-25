@@ -2,11 +2,10 @@ import db from '../connect.js';
 
 
 export const searchFacility = (req, res) => {
-    const q = "SELECT * FROM facility WHERE fName LIKE ? and departmentId = ?";
+    const q = "SELECT * FROM facility WHERE fName LIKE ?";
     const keyword = req.body.keyword || "";
-    const deptId = req.body.deptId;
 
-    db.query(q, [`%${keyword}%`, deptId], (err, rows, fields) => {
+    db.query(q, [`%${keyword}%`], (err, rows, fields) => {
         if (err) {
             return res.status(500).json(`There was an error finding your facilities. Please try again.`);
         }
