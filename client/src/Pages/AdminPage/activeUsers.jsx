@@ -2,6 +2,8 @@ import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useContext } from 'react';
 import { AuthContext } from "../../Contexts/authContext";
 import requestServer from "../../axios";
+import './map.scss'
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 
 export const ActiveUsers = (error) => {   
@@ -39,12 +41,26 @@ export const ActiveUsers = (error) => {
     }
 
     return(
+
         <div>
             {userQuery.data.map(user => (
-                <div key={user.userId}>
-                    <span>{user.userId}</span>|<span>{user.lastName}</span>|<span>{user.firstName}</span>
-                    <button key="moreinfobutton" className="more-info-button" onClick={moreInfoClick}>more information</button>
-                    <button key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}>Revoke Access</button>
+                <div>
+
+                    <div key={user.userId} className='row-container'>
+                        <div>
+                            <span>{user.userId}</span>|<span>{user.lastName}</span>|<span>{user.firstName}</span>
+                        </div>
+
+                        <div className='right-row'>
+                            <button className="row-button" key="moreinfobutton" onClick={moreInfoClick}>more</button>
+                            <button className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}>Revoke Access</button>
+                        </div>
+
+                        <br/>
+                    </div>
+
+                    <hr className='row-break'/>
+
                 </div>
             ))}
         </div>
