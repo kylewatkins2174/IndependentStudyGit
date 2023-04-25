@@ -10,7 +10,7 @@ export const AuthContextProvider = ({children}) => {
         isAdmin: true,
         depId: 1,
     });
-
+    const x = 10;
     const updateUser = ({user}) => {
         setUserValues(user);
     }
