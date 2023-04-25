@@ -1,44 +1,48 @@
-.infobar{
-    display: flex;
-    gap: 15px;
-}
+.page-container{
+    background-color: #13192C;
+    height: 100vh;
 
-.container{
-    background-color: darkgrey;
-    padding: 5px;
+    .infobar{
+        display: flex;
+        gap: 15px;
+    }
 
-        .map-container{
+    .container{
         background-color: darkgrey;
         padding: 5px;
 
-        .row{
-            background-color: lightgray;
+            .map-container{
+            background-color: darkgrey;
             padding: 5px;
-            margin: 5px;
 
-            .row-break{
-                background-color: black;
-            }
+            .row{
+                background-color: lightgray;
+                padding: 5px;
+                margin: 5px;
 
-            .more-info-button{
-                text-align: right;
-            }
-        }   
-    }
+                .row-break{
+                    background-color: black;
+                }
 
-    .users{
-        background-color: darkgrey;
-        padding: 5px;
+                .more-info-button{
+                    text-align: right;
+                }
+            }   
+        }
 
-        .row{
-            background-color: lightgray;
+        .users{
+            background-color: darkgrey;
             padding: 5px;
-            margin: 5px;
 
-            .more-info-button{
-                text-align: right;
-            }
-        }   
+            .row{
+                background-color: lightgray;
+                padding: 5px;
+                margin: 5px;
+
+                .more-info-button{
+                    text-align: right;
+                }
+            }   
+        }
     }
 }
-
