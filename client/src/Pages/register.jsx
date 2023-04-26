@@ -2,6 +2,7 @@ import "./register.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import queryServer from "../axios.js";
+import DepartmentDropdown from "../Components/departmentDropDown";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -51,7 +52,7 @@ const Register = () => {
                         <input onChange={handleChange} type="text" placeholder="lastname" className="RegisterFormInput" autoComplete="true" name="lastname"></input>
                         <hr className="RegisterHr"/>
 
-                        <input onChange={handleChange} type="text" placeholder="department" className="RegisterFormInput" autoComplete="true" name="department"/>
+                        <DepartmentDropdown/>
                         <hr className="RegisterHr"/>
 
                         <input onChange={handleChange} type="text" placeholder="username" className="RegisterFormInput" autoComplete="true" name="username"/>

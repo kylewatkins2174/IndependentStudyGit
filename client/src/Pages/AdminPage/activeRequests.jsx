@@ -37,14 +37,13 @@ export const ActiveRequests = (error) => {
     })
 
     if(userQuery.isLoading) return <h1>Loading...</h1>
+    if(userQuery.data.length === 0)
+    {
+        return <p className='message'>No Active Requests</p>
+    }
 
     if(userQuery.isError) {
-        if (error.status === 404){
-            return <p>{JSON.stringify("No active requests found")}</p>
-        }
-        else{
-            return <p>No active requests found</p>
-        }
+        return <p>No active requests found</p>
     }
 
     return(

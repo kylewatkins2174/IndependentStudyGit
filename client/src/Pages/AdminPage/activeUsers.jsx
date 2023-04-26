@@ -30,35 +30,36 @@ export const ActiveUsers = (error) => {
     })
 
     if(userQuery.isLoading) return <h1>Loading...</h1>
+    if(userQuery.data.length === 0)
+    {
+        return (
+            <div>
+                <p className='message'>No Active Users</p>
+                <hr className='row-break'/>
+            </div>
+        );
 
-    if(userQuery.isError) {
-        if (error.status === 404){
-            return <p>{JSON.stringify("No active requests found")}</p>
-        }
-        else{
-            return <p>No active requests found</p>
-        }
     }
 
     return(
-
         <div>
+            <hr className='row-break'/>
+
             {userQuery.data.map(user => (
                 <div>
-                    <hr className='row-break'/>
 
                     <div key={user.userId} className='row-container'>
                         <div className='left-row'>
-                            <span>{user.userId}</span>|<span>{user.lastName}</span>|<span>{user.firstName}</span>
+                            <span>{user.lastName}</span>|<span>{user.firstName}</span>
                         </div>
 
                         <div className='right-row'>
                             <button title="More Information" className="row-button" key="moreinfobutton" onClick={moreInfoClick}><FeedIcon className='icon'/></button>
                             <button title="Revoke User Access" className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
                         </div>
-
-                        <br/>
                     </div>
+                    <hr className='row-break'/>
+
 
 
                 </div>
