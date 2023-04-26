@@ -15,7 +15,6 @@ export const AuthContextProvider = ({children}) => {
         setUserValues(user);
     }
 
-
     return(
         <AuthContext.Provider value={{userValues, updateUser}}>
             {children}

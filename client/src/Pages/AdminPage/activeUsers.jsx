@@ -3,8 +3,8 @@ import { useContext } from 'react';
 import { AuthContext } from "../../Contexts/authContext";
 import requestServer from "../../axios";
 import './map.scss'
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-
+import CloseIcon from '@mui/icons-material/Close';
+import FeedIcon from '@mui/icons-material/Feed';
 
 export const ActiveUsers = (error) => {   
     const { userValues } = useContext(AuthContext);
@@ -45,21 +45,21 @@ export const ActiveUsers = (error) => {
         <div>
             {userQuery.data.map(user => (
                 <div>
+                    <hr className='row-break'/>
 
                     <div key={user.userId} className='row-container'>
-                        <div>
+                        <div className='left-row'>
                             <span>{user.userId}</span>|<span>{user.lastName}</span>|<span>{user.firstName}</span>
                         </div>
 
                         <div className='right-row'>
-                            <button className="row-button" key="moreinfobutton" onClick={moreInfoClick}>more</button>
-                            <button className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}>Revoke Access</button>
+                            <button title="More Information" className="row-button" key="moreinfobutton" onClick={moreInfoClick}><FeedIcon className='icon'/></button>
+                            <button title="Revoke User Access" className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
                         </div>
 
                         <br/>
                     </div>
 
-                    <hr className='row-break'/>
 
                 </div>
             ))}

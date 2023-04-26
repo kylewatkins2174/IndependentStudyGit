@@ -55,14 +55,13 @@ export const ActiveRequests = (error) => {
                     <div key={user.userId} className='row-container'>
                         <div className='left-row'>
                             <span>{user.lastName}</span>, <span>{user.firstName}</span>
-
                         </div>
                         
 
                         <div className='right-row'>
                             <button className='row-button' title="User Information" onClick={moreInfoClick}><FeedIcon className="icon"/></button>
-                            <button className='row-button' title="Remove User" onClick={() => denyUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
                             <button className='row-button' title="Accept User" onClick={() => acceptUser.mutate(user.userId)}><CheckBoxIcon className="icon"/></button>
+                            <button className='row-button' title="Remove User" onClick={() => denyUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
                         </div>
 
                     </div>
