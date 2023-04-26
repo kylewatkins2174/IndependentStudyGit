@@ -10,7 +10,9 @@ const AdminPage = () => {
     const {userValues} = useContext(AuthContext)
 
     return(
+
         <div className='admin-container'>
+
             <div className="infobar">
                 <span>{userValues.userName}</span>
                 <span>{`Department Admin Page`}</span>

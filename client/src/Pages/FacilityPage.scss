@@ -1,0 +1,26 @@
+.facPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .header{
+        width:100%;
+        text-align:center;
+        position: relative;
+        padding-top: 10px;
+        .back{
+            color:#f05432;
+            cursor:pointer;
+            position: absolute;
+            top:35%;
+            left:1%;
+        }
+        .title{
+            font-size: 2em;
+        }
+    }
+    hr{
+        width:100%;
+    }
+}

@@ -55,7 +55,6 @@ export const login = (req,res) => {
 
         //check if password is correct
         const hash = rows[0].password;
-        console.log(`${rows[0].firstname}`);
         const isValidPassword = bc.compareSync(req.body.password, hash);
 
         if(!isValidPassword){

@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({children}) => {
 
     const [userValues, setUserValues] = useState({
-        userName: 'RodenyReedrocks123',
+        userName: 'RodneyReedrocks123',
         authorized: true,
         isAdmin: true,
         depId: 1,
