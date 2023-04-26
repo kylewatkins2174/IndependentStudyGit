@@ -1,38 +1,59 @@
-.page-container{
-    background-color: #13192C;
+.admin-container{
     height: 100vh;
+    background-color: #13192C;
+
 
     .infobar{
         display: flex;
-        gap: 15px;
+        justify-content: center;
+        gap: 100px;
+        background-color: grey;
+        outline: 1px solid #f45624;
+        border-color: white;
+        width: 100%;
+
+        span{
+            color: white;
+            margin: 5px;
+        }
     }
 
+    .main-title{
+        margin: 10px;
+        color: white;  
+    }
+    
+    .title{
+        margin: 10px;
+        color: black;
+        
+    }
+    
     .container{
         background-color: darkgrey;
-        padding: 5px;
-
+        border-radius: 5px;
+    
             .map-container{
             background-color: darkgrey;
-            padding: 5px;
-
+            padding: 0px;
+    
             .row{
                 background-color: lightgray;
                 padding: 5px;
                 margin: 5px;
-
+    
                 .row-break{
                     background-color: black;
                 }
-
                 .more-info-button{
                     text-align: right;
                 }
             }   
-        }
-
+        }    
         .users{
             background-color: darkgrey;
             padding: 5px;
+    
 
             .row{
                 background-color: lightgray;
@@ -44,5 +65,5 @@
                 }
             }   
         }
-    }
+    }   
 }

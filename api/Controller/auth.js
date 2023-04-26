@@ -26,6 +26,18 @@ export const register = (req,res) => {
 
 }
 
+export const departments = (req,res) => {
+    const q = "SELECT departmentName FROM departments"
+
+    db.query(q, async(error, rows, field) => {
+        if(error){
+            return res.status(500).json(error);
+        }
+
+
+    })
+}
+
 export const login = (req,res) => {
     
     const q = "SELECT * FROM users WHERE username = ?"
