@@ -2,7 +2,9 @@ import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useContext } from 'react';
 import { AuthContext } from "../../Contexts/authContext";
 import requestServer from "../../axios";
-
+import './map.scss'
+import CloseIcon from '@mui/icons-material/Close';
+import FeedIcon from '@mui/icons-material/Feed';
 
 export const ActiveUsers = (error) => {   
     const { userValues } = useContext(AuthContext);
@@ -28,23 +30,38 @@ export const ActiveUsers = (error) => {
     })
 
     if(userQuery.isLoading) return <h1>Loading...</h1>
+    if(userQuery.data.length === 0)
+    {
+        return (
+            <div>
+                <p className='message'>No Active Users</p>
+                <hr className='row-break'/>
+            </div>
+        );
 
-    if(userQuery.isError) {
-        if (error.status === 404){
-            return <p>{JSON.stringify("No active requests found")}</p>
-        }
-        else{
-            return <p>No active requests found</p>
-        }
     }
 
     return(
         <div>
+            <hr className='row-break'/>
+
             {userQuery.data.map(user => (
-                <div key={user.userId}>
-                    <span>{user.userId}</span>|<span>{user.lastName}</span>|<span>{user.firstName}</span>
-                    <button key="moreinfobutton" className="more-info-button" onClick={moreInfoClick}>more information</button>
-                    <button key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}>Revoke Access</button>
+                <div>
+
+                    <div key={user.userId} className='row-container'>
+                        <div className='left-row'>
+                            <span>{user.lastName}</span>|<span>{user.firstName}</span>
+                        </div>
+
+                        <div className='right-row'>
+                            <button title="More Information" className="row-button" key="moreinfobutton" onClick={moreInfoClick}><FeedIcon className='icon'/></button>
+                            <button title="Revoke User Access" className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
+                        </div>
+                    </div>
+                    <hr className='row-break'/>
+
+
+
                 </div>
             ))}
         </div>

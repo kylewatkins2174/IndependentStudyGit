@@ -25,7 +25,6 @@ export const accept = (req,res) => {
             console.log(error);
             return res.status(500).json(error);
         }
-        console.log(`verified user ${req.body.userId}`)
         return res.status(200).json(`verified user ${req.body.userId}`);
     })
 }
@@ -49,7 +48,6 @@ export const revoke = (req,res) => {
         if(error){
             console.log(error)
         }
-        console.log(`revoked user ${req.body.userId}`)
         return res.status(200).json(`revoked user ${req.body.userId}`)
     })
 }
