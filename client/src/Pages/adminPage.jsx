@@ -13,7 +13,7 @@ const AdminPage = () => {
     return(
         <div className='admin-container'>
 
-            <UserBar></UserBar>
+            <UserBar/>
 
             <h1 className="main-title">Admin Page</h1>
 
