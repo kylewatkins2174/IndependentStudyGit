@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { UserInfo } from '../userInfo';
-import { ActiveRequests } from "./activeRequests.jsx";
-import { ActiveUsers } from "./activeUsers.jsx"
+import { UserInfo } from '../Components/userInfo';
+import { ActiveRequests } from "../Components/activeRequests.jsx";
+import { ActiveUsers } from "../Components/activeUsers.jsx"
 import "./adminPage.scss"
-import { AuthContext } from '../../Contexts/authContext';
+import { AuthContext } from '../Contexts/authContext';
 
 
 const AdminPage = () => {
