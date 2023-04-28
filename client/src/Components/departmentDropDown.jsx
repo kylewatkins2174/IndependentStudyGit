@@ -15,7 +15,7 @@ const DepartmentDropdown = () => {
     return(
         <div>
             <select>
-                {userQuery.data.map(department => (
+                {useQuery.data.map(department => (
                     <option>department</option>
 
 

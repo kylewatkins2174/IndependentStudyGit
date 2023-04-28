@@ -11,7 +11,7 @@ const Register = () => {
         "email" : "",
         "firstname" : "",
         "lastname" : "",
-        "department" : "",
+        "departmentid" : "1",
         "username" : "",
         "password" : ""
     });
@@ -20,6 +20,8 @@ const Register = () => {
 
     const handleChange = (e) => {
         setInputs((prev) => {
+            console.log(JSON.stringify(prev))
+
             return {...prev, [e.target.name]: e.target.value}
         })
     };
@@ -55,8 +57,9 @@ const Register = () => {
                         <input onChange={handleChange} type="text" placeholder="(Ex. Smith)" className="RegisterFormInput" autoComplete="true" name="lastname" required />
                         <hr className="RegisterHr"/>
 
-                        <DepartmentDropdown/>
-
+                        <select>
+                            <option name="Department1">Department 1</option>
+                        </select>
                         <hr className="RegisterHr"/>
 
                         <span>Enter your username <span style={{color:"red"}}>*</span>:</span><br/>
