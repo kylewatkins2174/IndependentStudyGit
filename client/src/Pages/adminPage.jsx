@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { UserInfo } from '../Components/userInfo';
+import { UserBar } from '../Components/userBar.jsx'
 import { ActiveRequests } from "../Components/activeRequests.jsx";
 import { ActiveUsers } from "../Components/activeUsers.jsx"
 import "./adminPage.scss"
@@ -10,13 +11,9 @@ const AdminPage = () => {
     const {userValues} = useContext(AuthContext)
 
     return(
-
         <div className='admin-container'>
 
-            <div className="infobar">
-                <span>{userValues.userName}</span>
-                <span>{`Department Admin Page`}</span>
-            </div>
+            <UserBar></UserBar>
 
             <h1 className="main-title">Admin Page</h1>
 
@@ -31,7 +28,6 @@ const AdminPage = () => {
                     <ActiveUsers/>
                 </div>
             </div>
-
         </div>
     )
 }
