@@ -4,7 +4,7 @@ import Login from "./Pages/login.jsx";
 import LogoBar from "./Components/logoBar";
 import MainPage from './Pages/mainPage.jsx';
 import SearchFacility from './Pages/searchFacility.jsx';
-import AdminPage from './Pages/AdminPage/adminPage.jsx';
+import AdminPage from './Pages/adminPage.jsx';
 
 //via react
 import {

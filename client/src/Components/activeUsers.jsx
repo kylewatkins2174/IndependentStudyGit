@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useContext } from 'react';
-import { AuthContext } from "../../Contexts/authContext";
-import requestServer from "../../axios";
+import { AuthContext } from "../Contexts/authContext";
+import requestServer from "../axios";
 import './map.scss'
 import CloseIcon from '@mui/icons-material/Close';
 import FeedIcon from '@mui/icons-material/Feed';
