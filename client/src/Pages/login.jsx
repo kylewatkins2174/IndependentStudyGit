@@ -16,6 +16,8 @@ const Login = () => {
         "password" : ""
     })
 
+    const [username, setUserName] = useState("");
+
     const [err, setErr] = useState(null);
 
     const handleChange = (e) => {
@@ -26,18 +28,9 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        try{
-
-        }
-        catch(err){
-            setErr(err.response.data);
-        }
-
-
+        setUserName(inputs.username);
 
         queryServer.post("/auth/login", inputs).then(response => {
-            console.log(response);
 
             updateUser(inputs.username)
             navigate("/home");

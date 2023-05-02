@@ -1,5 +1,6 @@
 import {createContext, useState} from "react";
 import requestServer from "../axios";
+import axios from "axios"
 
 export const AuthContext = createContext();
 
@@ -14,15 +15,12 @@ export const AuthContextProvider = ({children}) => {
         });
 
     const updateUser = (username) => {
-        const userInfo = requestServer.post('/auth/userInfo', {username : username})
+        const userInfo = requestServer.post('/auth/userInfo', {username})
+        console.log(userInfo.data);
 
-        const user = {
-            userId : userInfo.userId,
-            username: userInfo.username,
-            authorized : userInfo.isVerified,
-            isAdmin: userInfo.isAdmin
-        }
+        const user = {}
         setUserValues(user);
+        console.log(user);
     }
 
     return(
