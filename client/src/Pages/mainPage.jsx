@@ -9,7 +9,7 @@ const MainPage = () => {
 
     return(
         <div className="main">
-            <span>Welcome, {userValues.userName}, to the IHS Tier II App!</span>
+            <span>Welcome, {userValues.username}, to the IHS Tier II App!</span>
             <Link to="/search">
             <button>View Map</button>
             </Link>

@@ -28,11 +28,16 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setUserName(inputs.username);
+
+
 
         queryServer.post("/auth/login", inputs).then(response => {
+            console.log(response.data);
 
+
+            console.log("retrieving user " + inputs.username);
             updateUser(inputs.username)
+
             navigate("/home");
         }).catch(err => {
             setErr(err);
