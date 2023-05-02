@@ -82,7 +82,7 @@ export const userInfo = (req, res) => {
         if(error){
             console.log(error)
         }
-        return res.status(200).json(rows);
+        return res.status(200).json(rows[0]);
     })
 }
 

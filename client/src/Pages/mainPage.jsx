@@ -5,11 +5,11 @@ import {useContext} from "react";
 
 const MainPage = () => {
 
-    const {userName, authorized} = useContext(AuthContext);
+    const {userValues, authorized} = useContext(AuthContext);
 
     return(
         <div className="main">
-            <span>Welcome, {userName}, to the IHS Tier II App!</span>
+            <span>Welcome, {userValues.username}, to the IHS Tier II App!</span>
             <Link to="/search">
             <button>View Map</button>
             </Link>
