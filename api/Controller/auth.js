@@ -2,27 +2,30 @@ import db from "../connect.js";
 import bc from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export const register = (req,res) => {
+export const register = async (req,res) => {
     const q = "SELECT * FROM users WHERE username = ?";
     db.query(q, [req.body.username], (error,rows,fields) =>{
         if(error){
             return res.status(500).json(error);
         }
         if(rows.length > 0){
-            return res.status(409).json(`User ${rows[0].email} exists`);
+            console.log(`User ${rows[0].username} exists`)
+            return res.status(409).json(`User ${rows[0].username} exists`);
+        }
+        else{
+            const salt = bc.genSaltSync(10);
+            const hash = bc.hashSync(req.body.password, salt);
+        
+            const insertQ = "INSERT INTO users VALUES(?)";
+            db.query(insertQ, [[null, req.body.departmentid, req.body.primaryEmail, null, null, req.body.firstname, req.body.lastname, req.body.username, false, false, hash]], (error,rows,fields) => {
+                if(error){
+                    return res.status(500).json(error);
+                }
+                return res.status(200).json(`created user ${req.body.username}`);
+            })
         }
     });
 
-    const salt = bc.genSaltSync(10);
-    const hash = bc.hashSync(req.body.password, salt);
-
-    const insertQ = "INSERT INTO users VALUES(?)";
-    db.query(insertQ, [[null, req.body.departmentid, req.body.primaryEmail, null, null, req.body.firstname, req.body.lastname, req.body.username, false, false, hash]], (error,rows,fields) => {
-        if(error){
-            return res.status(500).json(error);
-        }
-        return res.status(200).json(`created user ${req.body.email}`);
-    })
 
 }
 
@@ -70,6 +73,17 @@ export const login = (req,res) => {
             httpOnly: true
         }).json(`Welcome ${rows[0].firstName} ${rows[0].lastName}!`);
 
+    })
+}
+
+export const userInfo = (req, res) => {
+    const q = 'SELECT * FROM users WHERE username = ?';
+
+    db.query(q, [req.body.username], async (error, rows, field) => {
+        if(error){
+            console.log(error)
+        }
+        return res.status(200).json(rows);
     })
 }
 

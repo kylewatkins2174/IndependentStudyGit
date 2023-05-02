@@ -9,6 +9,7 @@ import MoreInfoFacility from '../Components/moreInfoFacility';
 import ChemicalView from "../Components/chemicalView";
 import NotVisible from "../Components/notVisible";
 import {MapContext} from "../Contexts/showMapContext";
+import { UserBar } from '../Components/userBar';
 
 const SearchFacility = () => {                  // The main star of the app. The ability to search, select, and view
                                                 // information about a facility that stores hazardous chemicals in
@@ -58,8 +59,10 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 //
     );                                          //
                                                 //
-    return (                                    // the rendering of SearchFacility.
-        <div className="search">
+    return (                
+        <div>
+            <UserBar/>     
+            <div className="search">
                 <div className="searchBar">
                     <Link to="/home" >
                         <button><HomeIcon /></button>
@@ -81,6 +84,8 @@ const SearchFacility = () => {                  // The main star of the app. The
                 </div>
             </div>
         </div>
+        </div>                                      // the rendering of SearchFacility.
+
     )
 };
 

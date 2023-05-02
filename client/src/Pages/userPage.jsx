@@ -3,7 +3,7 @@ import { UserInfo } from '../Components/userInfo';
 import { UserBar } from '../Components/userBar.jsx'
 import { ActiveRequests } from "../Components/activeRequests.jsx";
 import { ActiveUsers } from "../Components/activeUsers.jsx"
-import "./adminPage.scss"
+import "./userPage.scss"
 import { AuthContext } from '../Contexts/authContext';
 
 
@@ -11,23 +11,28 @@ const UserPage = () => {
     const {userValues} = useContext(AuthContext)
 
     return(
-        <div className='admin-container'>
+        <div>
 
             <UserBar/>
+            <h1>Create a request</h1>
 
-            <h1 className="main-title">User Page</h1>
-
-            <div className="container">
-                <h1 className='title'>Access Requests</h1>
-                <div className="map-container">
-                    <ActiveRequests/>
+            <div className='request-form'>
+                <div className='form-container'>
+                    <form>
+                        <label>enter something</label>
+                        <input></input>
+                        <br/>
+                        <label>enter something</label>
+                        <input></input>
+                        <br/>
+                        <label>enter something</label>
+                        <input></input>
+                        <br/>
+                    </form>
                 </div>
 
-                <h1 className='title'>Active Users</h1>
-                <div className="map-container">
-                    <ActiveUsers/>
-                </div>
             </div>
+
         </div>
     )
 }
