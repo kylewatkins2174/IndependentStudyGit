@@ -27,19 +27,15 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try{
-
-        }
-        catch(err){
-            setErr(err.response.data);
-        }
-
 
 
         queryServer.post("/auth/login", inputs).then(response => {
-            console.log(response);
+            console.log(response.data);
 
+
+            console.log("retrieving user " + inputs.username);
             updateUser(inputs.username)
+
             navigate("/home");
         }).catch(err => {
             setErr(err);
