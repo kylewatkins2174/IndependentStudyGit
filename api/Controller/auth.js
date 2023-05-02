@@ -3,7 +3,7 @@ import bc from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const register = (req,res) => {
-    const q = "SELECT * FROM users WHERE userName = ?";
+    const q = "SELECT * FROM users WHERE username = ?";
     db.query(q, [req.body.username], (error,rows,fields) =>{
         if(error){
             return res.status(500).json(error);
