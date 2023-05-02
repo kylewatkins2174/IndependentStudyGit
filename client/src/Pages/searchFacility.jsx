@@ -64,7 +64,6 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 //
     return (                
         <div>
-            <UserBar/>     
             <div className="search">
                 <div className="searchBar">
                     <img src={IHSLogo} alt="Institute for Homeland Security"/>
@@ -76,7 +75,7 @@ const SearchFacility = () => {                  // The main star of the app. The
                     <Link to="/home" >
                         <button><PersonIcon /> <span>{userValues.userName}</span></button>
                     </Link>
-                    <Link to="/adminPage">
+                    <Link to="/userPage">
                     <button><PersonAddIcon/> <span> Manage Accounts</span></button>
                     </Link>
                     </div>
