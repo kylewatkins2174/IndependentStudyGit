@@ -9,8 +9,7 @@ export const register = async (req,res) => {
             return res.status(500).json(error);
         }
         if(rows.length > 0){
-            console.log(`User ${rows[0].username} exists`)
-            return res.status(409).json(`User ${rows[0].username} exists`);
+            return res.status(409).json(`User ${rows[0].primaryEmail} exists`);
         }
         else{
             const salt = bc.genSaltSync(10);

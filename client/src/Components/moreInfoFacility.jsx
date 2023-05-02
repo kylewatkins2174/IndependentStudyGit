@@ -3,15 +3,17 @@ import {ContactContext} from "../Contexts/contactContext";
 import {FacilityContext} from "../Contexts/facilityContext";
 import {useContext, useState, useEffect} from "react";
 import axios from "axios";
+import ContactItem from "./contactItem";
+import FacilityItem from "./facilityItem";
 
-const MoreInfoFacility = () => {                                    // A Functional Component to display the information about a selected 
+const MoreInfoFacility = ({facilities}) => {                                    // A Functional Component to display the information about a selected 
                                                                     // facility. After receiving the information from Contact and 
                                                                     // FacilityContext, it generates a table with the information about 
                                                                     // the Facility and the contacts related to said facility.
                                                                     //
                                                                     //
-    const {contact, updateContact} = useContext(ContactContext);    // Pulls contact & updateContact from ContactContext and facility from
-    const {facility, fId} = useContext(FacilityContext);            // FacilityContext to create the table below.
+    const {contact, updateContact} = useContext(ContactContext);    // Pulls contact & updateContact from ContactContext
+    const {fId} = useContext(FacilityContext);                      //
                                                                     //
     const [keyword, setKeyword] = useState("");                     // Two state variables have been initialized, keyword and inputs.
     const [inputs, setInputs] = useState({                          // Keyword is the final search keyword used after being typed and
@@ -35,7 +37,7 @@ const MoreInfoFacility = () => {                                    // A Functio
         const jsonLoad = {fId, keyword};                            // variable mentioned earlier, and it sets them to jsonLoad. jsonLoad
         axios.post('http://localhost:8800/api/facility/search/contacts', jsonLoad)// is then sent to the server with axios and retrieves
         .then(function (response) {                                 // the response data. If there is no error, then it sets the Contact
-            updateContact(response.data);                           // context variable to the information received from the server. 
+            updateContact(response.data);                           // context variable to the information received from the server.
         })                                                          // Otherwise, it catches the error. It is dependent on Keyword and
         .catch(function (error) {                                   // fId, and so it will not be triggered until both objects have changed.
             console.log(error);                                     //
@@ -58,55 +60,20 @@ const MoreInfoFacility = () => {                                    // A Functio
                     </form>
                 </div>
             </div>
-            <table>
-            <tbody>
-                {/* Generates the first <tbody> with the information about the Facility. */}
-            <tr>
-                <td className="leftRow">Facility ID:</td><td>{facility.fId}</td>
-            </tr>
-            <tr>
-                <td className="leftRow">Facility </td><td>{facility.name}</td>
-            </tr>
-            <tr>
-                <td className="leftRow">Facility Address:</td><td>{facility.address}, {facility.city}, {facility.state} {facility.zip}</td>
-            </tr>
-            <tr>
-                <td className="leftRow">Max Occupancy:</td><td>{facility.occ}</td>
-            </tr>
-            <tr>
-                <td className="otherRow">Contacts:</td><td className="otherRow"></td>
-            </tr>
-            </tbody>
-            {contact.map(c => {
-                return( // Generates the second <tbody>, focused on the facility contacts. Each facility could have more
-                        // than one contact, which is the purpose for the mapping. Most may only have one, however.
-                    <tbody>
-                    <tr>
-                        <td className="otherRow"></td><td className="otherRow"></td>
-                    </tr>
-                    <tr>
-                        <td className="leftRow">Contact Name:</td><td>{c.firstName} {c.lastName}</td>
-                    </tr>
-                    <tr>
-                        <td className="leftRow">Contact Title:</td><td>{c.title}</td>
-                    </tr>
-                    <tr>
-                        <td className="leftRow">Contact Address:</td><td>{c.cMailAddr}, {c.cMailCity}, {c.cMailState} {c.cMailZip}</td>
-                    </tr>
-                    <tr>
-                        <td className="leftRow">Contact Type:</td><td>{c.cType}</td>
-                    </tr>
-                    <tr>
-                        <td className="leftRow">Contact Phone:</td><td>{c.phoneNum}</td>
-                    </tr>
-                    <tr>
-                        <td className="leftRow">Contact eMail:</td><td>{c.cEmail}</td>
-                    </tr>
-                    </tbody>
+            {facilities.map(facility => {
+                return(
+                    <div className="facility-item" key={facility.fId}>
+                        <FacilityItem data={facility}/>
+                    </div>
                 )
             })}
-            {/* Creates a link to the /facility page, which will display the chemical information. */}
-        </table>
+            {contact.map(c => {
+                return(
+                    <div className="contact-item">
+                        <ContactItem data={c}/>
+                    </div>
+                )
+            })}
     </div>
     )
 }

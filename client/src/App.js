@@ -1,7 +1,7 @@
 //my imports
 import Register from "./Pages/register.jsx";
 import Login from "./Pages/login.jsx";
-import LogoBar from "./Components/logoBar";
+// import LogoBar from "./Components/logoBar";
 import MainPage from './Pages/mainPage.jsx';
 import SearchFacility from './Pages/searchFacility.jsx';
 import AdminPage from './Pages/adminPage.jsx';
@@ -56,7 +56,7 @@ function App() {
   
   return (
     <div>
-      <LogoBar/>
+      {/* <LogoBar/> */}
       <RouterProvider router = {router}/>
     </div>
   )
