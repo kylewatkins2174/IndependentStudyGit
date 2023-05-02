@@ -10,6 +10,6 @@ route.post("/contacts", searchContacts);
 
 route.post("/chemicals", searchChemicals);
 
-route.post("/search/contacts", searchContactsRefined)
+route.post("/search/contacts", searchContactsRefined);
 
 export default route;
