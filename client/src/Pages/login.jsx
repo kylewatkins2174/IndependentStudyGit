@@ -38,6 +38,7 @@ const Login = () => {
 
         queryServer.post("/auth/login", inputs).then(response => {
             console.log(response);
+
             updateUser(inputs.username)
             navigate("/home");
         }).catch(err => {
@@ -70,7 +71,7 @@ const Login = () => {
                     <hr className="LoginHr"/>
                     <hr className="LoginHr"/>
                     <br/>
-                    <p className="ErrorMessage">{err && err.response.data}</p>
+                    <p className="ErrorMessage">{err && err.data}</p>
                 </div>
             </div>
         </div>

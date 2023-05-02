@@ -1,0 +1,14 @@
+.infobar{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    background-color: grey;
+    outline: 1px solid #f45624;
+    border-color: white;
+    width: 100%;
+
+    span{
+        color: white;
+        margin: 5px;
+    }
+}

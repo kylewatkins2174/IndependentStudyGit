@@ -2,7 +2,7 @@ import "./register.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import queryServer from "../axios.js";
-import DepartmentDropdown from "../Components/departmentDropDown";
+//import DepartmentDropdown from "../Components/departmentDropDown";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -28,6 +28,8 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        console.log(JSON.stringify(inputs));
 
         queryServer.post("/auth/register", inputs).then(response => {
             console.log(response);

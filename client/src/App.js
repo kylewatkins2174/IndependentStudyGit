@@ -5,6 +5,7 @@ import Login from "./Pages/login.jsx";
 import MainPage from './Pages/mainPage.jsx';
 import SearchFacility from './Pages/searchFacility.jsx';
 import AdminPage from './Pages/adminPage.jsx';
+import UserPage from './Pages/userPage.jsx'
 
 //via react
 import {
@@ -43,6 +44,12 @@ function App() {
       path: "/adminPage",
       element: (
         <AdminPage/>
+      )
+    },
+    {
+      path: "/userpage",
+      element: (
+        <UserPage/>
       )
     },
   ])

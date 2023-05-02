@@ -62,8 +62,10 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 //
     );                                          //
                                                 //
-    return (                                    // the rendering of SearchFacility.
-        <div className="search">
+    return (                
+        <div>
+            <UserBar/>     
+            <div className="search">
                 <div className="searchBar">
                     <img src={IHSLogo} alt="Institute for Homeland Security"/>
                     <form onSubmit={searchSubmit}>
@@ -93,6 +95,8 @@ const SearchFacility = () => {                  // The main star of the app. The
                 </div>
             </div>
         </div>
+        </div>                                      // the rendering of SearchFacility.
+
     )
 };
 
