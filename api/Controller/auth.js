@@ -12,8 +12,8 @@ export const register = async (req,res) => {
             return res.status(409).json(`User ${rows[0].primaryEmail} exists`);
         }
         else{
-            const salt = bc.genSaltSync(10);
-            const hash = bc.hashSync(req.body.password, salt);
+            const salt = bcrypt.genSaltSync(10);
+            const hash = bcrypt.hashSync(req.body.password, salt);
         
             const insertQ = "INSERT INTO users VALUES(?)";
             db.query(insertQ, [[null, req.body.departmentid, req.body.primaryEmail, null, null, req.body.firstname, req.body.lastname, req.body.username, false, false, hash]], (error,rows,fields) => {
