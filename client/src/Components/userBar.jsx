@@ -2,6 +2,9 @@ import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../Contexts/authContext"
 import './userBar.scss'
+import {Link} from "react-router-dom";
+import PersonIcon from '@mui/icons-material/Person';
+import MapIcon from '@mui/icons-material/Map';
 
 export const UserBar = () => {
     const navigate = useNavigate();
@@ -20,8 +23,8 @@ export const UserBar = () => {
 
     return(
         <div className="infobar">
-            <span><a href="/userpage">{userValues.username}</a></span>
-            <span><a href="/search">View Map</a></span>
+            <Link to="/userPage"><span><PersonIcon /> {userValues.username}</span></Link>
+            <Link to="/search"><span><MapIcon /> View Map</span></Link>
             <AdminLink/>
         </div>
     )

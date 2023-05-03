@@ -2,13 +2,22 @@
     display: flex;
     justify-content: center;
     gap: 100px;
-    background-color: grey;
+    background-color: #13192C;
     outline: 1px solid #f45624;
     border-color: white;
     width: 100%;
+    padding:10px;
+    font-family: 'proxima-nova', sans-serif;
 
     span{
         color: white;
         margin: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    a{
+        text-decoration: none;
     }
 }

@@ -12,13 +12,13 @@ const DepartmentDropdown = () => {
         queryFn: () => {return requestServer.get("/auth/departments")}
     })
     
+    console.log(departmentQuery.data);
+
     return(
         <div>
             <select>
-                {useQuery.data.map(department => (
-                    <option>department</option>
-
-
+                {departmentQuery.data.map(department => (
+                    <option value={department.departmentId}>{department.departmentName}</option>
                 ))}
             </select>
         </div>

@@ -96,3 +96,15 @@ export const checkLogin = (req, res) => {
     }
 }
 
+export const getDepartments = (req, res) => {
+    const q = "SELECT department.* FROM users join department where users.departmentId = department.departmentId and userId = ?";
+    const userId = req.body.userId;
+
+    db.query(q, [userId], (error, rows, field) => {
+        if(error){
+            return res.status(500).json("No departments were found for the user. Please try again!")
+        }
+        return res.status(200).json(rows);
+    })
+}
+
