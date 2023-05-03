@@ -7,7 +7,7 @@ import {AuthContext} from "../Contexts/authContext";
 
 const Login = () => {
 
-    const {updateUser} = useContext(AuthContext);
+    const {updateUser, login} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -27,10 +27,18 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        try{
+            await login(inputs);
+        }catch(err){
+            setErr(err.response.data);
+        }
 
 
+        /*
         queryServer.post("/auth/login", inputs).then(response => {
             console.log(response.data);
+
+            localStorage.setItem("username", inputs.username);
 
 
             console.log("retrieving user " + inputs.username);
@@ -39,7 +47,7 @@ const Login = () => {
             navigate("/home");
         }).catch(err => {
             setErr(err);
-        })
+        })*/
     }
 
     return(

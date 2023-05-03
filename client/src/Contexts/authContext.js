@@ -1,37 +1,31 @@
-import {createContext, useState} from "react";
+import {createContext, useState, useEffect} from "react";
 import requestServer from "../axios";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({children}) => {
+    const [currentUser, setCurrentUser] = useState(
+        JSON.parse(localStorage.getItem("user")) || null
+        );
 
-    const [userValues, setUserValues] = useState({
-        userId: 1,
-        username: 'JonathanWatkinsAdmin',
-        authorized: true,
-        isAdmin: true,
-        depId: 1
-        });
+        const login = async (inputs) => {
+            const res = await requestServer.post("http://localhost:8800/api/auth/login", inputs, {
+                withCredentials: true
+            });
 
-    const updateUser = (username) => {
-        console.log("getting info...")
-        requestServer.post('/auth/userInfo', {"username" : username}).then((res) => {
-            const user = {
-                userId : res.data.userId,
-                username: res.data.username,
-                authorized : res.data.isVerified,
-                isAdmin: res.data.isAdmin
-            }
-            console.log("username is " + res.firstname);
-            console.log(res);
-
-            setUserValues(user);
-        })
+        console.log(res.data)
+        setCurrentUser(res.data);
     }
 
+
+    useEffect(() => {
+        localStorage.setItem("user", JSON.stringify(currentUser))
+    }, [currentUser]);
+
     return(
-        <AuthContext.Provider value={{userValues, updateUser}}>
+        <AuthContext.Provider value={{currentUser, login }}>
             {children}
         </AuthContext.Provider>
     )
-}
+
+};
