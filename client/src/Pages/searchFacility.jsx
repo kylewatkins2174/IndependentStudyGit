@@ -59,7 +59,7 @@ const SearchFacility = () => {                  // The main star of the app. The
         .catch(function (error) {               //
             console.log(error);                 //
         })                                      //
-    }, [keyword, fId]                                //
+    }, [keyword, fId]                           //
                                                 //
     );                                          //
                                                 //
