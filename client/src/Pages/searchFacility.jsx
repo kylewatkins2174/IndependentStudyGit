@@ -50,7 +50,8 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 // function above. Takes in the {keyword} as a JSON and sends to the server with Axios.
                                                 // As long as no error occurs, it will call setRows and assign the rows [] to all the
                                                 // data pulled from the server.
-        const jsonLoad = {keyword, fId}      //
+        const depId = userValues.depId;
+        const jsonLoad = {keyword, fId, depId}  //
         axios.post('http://localhost:8800/api/facility/search', jsonLoad)
         .then(function (response) {             // 
             setMarkers(response.data);          // 
@@ -73,7 +74,7 @@ const SearchFacility = () => {                  // The main star of the app. The
                     </form>
                     <div className="buttons">
                     <Link to="/home" >
-                        <button><PersonIcon /> <span>{userValues.userName}</span></button>
+                        <button><PersonIcon /> <span>{userValues.username}</span></button>
                     </Link>
                     <Link to="/userPage">
                     <button><PersonAddIcon/> <span> Manage Accounts</span></button>

@@ -2,21 +2,22 @@ import db from '../connect.js';
 
 
 export const searchFacility = (req, res) => {
-    const q = "SELECT * FROM facility WHERE fName LIKE ?";
-    const q2 = "SELECT * FROM facility WHERE fId = ?"
-    const q3 = "SELECT * FROM facility"
+    const q = "SELECT * FROM facility WHERE fName LIKE ? and departmentId = ?";
+    const q2 = "SELECT * FROM facility WHERE fId = ? and departmentId = ?"
+    const q3 = "SELECT * FROM facility WHERE departmentId = ?"
     const keyword = req.body.keyword || "";
     const fId = req.body.fId || "";
+    const depId = req.body.depId;
 
     if(keyword){
-        db.query(q, [`%${keyword}%`], (err, rows, fields) => {
+        db.query(q, [`%${keyword}%`, depId], (err, rows, fields) => {
             if (err) {
                 return res.status(500).json(`There was an error finding your facilities. Please try again.`);
             }
             return res.status(200).json(rows);
         });
     }else if(fId){
-        db.query(q2, [fId], (err, rows, fields) => {
+        db.query(q2, [fId, depId], (err, rows, fields) => {
             if(err){
                 return res.status(500).json(`There was an error searching for facilities. Please try again.`);
             }
@@ -24,7 +25,7 @@ export const searchFacility = (req, res) => {
         })
     }
     else{
-        db.query(q3, (err, rows, fields) => {
+        db.query(q3, [depId], (err, rows, fields) => {
             if(err){
                 return res.status(500).json(`There was an error loading facilities. Please try again.`);
             }
