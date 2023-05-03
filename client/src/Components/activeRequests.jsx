@@ -20,7 +20,7 @@ export const ActiveRequests = (error) => {
     const userQuery = useQuery({
     queryKey: ["requests"],
     retry: false,
-    queryFn: () => {return requestServer.post("/admin/requests", {"depId" : userValues.depId}).then(res => res.data)},
+    queryFn: () => {return requestServer.post("/admin/requests", {"departmentId" : userValues.departmentId}).then(res => res.data)},
     })
 
     const denyUser = useMutation({
@@ -37,7 +37,7 @@ export const ActiveRequests = (error) => {
     })
 
     if(userQuery.isLoading) return <h1>Loading...</h1>
-    if(userQuery.data.length === 0)
+    if(userQuery.data === null)
     {
         return <p className='message'>No Active Requests</p>
     }

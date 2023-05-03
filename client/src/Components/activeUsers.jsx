@@ -18,7 +18,7 @@ export const ActiveUsers = (error) => {
     const userQuery = useQuery({ 
     queryKey: ["users"],
     retry: false,
-    queryFn: () => {return requestServer.post("/admin/activeUsers", {"depId" : userValues.depId}).then(res => res.data)},
+    queryFn: () => {return requestServer.post("/admin/activeUsers", {"departmentId" : userValues.departmentId}).then(res => res.data)},
     })
 
     const revokeUser = useMutation({
@@ -29,8 +29,11 @@ export const ActiveUsers = (error) => {
         }
     })
 
+    console.log(userQuery.data)
+
+    if(userQuery.isError) return <h1>an error occurred, please contact your system admin</h1>
     if(userQuery.isLoading) return <h1>Loading...</h1>
-    if(userQuery.data.length === 0)
+    if(userQuery.data === null)
     {
         return (
             <div>
@@ -40,30 +43,32 @@ export const ActiveUsers = (error) => {
         );
 
     }
-
-    return(
-        <div>
-            <hr className='row-break'/>
-
-            {userQuery.data.map(user => (
-                <div>
-
-                    <div key={user.userId} className='row-container'>
-                        <div className='left-row'>
-                            <span>{user.lastName}</span>|<span>{user.firstName}</span>
+    else{
+        return(
+            <div>
+                <hr className='row-break'/>
+    
+                {userQuery.data.map(user => (
+                    <div>
+    
+                        <div key={user.userId} className='row-container'>
+                            <div className='left-row'>
+                                <span>{user.lastName}</span>|<span>{user.firstName}</span>
+                            </div>
+    
+                            <div className='right-row'>
+                                <button title="More Information" className="row-button" key="moreinfobutton" onClick={moreInfoClick}><FeedIcon className='icon'/></button>
+                                <button title="Revoke User Access" className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
+                            </div>
                         </div>
-
-                        <div className='right-row'>
-                            <button title="More Information" className="row-button" key="moreinfobutton" onClick={moreInfoClick}><FeedIcon className='icon'/></button>
-                            <button title="Revoke User Access" className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
-                        </div>
+                        <hr className='row-break'/>
+    
+    
+    
                     </div>
-                    <hr className='row-break'/>
+                ))}
+            </div>
+        )
+    }
 
-
-
-                </div>
-            ))}
-        </div>
-    )
 }

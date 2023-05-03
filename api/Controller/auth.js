@@ -73,8 +73,11 @@ export const userInfo = (req, res) => {
 }
 
 export const logout = (req,res) => {
-    return res.clearCookie("accessToken").status(200).send("Logged Out");
-}
+    res.clearCookie("accessToken", {
+        secure:true,
+        sameSite:"none"
+    }).status(200).json("User has been logged out");
+};
 
 export const checkLogin = (req, res) => {
     const accessToken = req.cookies.accessToken;

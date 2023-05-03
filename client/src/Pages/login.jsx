@@ -34,7 +34,8 @@ const Login = () => {
         }catch(err){
             setErr(err.response.data);
         }
-
+        
+        navigate("/home");
 
         /*
         queryServer.post("/auth/login", inputs).then(response => {
