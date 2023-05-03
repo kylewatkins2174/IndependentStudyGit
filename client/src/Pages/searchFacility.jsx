@@ -50,7 +50,7 @@ const SearchFacility = () => {                  // The main star of the app. The
                                                 // function above. Takes in the {keyword} as a JSON and sends to the server with Axios.
                                                 // As long as no error occurs, it will call setRows and assign the rows [] to all the
                                                 // data pulled from the server.
-        const depId = userValues.depId;
+        const depId = userValues.departmentId;
         const jsonLoad = {keyword, fId, depId}  //
         axios.post('http://localhost:8800/api/facility/search', jsonLoad)
         .then(function (response) {             // 
