@@ -1,5 +1,5 @@
 import db from "../connect.js";
-import bc from "bcryptjs";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const register = async (req,res) => {
@@ -41,39 +41,25 @@ export const departments = (req,res) => {
 }
 
 export const login = (req,res) => {
-    
     const q = "SELECT * FROM users WHERE username = ?"
 
-    db.query(q, [req.body.username], async (error, rows, field) => {
+    db.query(q,[req.body.username], (err,data) => {
+        if(err) return res.status(500).json(err);
+        if(data.length === 0) return res.status(404).json("User not found");
 
-        //check if email exists
-        if(error){
-            return res.status(500).json(error);
-        }
+        const checkPassword = bcrypt.compareSync(req.body.password, data[0].password);
 
-        if(rows.length === 0){
-            return res.status(404).json("user not found");
-        }
+        if(!checkPassword) return res.status(400).json("Wrong password or username");
+    
+        const token = jwt.sign({userid:data[0].userId}, "secretkey");
 
-        //check if password is correct
-        const hash = rows[0].password;
-        const isValidPassword = bc.compareSync(req.body.password, hash);
+        const {password, ...others} = data[0];
 
-        if(!isValidPassword){
-            return res.status(404).json("username or password is incorrect");
-        }
-
-        //provide access token
-        const {password, ...others} = rows[0];
-        const token = jwt.sign(others, "jwtpass");
-
-        return res.cookie("accessToken", token, {
-            maxAge: 30*24*60*60*1000,
-            httpOnly: true
-        }).json(`Welcome ${rows[0].firstName} ${rows[0].lastName}!`);
-
-    })
-}
+        res.cookie("accessToken", token, {
+            httpOnly: true,
+        }).status(200).json(others); 
+    });
+};
 
 export const userInfo = (req, res) => {
     const q = 'SELECT * FROM users WHERE username = ?';
