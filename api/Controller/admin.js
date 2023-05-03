@@ -6,9 +6,9 @@ export const requests = (req,res) => {
                 WHERE departmentid = ?
                 AND verified = false`;
 
-    db.query(q, req.body.depId, (error,rows,fields) => {
+    db.query(q, req.body.departmentId, (error,rows,fields) => {
         if(error){
-            console.log("error");
+            console.log(error);
             return res.status(500).json(error);
         }
 
@@ -59,9 +59,8 @@ export const activeUsers = (req,res) => {
                 AND verified = true
                 AND isAdmin = false`;
 
-    db.query(q, req.body.depId, (error,rows,fields) => {
+    db.query(q, req.body.departmentId, (error,rows,fields) => {
         if(error){
-            console.log("error");
             return res.status(500).json(error);
         }
 

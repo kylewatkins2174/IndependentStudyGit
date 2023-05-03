@@ -8,11 +8,21 @@ export const UserBar = () => {
 
     const {userValues} = useContext(AuthContext)
 
+    const AdminLink = () => {
+        if(userValues.isAdmin)
+        {
+            return (
+                <span><a href="/adminpage">AdminPage</a></span>
+            )
+        }
+        else return null
+    }
+
     return(
         <div className="infobar">
-            <span><a href="/userpage">{userValues.userName}</a></span>
+            <span><a href="/userpage">{userValues.username}</a></span>
             <span><a href="/search">View Map</a></span>
-            {userValues.isAdmin && <span><a href="/adminpage">AdminPage</a></span>}
+            <AdminLink/>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import requestServer from "../axios";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({children}) => {
-    const [currentUser, setCurrentUser] = useState(
+    const [userValues, setUserValues] = useState(
         JSON.parse(localStorage.getItem("user")) || null
         );
 
@@ -13,17 +13,18 @@ export const AuthContextProvider = ({children}) => {
                 withCredentials: true
             });
 
-        console.log(res.data)
-        setCurrentUser(res.data);
+        setUserValues(res.data);
+
+        console.log(userValues);
     }
 
 
     useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(currentUser))
-    }, [currentUser]);
+        localStorage.setItem("user", JSON.stringify(userValues))
+    }, [userValues]);
 
     return(
-        <AuthContext.Provider value={{currentUser, login }}>
+        <AuthContext.Provider value={{userValues, login }}>
             {children}
         </AuthContext.Provider>
     )
