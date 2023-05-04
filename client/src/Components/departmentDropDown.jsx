@@ -21,19 +21,23 @@ const DepartmentDropdown = (props) => {
         return("error")
     }
 
+
     if(departmentQuery.isLoading){
         return ("loading")
     }
     
-    return(
-        <div>
-            <select name="departmentId" onChange={handleOptionChange}>
-                {departmentQuery.data.map(data => (
-                        <option key={data.departmentId} value={data.departmentId}>{data.departmentName}</option>
-                    ))}
-            </select>
-        </div>
-    )
+    if(!departmentQuery.isLoading)
+    {
+        return(
+            <div>
+                <select name="departmentId" onChange={handleOptionChange}>
+                    {departmentQuery.data.map(data => (
+                            <option key={data.departmentId} value={data.departmentId}>{data.departmentName}</option>
+                        ))}
+                </select>
+            </div>
+        )
+    }
 }
 
 
