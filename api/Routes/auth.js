@@ -12,7 +12,4 @@ route.post("/userinfo", userInfo)
 
 route.get("/logout", logout);
 
-route.post("/get-departments", getDepartments)
-
-
 export default route;
