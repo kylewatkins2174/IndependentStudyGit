@@ -1,25 +1,38 @@
 import { useQuery, useQueryClient } from 'react-query';
 import requestServer from '../axios';
+import { useRef } from 'react';
 
 
-const DepartmentDropdown = () => {
+const DepartmentDropdown = (props) => {
 
     const queryClient = useQueryClient();
+
+    const handleOptionChange = (e) => {
+        props.onChange(e)
+    }
     
     const departmentQuery = useQuery({
-        queryKey : ["departments"],
+        queryKey : ["department"],
         retry: false,
-        queryFn: () => {return requestServer.get("/auth/departments")}
+        queryFn: () => {return requestServer.post("/auth/departments").then(res => res.data)}
     })
+
+    if(departmentQuery.isError){
+        return("error")
+    }
+
+    if(departmentQuery.isLoading){
+        return ("loading")
+    }
     
     console.log(departmentQuery.data);
 
     return(
         <div>
-            <select>
-                {departmentQuery.data.map(department => (
-                    <option value={department.departmentId}>{department.departmentName}</option>
-                ))}
+            <select name="departmentId" onChange={handleOptionChange}>
+                {departmentQuery.data.map(data => (
+                        <option key={data.departmentId} value={data.departmentId}>{data.departmentName}</option>
+                    ))}
             </select>
         </div>
     )

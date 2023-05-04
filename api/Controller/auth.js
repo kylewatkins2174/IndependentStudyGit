@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const register = async (req,res) => {
+
     const q = "SELECT * FROM users WHERE username = ?";
     db.query(q, [req.body.username], (error,rows,fields) =>{
         if(error){
@@ -16,7 +17,7 @@ export const register = async (req,res) => {
             const hash = bcrypt.hashSync(req.body.password, salt);
         
             const insertQ = "INSERT INTO users VALUES(?)";
-            db.query(insertQ, [[null, req.body.departmentid, req.body.primaryEmail, null, null, req.body.firstname, req.body.lastname, req.body.username, false, false, hash]], (error,rows,fields) => {
+            db.query(insertQ, [[null, req.body.departmentId, req.body.primaryEmail, null, null, req.body.firstname, req.body.lastname, req.body.username, false, false, hash]], (error,rows,fields) => {
                 if(error){
                     return res.status(500).json(error);
                 }
@@ -24,19 +25,18 @@ export const register = async (req,res) => {
             })
         }
     });
-
-
 }
 
 export const departments = (req,res) => {
-    const q = "SELECT departmentName FROM departments"
+    const q = "SELECT * FROM department"
 
     db.query(q, async(error, rows, field) => {
         if(error){
             return res.status(500).json(error);
         }
 
-
+        console.log(rows);
+        return res.status(200).json(rows)
     })
 }
 

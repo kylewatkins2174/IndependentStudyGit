@@ -27,6 +27,17 @@ function App() {
 
     return children;
   }
+
+  const VerifiedRoute = ({children}) => {
+
+    console.log(userValues.verified)
+
+    if(userValues.verified === 0){
+      return <Navigate to="/home"/>
+    }
+
+    return children;
+  }
   
   const router = createBrowserRouter([
     {
@@ -54,7 +65,9 @@ function App() {
       path: "/search",
       element: (
         <ProtectedRoute>
+        <VerifiedRoute>
           <SearchFacility/>
+        </VerifiedRoute>
         </ProtectedRoute>
 
       )
@@ -63,16 +76,19 @@ function App() {
       path: "/adminPage",
       element: (
         <ProtectedRoute>
+        <VerifiedRoute>
           <AdminPage/>
+        </VerifiedRoute>
         </ProtectedRoute>
-
       )
     },
     {
       path: "/userpage",
       element: (
         <ProtectedRoute>
+        <VerifiedRoute>
           <UserPage/>
+        </VerifiedRoute>
         </ProtectedRoute>
 
       )
