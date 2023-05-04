@@ -1,5 +1,5 @@
 import express from 'express';
-import { register, login, logout, userInfo } from '../Controller/auth.js';
+import { register, login, logout, userInfo, departments } from '../Controller/auth.js';
 
 
 
@@ -7,7 +7,7 @@ const route = express.Router();
 
 route.post("/register", register);
 
-route.get("/departments");
+route.post("/departments", departments);
 
 route.post("/login", login);
 route.post("/userinfo", userInfo)

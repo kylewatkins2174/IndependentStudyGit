@@ -1,7 +1,9 @@
 import "./register.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import queryServer from "../axios.js";
+import { useQuery, useQueryClient } from "react-query";
+import requestServer from "../axios.js";
+import DepartmentDropdown from "../Components/departmentDropDown";
 //import DepartmentDropdown from "../Components/departmentDropDown";
 
 const Register = () => {
@@ -11,7 +13,7 @@ const Register = () => {
         "email" : "",
         "firstname" : "",
         "lastname" : "",
-        "departmentid" : "1",
+        "departmentId" : "",
         "username" : "",
         "password" : ""
     });
@@ -20,8 +22,6 @@ const Register = () => {
 
     const handleChange = (e) => {
         setInputs((prev) => {
-            console.log(JSON.stringify(prev))
-
             return {...prev, [e.target.name]: e.target.value}
         })
     };
@@ -31,7 +31,7 @@ const Register = () => {
 
         console.log(JSON.stringify(inputs));
 
-        queryServer.post("/auth/register", inputs).then(response => {
+        requestServer.post("/auth/register", inputs).then(response => {
             console.log(response);
             navigate("/login");
         }).catch(err => {
@@ -59,9 +59,7 @@ const Register = () => {
                         <input onChange={handleChange} type="text" placeholder="(Ex. Smith)" className="RegisterFormInput" autoComplete="true" name="lastname" required />
                         <hr className="RegisterHr"/>
 
-                        <select>
-                            <option name="Department1">Department 1</option>
-                        </select>
+                        <DepartmentDropdown onChange={handleChange}/>
                         <hr className="RegisterHr"/>
 
                         <span>Enter your username <span style={{color:"red"}}>*</span>:</span><br/>
