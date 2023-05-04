@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import "./login.scss";
 import queryServer from "../axios.js"
 import {AuthContext} from "../Contexts/authContext"; 
@@ -31,26 +31,12 @@ const Login = () => {
 
         try{
             await login(inputs);
+            navigate("/home");
+
         }catch(err){
             setErr(err.response.data);
         }
-        
-        navigate("/home");
 
-        /*
-        queryServer.post("/auth/login", inputs).then(response => {
-            console.log(response.data);
-
-            localStorage.setItem("username", inputs.username);
-
-
-            console.log("retrieving user " + inputs.username);
-            updateUser(inputs.username)
-
-            navigate("/home");
-        }).catch(err => {
-            setErr(err);
-        })*/
     }
 
     return(
@@ -72,6 +58,10 @@ const Login = () => {
 
                     <button className="SubmitButton">Submit</button>
                     </form>
+                    
+                    <hr className="LoginHr"/>
+
+                    <p>Not a user yet? Register <span><a href="/register" className="register-link">here</a></span>!</p>
 
                     <hr className="LoginHr"/>
                     <hr className="LoginHr"/>
