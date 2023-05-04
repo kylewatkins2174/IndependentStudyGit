@@ -63,7 +63,7 @@ const MoreInfoFacility = ({facilities}) => {                                    
             {facilities.map(facility => {
                 return(
                     <div className="facility-item" key={facility.fId}>
-                        <FacilityItem data={facility}/>
+                        <FacilityItem data={facility} contacts={contact}/>
                     </div>
                 )
             })}

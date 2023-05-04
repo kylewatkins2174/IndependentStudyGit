@@ -25,6 +25,8 @@ const DepartmentDropdown = (props) => {
         return ("loading")
     }
     
+    console.log(departmentQuery.data);
+
     return(
         <div>
             <select name="departmentId" onChange={handleOptionChange}>

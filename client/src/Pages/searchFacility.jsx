@@ -73,10 +73,10 @@ const SearchFacility = () => {                  // The main star of the app. The
                         <button ><SearchOutlinedIcon/></button>
                     </form>
                     <div className="buttons">
-                    <Link to="/home" >
+                    <Link to="/userPage" >
                         <button><PersonIcon /> <span>{userValues.username}</span></button>
                     </Link>
-                    <Link to="/userPage">
+                    <Link to="/adminPage">
                     <button><PersonAddIcon/> <span> Manage Accounts</span></button>
                     </Link>
                     </div>

@@ -14,11 +14,21 @@ export const MapContextProvider = ({children}) => {      // Creates a provider t
     const setInvisible = () => {                         // A function to set visibility to false, used to close the component
         setVisibility(false);                            // MoreInfoFacility.
     }                                                    //
+
+    const [selected, setSelected] = useState(false);
+
+    const select = () => {
+        setSelected(true);
+    }
+
+    const deselect = () => {
+        setSelected(false);
+    }
                                                          //
     return(                                              // Generate the ContextProvider to be exported to index.js to wrap around the
                                                          // App. Provides the ability to access visibility, setVisible, and setInvisible
                                                          // on any page.
-        <MapContext.Provider value={{visibility, setVisible, setInvisible}}>
+        <MapContext.Provider value={{visibility, setVisible, setInvisible, selected, select, deselect}}>
             {children}
         </MapContext.Provider>
     )
