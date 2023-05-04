@@ -25,7 +25,7 @@ export const MapContainer = (props) => {       // MapContainer is a functional c
                                                //    -- setVisible() to set the small info window to visible,
                                                //    -- fId and updateFacility() to set the facility and form API request for contacts
                                                //    -- updateContact() to set the current contact as the one for the selected marker
-    const {visibility, setInvisible, setVisible} = useContext(MapContext);
+    const {visibility, setInvisible, setVisible, select, deselect} = useContext(MapContext);
     const{fId, updateFId} = useContext(FacilityContext); 
     const {updateContact} = useContext(ContactContext);
 
@@ -40,7 +40,6 @@ export const MapContainer = (props) => {       // MapContainer is a functional c
       axios.post('http://localhost:8800/api/facility/contacts', jsonLoad)// variable will be updated. Otherwise, it
       .then(function (response) {              // catches the error. The useEffect is only triggered when the fId is
           updateContact(response.data);        // changed, hence the fId in the Dependency Array at the end.
-          // updateFId(response.data.fId);
       })                                       //  
       .catch(function (error) {                //
           console.log(error);                  //
@@ -49,10 +48,11 @@ export const MapContainer = (props) => {       // MapContainer is a functional c
                                                //
     const onMarkerClick = (props, marker) => { // onMarkerClick is a function, taking in props and marker, in order
                                                // update the Facility using the updateFacility() context function. 
-        updateFId(marker.fId)                 // It also sets the Visibility context variable to true by using
+        updateFId(marker.fId)                  // It also sets the Visibility context variable to true by using
         setVisible();                          // setVisible().
         setZoom(13);
         setCenter(marker.position);
+        select();
     };                                         //
 
     const onBack = () => {
@@ -60,6 +60,7 @@ export const MapContainer = (props) => {       // MapContainer is a functional c
       updateFId("");
       setZoom(9);
       setCenter({lat: 29.7604, lng: -95.3698 })
+      deselect();
     }
                                                //
     return(                                    // This is the MapContainer rendering. Within, there is found:
