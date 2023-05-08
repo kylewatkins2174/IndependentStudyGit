@@ -7,26 +7,48 @@ import {
   Collapse,
   Divider
 } from "@mui/material";
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import {FacilityContext} from "../Contexts/facilityContext";
+import {ContactContext} from "../Contexts/contactContext"
+import {MapContext} from "../Contexts/showMapContext";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { Avatar } from "@mui/material";
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import BusinessIcon from "@mui/icons-material/Business"
+import axios from "axios";
 
-const FacilityItem = ({ data }) => {
+const FacilityItem = ({ data, contacts }) => {
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
 
   const {fId} = useContext(FacilityContext);
+  const {selected} = useContext(MapContext);
+  const {contact} = useContext(ContactContext);
+
+  const [tempContact, setTempContact] = useState([{firstName:"", phoneNum: ""}]);
 
   useEffect(() => {
     setOpen(false);
   }, [fId])
+
+  useEffect(() => {
+    const fId = data.fId;
+    console.log(fId);
+
+    const jsonLoad = {fId};
+    axios.post('http://localhost:8800/api/facility/contacts', jsonLoad)
+    .then(function (response) {
+        setTempContact(response.data);
+        console.log(tempContact)
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }, [data.fId] )
 
   return (
     <List>
@@ -36,7 +58,7 @@ const FacilityItem = ({ data }) => {
         </ListItemIcon>
         <ListItemText
           primary={`${data.fName}`}
-          secondary={`${data.fId}`}
+          secondary={selected ? `${data.fId}` : `${tempContact[0].firstName} ${tempContact[0].lastName}, ${tempContact[0].phoneNum}`}
         />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
