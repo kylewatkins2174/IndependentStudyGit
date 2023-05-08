@@ -3,6 +3,7 @@ import authRoute from "./Routes/auth.js";
 import facilityRoute from "./Routes/facility.js"
 import adminRoute from "./Routes/admin.js"
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 //middleware
 const app = express();
@@ -10,6 +11,7 @@ app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
+app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
     origin: "http://localhost:3000",

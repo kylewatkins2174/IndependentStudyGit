@@ -31,6 +31,11 @@ const Register = () => {
 
         console.log(JSON.stringify(inputs));
 
+        if(inputs.departmentId === ""){
+            setErr("you must select a department")
+            return
+        }
+
         requestServer.post("/auth/register", inputs).then(response => {
             console.log(response);
             navigate("/login");
@@ -72,7 +77,7 @@ const Register = () => {
                         <hr className="RegisterHr"/>
 
                     <button className="SubmitButton">Submit</button>
-                    {err && err.response} 
+                    {err && err} 
 
                     </form>
                     <hr className="RegisterHr"/>

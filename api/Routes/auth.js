@@ -8,7 +8,7 @@ route.post("/register", register);
 route.post("/departments", departments);
 
 route.post("/login", login);
-route.post("/userinfo", userInfo)
+route.post("/userInfo", userInfo)
 
 route.get("/logout", logout);
 

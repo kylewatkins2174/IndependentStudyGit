@@ -1,5 +1,6 @@
 //react imports
 import { Navigate } from "react-router-dom";
+import Cookies from "universal-cookie"
 //my imports
 import Register from "./Pages/register.jsx";
 import Login from "./Pages/login.jsx";
@@ -17,16 +18,24 @@ import {
 import { useContext } from "react";
 
 function App() {
+  const cookies = new Cookies();
 
-  const {userValues} = useContext(AuthContext)
+  const {userValues, getUser} = useContext(AuthContext)
 
   const ProtectedRoute = ({children}) => {
 
-    if(userValues === null){
-      return <Navigate to="/login"/>
+    if(userValues === undefined){
+      try{
+        getUser();
+      }catch(error){
+        console.log(error)
+        return <Navigate to="/login"/>
+      }
+    }
+    else{
+      return children;
     }
 
-    return children;
   }
 
   const VerifiedRoute = ({children}) => {
