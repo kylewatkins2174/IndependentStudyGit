@@ -10,7 +10,7 @@ const Register = () => {
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
-        "email" : "",
+        "primaryEmail" : "",
         "firstname" : "",
         "lastname" : "",
         "departmentId" : "",
@@ -30,6 +30,11 @@ const Register = () => {
         e.preventDefault();
 
         console.log(JSON.stringify(inputs));
+
+        if(inputs.departmentId === ""){
+            setErr("you must select a department")
+            return
+        }
 
         requestServer.post("/auth/register", inputs).then(response => {
             console.log(response);
@@ -72,7 +77,7 @@ const Register = () => {
                         <hr className="RegisterHr"/>
 
                     <button className="SubmitButton">Submit</button>
-                    {err && err.response} 
+                    {err && err} 
 
                     </form>
                     <hr className="RegisterHr"/>
