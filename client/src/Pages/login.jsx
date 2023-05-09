@@ -30,9 +30,9 @@ const Login = () => {
         e.preventDefault();
 
         try{
-            await login(inputs);
-            navigate("/home");
-
+            await login(inputs).then(
+                navigate("/home")
+            );
         }catch(err){
             setErr(err.response.data);
         }
@@ -57,8 +57,10 @@ const Login = () => {
                         <hr className="LoginHr"/>
 
                     <button className="SubmitButton">Submit</button>
-                    </form>
                     
+                    </form>
+                    <p className="ErrorMessage">{err && err}</p>
+
                     <hr className="LoginHr"/>
 
                     <p>Not a user yet? Register <span><a href="/register" className="register-link">here</a></span>!</p>
@@ -68,7 +70,6 @@ const Login = () => {
                     <hr className="LoginHr"/>
                     <hr className="LoginHr"/>
                     <br/>
-                    <p className="ErrorMessage">{err && err.data}</p>
                 </div>
             </div>
         </div>

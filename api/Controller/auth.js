@@ -1,6 +1,7 @@
 import db from "../connect.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import cparser from "cookie-parser"
 
 export const register = async (req,res) => {
 
@@ -62,14 +63,33 @@ export const login = (req,res) => {
 };
 
 export const userInfo = (req, res) => {
-    const q = 'SELECT * FROM users WHERE username = ?';
 
-    db.query(q, [req.body.username], async (error, rows, field) => {
-        if(error){
-            console.log(error)
+
+    try{
+        const accessToken = req.cookies.accessToken
+
+        if(accessToken === undefined){
+            return res.status(404).json("You are not currently logged in as a user")
         }
-        return res.status(200).json(rows[0]);
-    })
+        console.log("access token is: " + accessToken)
+        const userId = jwt.verify(accessToken, "secretkey").userid;
+
+        console.log(userId)
+
+
+        const q = 'SELECT * FROM users WHERE userId = ?';
+
+        db.query(q, [userId], async (error, rows, field) => {
+            if(error){
+                console.log(error)
+            }
+            console.log("found user : " + JSON.stringify(rows[0]))
+            return res.status(200).json(rows[0]);
+        })
+    }catch(JsonWebTokenError){
+        console.log(JsonWebTokenError)
+        return res.status(404).json("You are not currently logged in as a user")
+    }
 }
 
 export const logout = (req,res) => {
@@ -78,6 +98,7 @@ export const logout = (req,res) => {
         sameSite:"none"
     }).status(200).json("User has been logged out");
 };
+
 
 export const checkLogin = (req, res) => {
     const accessToken = req.cookies.accessToken;
@@ -107,4 +128,3 @@ export const getDepartments = (req, res) => {
         return res.status(200).json(rows);
     })
 }
-
