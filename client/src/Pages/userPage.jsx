@@ -3,12 +3,15 @@ import { UserBar } from '../Components/userBar.jsx'
 import "./userPage.scss"
 import { AuthContext } from '../Contexts/authContext';
 import DepartmentDropDown from "../Components/departmentDropDown";
+import AdminDropdown from '../Components/adminDropdown.jsx'
 import axios from "axios";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MemberDepartments from '../Components/memberDepartments.jsx';
 
 
 const UserPage = () => {
     const {userValues} = useContext(AuthContext)
+    const [departmentId, setDepartmentId] = useState(0)
 
     const [departments, setDepartments] = useState([])
 
@@ -30,7 +33,8 @@ const UserPage = () => {
 
     const handleChange = (e) => {
         e.preventDefault()
-        console.log("department change")
+
+        setDepartmentId(e.target.value)
     }
 
     return(
@@ -39,15 +43,6 @@ const UserPage = () => {
 
             <div className="profile">
                 <h1><AccountCircleIcon fontSize="22px"/> {userValues.firstName} {userValues.lastName}</h1>
-                <hr/>
-                <h1>Current Departments:</h1>
-                <ul>
-                    {departments.map((dep) => {
-                        return(
-                            <li key={dep.departmentId}>{dep.departmentName}</li>
-                        )
-                    })}
-                </ul>
             </div>
 
             <h1>Request Access to Another Department</h1>
@@ -58,12 +53,14 @@ const UserPage = () => {
                         <DepartmentDropDown onChange={handleChange}/>
                         <br/>
                         <label>Approver from Department:</label>
-                        <input disbled="true" type="text" placeholder="John Smith..."></input>
+                        <AdminDropdown departmentId={departmentId}/>
                         <br/>
-                        <button disabled={false} onClick={console.log("click")}>Submit Request</button>
+                        <button disabled={false}>Submit Request</button>
                     </form>
                 </div>
             </div>
+        <MemberDepartments/>
+
         </div>
     )
 }

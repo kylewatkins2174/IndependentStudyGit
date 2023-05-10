@@ -14,12 +14,10 @@ export const AuthContextProvider = ({children}) => {
             withCredentials: true
         });
 
-        console.log(res.data)
-
         setUserValues(res.data);
     }
 
-    const getUser = async() => {
+    const getUser = async function(){
         try{
             const res = await requestServer.post("http://localhost:8800/api/auth/userInfo")
             
@@ -30,12 +28,6 @@ export const AuthContextProvider = ({children}) => {
                 "isAdmin" : res.data.isAdmin
             }
             setUserValues(user);
-
-            const res2 = await requestServer.post("http://localhost:8800/api/auth/verifiedDepartments", {"userId" : userValues.userId})
-
-            setVerifiedDepartments(res2.data)
-
-            console.log(verifiedDepartments)
 
         }catch(error){
             console.log(error)

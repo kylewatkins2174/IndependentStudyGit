@@ -62,15 +62,6 @@ function App() {
       path: "/home",
       element: (
         <ProtectedRoute>
-          <MainPage/>          
-        </ProtectedRoute>
-
-      )
-    },
-    {
-      path: "/search",
-      element: (
-        <ProtectedRoute>
         <VerifiedRoute>
           <SearchFacility/>
         </VerifiedRoute>

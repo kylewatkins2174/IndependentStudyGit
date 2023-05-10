@@ -89,7 +89,6 @@ export const userInfo = (req, res) => {
             if(error){
                 console.log(error)
             }
-            console.log("found user : " + JSON.stringify(rows[0]))
             return res.status(200).json(rows[0]);
         })
     }catch{
