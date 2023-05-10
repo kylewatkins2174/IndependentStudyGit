@@ -37,13 +37,14 @@ const FacilityItem = ({ data, contacts }) => {
 
   useEffect(() => {
     const fId = data.fId;
-    console.log(fId);
+    
 
     const jsonLoad = {fId};
     axios.post('http://localhost:8800/api/facility/contacts', jsonLoad)
     .then(function (response) {
         setTempContact(response.data);
-        console.log(tempContact)
+        console.log(fId);
+        console.log(tempContact);
     })
     .catch(function (error) {
       console.log(error);

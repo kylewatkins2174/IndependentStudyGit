@@ -63,9 +63,9 @@ const ChemicalView = () => {                                    // This is the C
                 </div>
             </div>
             {/* 2 */}
-                {chems.map(chem => {
+                {chems.map((chem, index) => {
                     return(
-                        <div key={chem.chId} className="chem">
+                        <div key={index} className="chem">
                             <ChemicalItem data={chem} />
                         </div>
                     )

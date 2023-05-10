@@ -67,7 +67,7 @@ const ChemicalItem = ({ data }) => {
           primary={`${data.chName} (${data.CAS})`}
           secondary={data.max_Amt ? `Max amt. ${data.max_Amt} - Perc. Full: ${data.percent}%` : ""}
         />
-        <span style={{color:"red"}}>{(data.EHS === "YES") ? <WarningIcon /> : null}</span>
+        <span style={{color:"red"}}>{(data.EHS === "Yes") ? <WarningIcon /> : null}</span>
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
 
