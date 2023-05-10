@@ -18,11 +18,12 @@ export const register = async (req,res) => {
             const hash = bcrypt.hashSync(req.body.password, salt);
         
             const insertQ = "INSERT INTO users VALUES(?)";
-            db.query(insertQ, [[null, req.body.departmentId, req.body.primaryEmail, null, null, req.body.firstname, req.body.lastname, req.body.username, false, false, hash]], (error,rows,fields) => {
+            db.query(insertQ, [[null, req.body.primaryEmail, null, null, req.body.firstname, req.body.lastname, req.body.username, false, hash]], (error,rows,fields) => {
                 if(error){
                     return res.status(500).json(error);
                 }
-                return res.status(200).json(`created user ${req.body.username}`);
+
+                return res.status(200).json(`created user ${req.body.username} and created an access request`);
             })
         }
     });
@@ -36,7 +37,18 @@ export const departments = (req,res) => {
             return res.status(500).json(error);
         }
 
-        console.log(rows);
+        return res.status(200).json(rows)
+    })
+}
+
+export const verifiedDepartments = (req, res) => {
+    const q = "SELECT departmentid FROM usersofdepartment WHERE userId = ?"
+
+    db.query(q, [req.body.userId], async(error, rows, field) => {
+        if(error){
+            return res.status(500).json(error)
+        }
+
         return res.status(200).json(rows)
     })
 }
@@ -63,19 +75,13 @@ export const login = (req,res) => {
 };
 
 export const userInfo = (req, res) => {
-
-
     try{
         const accessToken = req.cookies.accessToken
 
         if(accessToken === undefined){
             return res.status(404).json("You are not currently logged in as a user")
         }
-        console.log("access token is: " + accessToken)
         const userId = jwt.verify(accessToken, "secretkey").userid;
-
-        console.log(userId)
-
 
         const q = 'SELECT * FROM users WHERE userId = ?';
 
@@ -86,8 +92,7 @@ export const userInfo = (req, res) => {
             console.log("found user : " + JSON.stringify(rows[0]))
             return res.status(200).json(rows[0]);
         })
-    }catch(JsonWebTokenError){
-        console.log(JsonWebTokenError)
+    }catch{
         return res.status(404).json("You are not currently logged in as a user")
     }
 }

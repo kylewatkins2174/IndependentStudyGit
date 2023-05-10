@@ -29,8 +29,6 @@ export const ActiveUsers = (error) => {
         }
     })
 
-    console.log(userQuery.data)
-
     if(userQuery.isError) return <h1>an error occurred, please contact your system admin</h1>
     if(userQuery.isLoading) return <h1>Loading...</h1>
     if(userQuery.data === null)

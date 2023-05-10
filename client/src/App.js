@@ -35,13 +35,9 @@ function App() {
     else{
       return children;
     }
-
   }
 
   const VerifiedRoute = ({children}) => {
-
-    console.log(userValues.verified)
-
     if(userValues.verified === 0){
       return <Navigate to="/home"/>
     }

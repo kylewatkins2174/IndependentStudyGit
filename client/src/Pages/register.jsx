@@ -1,7 +1,6 @@
 import "./register.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery, useQueryClient } from "react-query";
 import requestServer from "../axios.js";
 import DepartmentDropdown from "../Components/departmentDropDown";
 //import DepartmentDropdown from "../Components/departmentDropDown";

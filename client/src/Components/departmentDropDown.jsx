@@ -1,7 +1,5 @@
 import { useQuery } from 'react-query';
 import requestServer from '../axios';
-import { useRef } from 'react';
-
 
 const DepartmentDropdown = (props) => {
 
@@ -29,7 +27,7 @@ const DepartmentDropdown = (props) => {
         return(
             <div>
                 <select name="departmentId" onChange={handleOptionChange}>
-                    <option>Select your department</option>
+                    <option value='0'>Select a department</option>
                     {departmentQuery.data.map(data => (
                             <option key={data.departmentId} value={data.departmentId}>{data.departmentName}</option>
                         ))}

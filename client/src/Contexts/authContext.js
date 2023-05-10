@@ -4,7 +4,10 @@ import requestServer from "../axios";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({children}) => {
-    const [userValues, setUserValues] = useState();    
+    const [userValues, setUserValues] = useState();   
+    const [verifiedDepartments, setVerifiedDepartments] = useState([])
+    
+    
 
     const login = async (inputs) => {
         const res = await requestServer.post("http://localhost:8800/api/auth/login", inputs, {
@@ -23,9 +26,17 @@ export const AuthContextProvider = ({children}) => {
             const user = {
                 "userId" : res.data.userId,
                 "username" : res.data.username,
-                "departmentId" : res.data.departmentId
+                "verified" : res.data.verified,
+                "isAdmin" : res.data.isAdmin
             }
             setUserValues(user);
+
+            const res2 = await requestServer.post("http://localhost:8800/api/auth/verifiedDepartments", {"userId" : userValues.userId})
+
+            setVerifiedDepartments(res2.data)
+
+            console.log(verifiedDepartments)
+
         }catch(error){
             console.log(error)
         }
