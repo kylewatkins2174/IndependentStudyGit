@@ -12,29 +12,30 @@ import MemberDepartments from '../Components/memberDepartments.jsx';
 const UserPage = () => {
     const {userValues} = useContext(AuthContext)
     const [departmentId, setDepartmentId] = useState(0)
-
-    const [departments, setDepartments] = useState([])
+    const [inputs, setInputs] = useState({
+        "departmentId" : null,
+        "adminId" : null
+    })
 
     useEffect(()=>{
-
-        const userId = userValues.userId;
-        const jsonLoad = {userId};
-
-        axios.post('http://localhost:8800/api/auth/departments', jsonLoad)
-        .then(function (response) {
-            setDepartments(response.data)
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
     }, [userValues])
-
-
 
     const handleChange = (e) => {
         e.preventDefault()
 
-        setDepartmentId(e.target.value)
+        if(e.target.name === "departmentId"){
+            setDepartmentId(e.target.value)
+        }
+
+        setInputs((prev) => {
+            return {...prev, [e.target.name] : e.target.value}
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(JSON.stringify(inputs))
     }
 
     return(
@@ -50,17 +51,16 @@ const UserPage = () => {
             <div className='request-form'>
                 <div className='form-container'>
                     <form>
-                        <DepartmentDropDown onChange={handleChange}/>
+                        <DepartmentDropDown name="departmentDropdown" onChange={handleChange}/>
                         <br/>
                         <label>Approver from Department:</label>
-                        <AdminDropdown departmentId={departmentId}/>
+                        <AdminDropdown name="adminDropdown" onChange={handleChange} departmentId={departmentId}/>
                         <br/>
-                        <button disabled={false}>Submit Request</button>
+                        <button onClick={handleSubmit}>Submit Request</button>
                     </form>
                 </div>
             </div>
-        <MemberDepartments/>
-
+            <MemberDepartments/>
         </div>
     )
 }

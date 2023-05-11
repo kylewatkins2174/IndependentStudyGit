@@ -19,7 +19,7 @@ export const departments = (req,res) => {
 }
 
 export const departmentAdmin = (req, res) => {
-    const q = `SELECT firstname,lastname FROM users
+    const q = `SELECT firstname,lastname,users.userId FROM users
                 JOIN usersofdepartment ON users.userid = usersofdepartment.userId
                 WHERE usersofdepartment.departmentId = ? and usersofdepartment.isAdmin = 1`
 
@@ -29,13 +29,16 @@ export const departmentAdmin = (req, res) => {
             return res.status(500).json(error)
         }
 
-        var names = []
+        var users = []
 
         for(var i = 0; i < rows.length; i++){
-            var name = {"name" : rows[i].firstname + " " + rows[i].lastname}
-            names.push(name)
+            var user = {
+                "userId" : rows[i].userId,
+                "name" : rows[i].firstname + " " + rows[i].lastname
+            }
+            users.push(user)
         }
 
-        return res.status(200).json(names);
+        return res.status(200).json(users);
     })
 }

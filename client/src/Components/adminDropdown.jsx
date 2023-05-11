@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import requestServer from "../axios";
 import { useEffect } from "react";
 
@@ -8,6 +8,10 @@ const AdminDropdown = (props) => {
     useEffect(() => {
         client.invalidateQueries('admin')
     }, [props.departmentId])
+
+    const handleChange = (e) => {
+        props.onChange(e)
+    }
 
     const adminQuery = useQuery({
         queryKey: ["admin", props.departmentId],
@@ -26,9 +30,9 @@ const AdminDropdown = (props) => {
     
     return(
         <div>
-            <select>
+            <select name="adminId" onChange={handleChange}>
                 {adminQuery.data.map(data => (
-                    <option key={data.name}>{data.name}</option>
+                    <option key={data.name} value={data.userId}>{data.name}</option>
                 ))}
             </select>
         </div>
