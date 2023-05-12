@@ -34,7 +34,7 @@ const DisabledChemicalProp = ({value}) => {
   return(
     <ListItemButton sx={{ pl: 4 }}>
       <ListItemIcon>
-          <CheckOutlinedIcon />
+          <CheckOutlinedIcon style={{color:"green"}}/>
       </ListItemIcon>
       <ListItemText primary={value} />
     </ListItemButton>
@@ -58,16 +58,15 @@ const ChemicalItem = ({ data }) => {
   }, [fId])
 
   return (
-    <List>
+    <List style={{fontFamily:"proxima-nova"}}>
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>
-          <Avatar>{data.chName[0]}</Avatar>
+          {(data.EHS === "Yes") ? <Avatar style={{backgroundColor: "white", color:"red"}}><WarningIcon/></Avatar> : <Avatar style={{backgroundColor:"white", color:"seagreen"}}><ScienceIcon/></Avatar>}
         </ListItemIcon>
         <ListItemText
           primary={`${data.chName} (${data.CAS})`}
           secondary={data.max_Amt ? `Max amt. ${data.max_Amt} - Perc. Full: ${data.percent}%` : ""}
         />
-        <span style={{color:"red"}}>{(data.EHS === "YES") ? <WarningIcon /> : null}</span>
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
 
@@ -98,7 +97,7 @@ const ChemicalItem = ({ data }) => {
           {data.carcinogen ? (<DisabledChemicalProp value={"Carcinogen"}/>) : (<ChemicalProp value={"Carcinogen"} />)}
           {data.loc ?<ListItemButton sx={{ pl: 4 }}>
             <ListItemIcon>
-              <LocationOnOutlinedIcon />
+              <LocationOnOutlinedIcon style={{color:"red"}} />
             </ListItemIcon>
             <ListItemText
               primary={data.loc_type}
@@ -107,7 +106,7 @@ const ChemicalItem = ({ data }) => {
           </ListItemButton> : null}
           {data.loc_pressure ? <ListItemButton sx={{ pl: 4 }}>
             <ListItemIcon>
-              <ThermostatIcon />
+              <ThermostatIcon style={{color:"firebrick"}} />
             </ListItemIcon>
             <ListItemText
               primary={data.loc_pressure + " " + data.loc_temp}
@@ -115,7 +114,7 @@ const ChemicalItem = ({ data }) => {
             </ListItemButton> : null}
           <ListItemButton sx={{ pl: 4 }} onClick={onERGClick}>
             <ListItemIcon>
-              <ScienceIcon />
+              <ScienceIcon style={{color:"darkgreen"}}/>
             </ListItemIcon>
             <ListItemText
               primary={data.materialUn}

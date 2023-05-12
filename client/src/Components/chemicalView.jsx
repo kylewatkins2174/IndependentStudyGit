@@ -17,6 +17,7 @@ const ChemicalView = () => {                                    // This is the C
     const [inputs, setInputs] = useState({                      // Inputs is an object that gets updated to include every change that happens in the <input> in real time.
         "keyword":""                                            //
     });                                                         //
+    const [isLoading, setIsLoading] = useState(true);           //
                                                                 //
                                                                 //
     const handleChange = (e) => {                               // handleChange() is a function to keep the Inputs up to date
@@ -36,13 +37,29 @@ const ChemicalView = () => {                                    // This is the C
         axios.post('http://localhost:8800/api/facility/chemicals', jsonLoad)// data is stored in the chems state array variable to be used
         .then(function (response) {                             // in rendering the function below. Otherwise, it catches the error. The
             setChems(response.data);                            // useEffect waits for changes from the Keyword and fId variables, hence
-        })                                                      // the Dependency Array at the bottom.
+            setIsLoading(false);                                // the Dependency Array at the bottom.
+        })                                                      //
         .catch(function (error) {                               //
             console.log(error);                                 //
         })                                                      //
     }, [keyword, fId]                                           //
     )                                                           //
                                                                 //
+    if (isLoading) {
+        return(
+            <div className="chemical-list">
+                <div className="topBar">
+                    <h3>Chemicals</h3>
+                    <div className="chemicalViewSearch">
+                        <form onSubmit={handleSubmit}>
+                        <input type="text" name="keyword" placeholder="Search for chemicals..." onChange={handleChange}/>
+                        </form>
+                    </div>
+                </div>
+                <div className="loading">Loading...<div className="loader"></div></div>
+            </div>
+        )
+    }
     return(                                                     // Here is where the ChemicalView gets rendered. In it, you will find:
                                                                 // 
                                                                 // 1. The top search bar, where the user can search for chemicals within the
@@ -63,9 +80,9 @@ const ChemicalView = () => {                                    // This is the C
                 </div>
             </div>
             {/* 2 */}
-                {chems.map(chem => {
+                {chems.map((chem, index) => {
                     return(
-                        <div key={chem.chId} className="chem">
+                        <div key={index} className="chem">
                             <ChemicalItem data={chem} />
                         </div>
                     )

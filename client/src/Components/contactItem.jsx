@@ -11,7 +11,7 @@ import {useContext, useEffect} from "react";
 import {FacilityContext} from "../Contexts/facilityContext";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PhoneIcon from '@mui/icons-material/Phone';
 import { Avatar } from "@mui/material";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import EmailIcon from '@mui/icons-material/Email';
@@ -32,7 +32,7 @@ const ContactItem = ({ data }) => {
     <List>
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>
-          <Avatar>{data.firstName[0] + data.lastName[0]}</Avatar>
+          <Avatar style={{backgroundColor: "tan", color:"black"}}>{data.firstName[0] + data.lastName[0]}</Avatar>
         </ListItemIcon>
         <ListItemText
           primary={`${data.firstName} ${data.lastName}`}
@@ -45,7 +45,7 @@ const ContactItem = ({ data }) => {
         <List component="div" disablePadding>
           <ListItemButton sx={{ pl: 4 }}>
             <ListItemIcon>
-              <AccountCircleIcon />
+              <PhoneIcon style={{color:"green"}}/>
             </ListItemIcon>
             <ListItemText
               primary={data.title}
@@ -54,20 +54,19 @@ const ContactItem = ({ data }) => {
           </ListItemButton>
           <ListItemButton sx={{ pl: 4 }}>
             <ListItemIcon>
-              <EmailIcon />
+              <EmailIcon style={{color:"royalblue"}}/>
             </ListItemIcon>
             <ListItemText
-              primary={data.cMailAddr + ", " + data.cMailCity}
-              secondary={data.cMailState + " " + data.cMailZip} 
+              primary={data.cMailAddr + ", " + data.cMailCity + ", " + data.cMailState + " " + data.cMailZip}
             />
             </ListItemButton>
           <ListItemButton sx={{ pl: 4 }}>
             <ListItemIcon>
-              <AlternateEmailIcon />
+              <AlternateEmailIcon style={{color:"red"}}/>
             </ListItemIcon>
             <ListItemText
               primary={data.cEmail}
-              secondary={"eMail"}
+              secondary={"email"}
             />
           </ListItemButton>
         </List>

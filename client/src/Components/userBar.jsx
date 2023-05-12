@@ -2,6 +2,9 @@ import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../Contexts/authContext"
 import './userBar.scss'
+import {Link} from "react-router-dom";
+import PersonIcon from '@mui/icons-material/Person';
+import MapIcon from '@mui/icons-material/Map';
 
 export const UserBar = () => {
     const navigate = useNavigate();

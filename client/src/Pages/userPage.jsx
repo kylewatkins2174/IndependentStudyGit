@@ -9,6 +9,7 @@ import MemberDepartments from '../Components/memberDepartments.jsx';
 import requestServer from '../axios.js';
 
 
+
 const UserPage = () => {
     const {userValues} = useContext(AuthContext)
     const [departmentId, setDepartmentId] = useState(0)
@@ -45,7 +46,7 @@ const UserPage = () => {
 
         requestServer.post("/user/createRequest", request)
     }
-
+    
     return(
         <div className="user-page">
             <UserBar/>

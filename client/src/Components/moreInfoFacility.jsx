@@ -15,6 +15,7 @@ const MoreInfoFacility = ({facilities}) => {                                    
     const {contact, updateContact} = useContext(ContactContext);    // Pulls contact & updateContact from ContactContext
     const {fId} = useContext(FacilityContext);                      //
                                                                     //
+    const [isLoading, setIsLoading] = useState(true);
     const [keyword, setKeyword] = useState("");                     // Two state variables have been initialized, keyword and inputs.
     const [inputs, setInputs] = useState({                          // Keyword is the final search keyword used after being typed and
         "keyword":""                                                // submitted in the <input> field. Inputs is used in handleChange
@@ -38,8 +39,9 @@ const MoreInfoFacility = ({facilities}) => {                                    
         axios.post('http://localhost:8800/api/facility/search/contacts', jsonLoad)// is then sent to the server with axios and retrieves
         .then(function (response) {                                 // the response data. If there is no error, then it sets the Contact
             updateContact(response.data);                           // context variable to the information received from the server.
-        })                                                          // Otherwise, it catches the error. It is dependent on Keyword and
-        .catch(function (error) {                                   // fId, and so it will not be triggered until both objects have changed.
+            setIsLoading(false);                                    // Otherwise, it catches the error. It is dependent on Keyword and
+        })                                                          // fId, and so it will not be triggered until both objects have changed.
+        .catch(function (error) {                                   //
             console.log(error);                                     //
         })                                                          //
     }, [keyword, fId]                                               //
@@ -48,8 +50,25 @@ const MoreInfoFacility = ({facilities}) => {                                    
                                                                     //
     useEffect(() => {                                               // One more useEffect, this one is used to reset Keyword to "" when the
         setKeyword("");                                             // object gets re-rendered, so that there are no issues with saving state
-    }, [fId]);                                                      // across different renders.
+        setIsLoading(true);                                         // across different renders.
+    }, [fId]);                                                      //
                                                                     //
+    if (isLoading) {
+        return(
+            <div className="moreInfo">
+                <div className="topBar">
+                    <h3>Facility</h3>
+                    <div className="moreInfoSearch">
+                        <form onSubmit={handleSubmit}>
+                        <input type="text" name="keyword" placeholder="Search for contacts..." onChange={handleChange}/>
+                        </form>
+                    </div>
+                </div>
+                <div className="loading">Loading...<div className="loader"></div></div>
+            </div>
+        )
+    }
+
     return(                                                         //  
         <div className="moreInfo">
             <div className="topBar">
@@ -63,13 +82,13 @@ const MoreInfoFacility = ({facilities}) => {                                    
             {facilities.map(facility => {
                 return(
                     <div className="facility-item" key={facility.fId}>
-                        <FacilityItem data={facility}/>
+                        <FacilityItem data={facility} contacts={contact}/>
                     </div>
                 )
             })}
             {contact.map(c => {
                 return(
-                    <div className="contact-item">
+                    <div key={c.cId} className="contact-item">
                         <ContactItem data={c}/>
                     </div>
                 )
