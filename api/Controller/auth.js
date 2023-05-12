@@ -98,9 +98,10 @@ export const userInfo = (req, res) => {
 export const logout = (req,res) => {
     try{
         res.clearCookie("accessToken", {
-            secure:true,
+            secure:false,
             sameSite:"none"
         }).status(200).json("User has been logged out");
+        console.log("logged out")
     }catch(error){
         console.log(error)
         return res.status(500).json(error)

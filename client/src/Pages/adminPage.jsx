@@ -1,16 +1,13 @@
-import { useContext, useState } from 'react';
-import { UserInfo } from '../Components/userInfo';
+import { useState } from 'react';
+
 import { UserBar } from '../Components/userBar.jsx'
 import { ActiveRequests } from "../Components/activeRequests.jsx";
 import { ActiveUsers } from "../Components/activeUsers.jsx"
 import "./adminPage.scss"
-import { AuthContext } from '../Contexts/authContext';
 import DepartmentDropdown from '../Components/departmentDropDown';
 
 
 const AdminPage = () => {
-    const {userValues} = useContext(AuthContext)
-
     const [departmentId, setDepartmentId] = useState()
 
     const handleChange = (e) => {

@@ -1,10 +1,12 @@
 import { useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { AuthContext } from "../Contexts/authContext"
-import './userBar.scss'
-import {Link} from "react-router-dom";
-import PersonIcon from '@mui/icons-material/Person';
+import './userBar.scss';
+import IHSLogo from "../Assets/IHS_transparent.png";
+import LogoutIcon from '@mui/icons-material/Logout';
 import MapIcon from '@mui/icons-material/Map';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PersonIcon from '@mui/icons-material/Person';
 
 export const UserBar = () => {
     const navigate = useNavigate();
@@ -22,15 +24,24 @@ export const UserBar = () => {
         else return null
     }
 
-    const handleLogout = async () => {
-        logout().then(navigate("/login"))
+    const handleLogout = () => {
+        logout()
+        navigate("/login")
     }
 
     return(
         <div className="infobar">
-            <span><a href="/userpage">{userValues.username}</a></span>
-            <span><a href="/home">View Map</a></span>
-            <span><button onClick={handleLogout}>Logout</button></span>
+        <img src={IHSLogo}/>
+            <Link to="/userPage">
+                <button><PersonIcon/> {userValues.username}</button>
+            </Link>
+            <Link to="/adminPage" alt="Institute for Homeland Security">
+                <span><button><PersonAddIcon/> Add Users</button></span>
+            </Link>
+            <Link to="/home">
+                <span><button><MapIcon/> View Map</button></span>
+            </Link>
+            <span><button onClick={handleLogout}><LogoutIcon/> Logout</button></span>
             <AdminLink/>
         </div>
     )

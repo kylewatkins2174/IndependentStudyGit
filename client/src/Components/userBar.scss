@@ -1,23 +1,30 @@
 .infobar{
     display: flex;
     justify-content: center;
-    gap: 100px;
-    background-color: #13192C;
+    gap: 50px;
+    background-color: #14192B;
     outline: 1px solid #f45624;
     border-color: white;
     width: 100%;
-    padding:10px;
+    padding-top: 10px;
     font-family: 'proxima-nova', sans-serif;
 
-    span{
-        color: white;
+    button{
         margin: 5px;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        color: white;
+        background: transparent;
+        border: none;
     }
-    a{
-        text-decoration: none;
+
+    button:hover{
+        cursor: pointer
+    }
+
+    a:hover{
+        cursor:pointer
     }
 }

@@ -1,13 +1,12 @@
 import { useState, useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./login.scss";
-import queryServer from "../axios.js"
 import {AuthContext} from "../Contexts/authContext"; 
 
 
 const Login = () => {
 
-    const {updateUser, login} = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -15,8 +14,6 @@ const Login = () => {
         "username" : "",
         "password" : ""
     })
-
-    const [username, setUserName] = useState("");
 
     const [err, setErr] = useState(null);
 

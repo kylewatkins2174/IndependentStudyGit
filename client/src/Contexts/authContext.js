@@ -14,7 +14,7 @@ export const AuthContextProvider = ({children}) => {
         setUserValues(res.data);
     }
 
-    const logout = () => {
+    const logout = async () => {
         console.log("attempting logout")
         setUserValues(undefined)
         requestServer.post("http://localhost:8800/api/auth/logout")

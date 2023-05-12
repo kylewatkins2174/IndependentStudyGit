@@ -28,6 +28,7 @@ function App() {
   }
 
   const ForwardRoute = ({children}) => {
+    console.log("user values: " + JSON.stringify(userValues))
     if(userValues !== undefined){ //user is logged in
       return(<Navigate to="/home"/>)
     }
@@ -36,18 +37,16 @@ function App() {
     }
     return children //if user is completely logged out
   }
-
-  const VerifiedRoute = ({children}) => {
-    if(userValues === undefined){ //if app has not loaded user information
-      return <Navigate to="/home"/>
-    }
-    if(userValues.verified === 0){ //if user is not verified
-      return <Navigate to="/home"/>
-    }
-    return children;
-  }
   
   const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <ForwardRoute>
+          <Login/>
+        </ForwardRoute>
+      ),
+    },
     {
       path: "/login",
       element: (
@@ -68,9 +67,7 @@ function App() {
       path: "/home",
       element: (
         <ProtectedRoute>
-        <VerifiedRoute>
           <SearchFacility/>
-        </VerifiedRoute>
         </ProtectedRoute>
 
       )
@@ -79,9 +76,7 @@ function App() {
       path: "/adminPage",
       element: (
         <ProtectedRoute>
-        <VerifiedRoute>
           <AdminPage/>
-        </VerifiedRoute>
         </ProtectedRoute>
       )
     },
@@ -89,9 +84,7 @@ function App() {
       path: "/userpage",
       element: (
         <ProtectedRoute>
-        <VerifiedRoute>
           <UserPage/>
-        </VerifiedRoute>
         </ProtectedRoute>
 
       )
