@@ -8,6 +8,7 @@ import MapIcon from '@mui/icons-material/Map';
 
 export const UserBar = () => {
     const navigate = useNavigate();
+    const { logout } = useContext(AuthContext)
 
     const {userValues} = useContext(AuthContext)
 
@@ -21,10 +22,15 @@ export const UserBar = () => {
         else return null
     }
 
+    const handleLogout = async () => {
+        logout().then(navigate("/login"))
+    }
+
     return(
         <div className="infobar">
-            <Link to="/userPage"><span><PersonIcon /> {userValues.username}</span></Link>
-            <Link to="/search"><span><MapIcon /> View Map</span></Link>
+            <span><a href="/userpage">{userValues.username}</a></span>
+            <span><a href="/home">View Map</a></span>
+            <span><button onClick={handleLogout}>Logout</button></span>
             <AdminLink/>
         </div>
     )

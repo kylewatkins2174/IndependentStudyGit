@@ -2,6 +2,7 @@ import express from 'express';
 import authRoute from "./Routes/auth.js";
 import facilityRoute from "./Routes/facility.js"
 import adminRoute from "./Routes/admin.js"
+import userRoute from "./Routes/user.js"
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
@@ -21,6 +22,7 @@ app.use(cors({
 app.use("/api/auth", authRoute);
 app.use("/api/facility", facilityRoute);
 app.use("/api/admin", adminRoute);
+app.use("/api/user", userRoute)
 
 const port = 8800;
 

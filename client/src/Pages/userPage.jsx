@@ -1,49 +1,58 @@
 import { useContext, useEffect, useState } from 'react';
-import { UserInfo } from '../Components/userInfo';
 import { UserBar } from '../Components/userBar.jsx'
-import { ActiveRequests } from "../Components/activeRequests.jsx";
-import { ActiveUsers } from "../Components/activeUsers.jsx"
 import "./userPage.scss"
 import { AuthContext } from '../Contexts/authContext';
 import DepartmentDropDown from "../Components/departmentDropDown";
-import axios from "axios";
+import AdminDropdown from '../Components/adminDropdown.jsx'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MemberDepartments from '../Components/memberDepartments.jsx';
+import requestServer from '../axios.js';
+
 
 
 const UserPage = () => {
     const {userValues} = useContext(AuthContext)
-
-    const [departments, setDepartments] = useState([])
+    const [departmentId, setDepartmentId] = useState(0)
+    const [inputs, setInputs] = useState({
+        "departmentId" : null,
+        "adminId" : null
+    })
 
     useEffect(()=>{
-
-        const userId = userValues.userId;
-        const jsonLoad = {userId};
-
-        axios.post('http://localhost:8800/api/auth/get-departments', jsonLoad)
-        .then(function (response) {
-            setDepartments(response.data)
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
     }, [userValues])
 
+    const handleChange = (e) => {
+        e.preventDefault()
+
+        if(e.target.name === "departmentId"){
+            setDepartmentId(e.target.value)
+        }
+
+        setInputs((prev) => {
+            return {...prev, [e.target.name] : e.target.value}
+        })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(JSON.stringify(inputs))
+
+        const request = {
+            "userId" : userValues.userId,
+            "departmentId" : inputs.departmentId,
+            "verifierId" : inputs.adminId
+        };
+
+        requestServer.post("/user/createRequest", request)
+    }
+    
     return(
         <div className="user-page">
             <UserBar/>
 
             <div className="profile">
                 <h1><AccountCircleIcon fontSize="22px"/> {userValues.firstName} {userValues.lastName}</h1>
-                <hr/>
-                <h1>Current Departments:</h1>
-                <ul>
-                    {departments.map((dep) => {
-                        return(
-                            <li key={dep.departmentId}>{dep.departmentName}</li>
-                        )
-                    })}
-                </ul>
             </div>
 
             <h1>Request Access to Another Department</h1>
@@ -51,25 +60,18 @@ const UserPage = () => {
             <div className='request-form'>
                 <div className='form-container'>
                     <form>
-                        <label>Current department:</label>
-                        <input type="text" placeholder="Current department..."></input>
-                        <br/>
-                        <label>Department requested:</label>
-                        <input type="text" placeholder="Department..."></input>
+                        <DepartmentDropDown name="departmentDropdown" onChange={handleChange}/>
                         <br/>
                         <label>Approver from Department:</label>
-                        <input type="text" placeholder="John Smith..."></input>
+                        <AdminDropdown name="adminDropdown" onChange={handleChange} departmentId={departmentId}/>
                         <br/>
-                        <button>Submit Request</button>
+                        <button onClick={handleSubmit}>Submit Request</button>
                     </form>
                 </div>
-
             </div>
-
+            <MemberDepartments/>
         </div>
     )
 }
 
 export default UserPage;
-
-
