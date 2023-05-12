@@ -7,12 +7,8 @@ import SearchFacility from './Pages/searchFacility.jsx';
 import AdminPage from './Pages/adminPage.jsx';
 import UserPage from './Pages/userPage.jsx'
 import { AuthContext } from "./Contexts/authContext.js";
-
 //via react
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { useContext, useState } from "react";
 
 function App() {
@@ -27,7 +23,7 @@ function App() {
       }
       return(<Navigate to="/login"/>)//if user is not logged in
     }
-
+    console.log(JSON.stringify(userValues))
     return children;
   }
 
@@ -35,11 +31,9 @@ function App() {
     if(userValues !== undefined){ //user is logged in
       return(<Navigate to="/home"/>)
     }
-
     if(refresh){ //if user is logged in but needs information loaded
       getUser() 
     }
-
     return children //if user is completely logged out
   }
 
@@ -47,11 +41,9 @@ function App() {
     if(userValues === undefined){ //if app has not loaded user information
       return <Navigate to="/home"/>
     }
-
     if(userValues.verified === 0){ //if user is not verified
       return <Navigate to="/home"/>
     }
-
     return children;
   }
   
@@ -108,11 +100,9 @@ function App() {
   
   return (
     <div>
-      {/* <LogoBar/> */}
       <RouterProvider router = {router}/>
     </div>
   )
 }
-
 
 export default App;

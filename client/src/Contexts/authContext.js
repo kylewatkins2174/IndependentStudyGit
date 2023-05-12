@@ -31,6 +31,7 @@ export const AuthContextProvider = ({children}) => {
                 "isAdmin" : res.data.isAdmin
             }
             setUserValues(user);
+
         }catch{
             console.log("user not found")
         }

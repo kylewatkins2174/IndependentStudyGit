@@ -1,7 +1,6 @@
 import db from "../connect.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import cparser from "cookie-parser"
 
 export const register = async (req,res) => {
 
