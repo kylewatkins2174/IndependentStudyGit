@@ -42,3 +42,21 @@ export const departmentAdmin = (req, res) => {
         return res.status(200).json(users);
     })
 }
+
+export const createRequest = async (req, res) => {
+    const q = "INSERT INTO usersOfDepartment VALUES (?)";
+
+    try{
+        db.query(q, [[req.body.userId, req.body.departmentId, req.body.adminId, false, false]])
+    }catch(error){
+        if(error.code === 'ER_DUP_ENTRY'){
+            console.log("duplicate entry")
+            return res.status(409).json("user already has access to this department")
+        }
+        else{
+            console.log(error);
+        }
+    }
+
+    return res.status(200).json("user request created!")
+}

@@ -1,10 +1,8 @@
 //react imports
 import { Navigate } from "react-router-dom";
-import Cookies from "universal-cookie"
 //my imports
 import Register from "./Pages/register.jsx";
 import Login from "./Pages/login.jsx";
-import MainPage from './Pages/mainPage.jsx';
 import SearchFacility from './Pages/searchFacility.jsx';
 import AdminPage from './Pages/adminPage.jsx';
 import UserPage from './Pages/userPage.jsx'
@@ -15,30 +13,42 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 function App() {
-  const cookies = new Cookies();
-
   const {userValues, getUser} = useContext(AuthContext)
+  const [refresh, setRefresh] = useState(true)
 
   const ProtectedRoute = ({children}) => {
-
-    if(userValues === undefined){
-      try{
-        getUser();
-      }catch(error){
-        console.log(error)
-        return <Navigate to="/login"/>
+    if(userValues === undefined){ //if app has no user records
+      if(refresh){ //if app has attempted info retrieval
+        getUser()
+        setRefresh(false)
       }
+      return(<Navigate to="/login"/>)//if user is not logged in
     }
-    else{
-      return children;
+
+    return children;
+  }
+
+  const ForwardRoute = ({children}) => {
+    if(userValues !== undefined){ //user is logged in
+      return(<Navigate to="/home"/>)
     }
+
+    if(refresh){ //if user is logged in but needs information loaded
+      getUser() 
+    }
+
+    return children //if user is completely logged out
   }
 
   const VerifiedRoute = ({children}) => {
-    if(userValues.verified === 0){
+    if(userValues === undefined){ //if app has not loaded user information
+      return <Navigate to="/home"/>
+    }
+
+    if(userValues.verified === 0){ //if user is not verified
       return <Navigate to="/home"/>
     }
 
@@ -49,13 +59,17 @@ function App() {
     {
       path: "/login",
       element: (
+        <ForwardRoute>
           <Login/>
+        </ForwardRoute>
       ),
     },
     {
       path: "/register",
       element: (
-        <Register/>
+        <ForwardRoute>
+          <Register/>
+        </ForwardRoute>
       )
     },
     {

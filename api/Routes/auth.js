@@ -13,7 +13,7 @@ route.post("/verifiedDepartments", verifiedDepartments)
 route.post("/login", login);
 route.post("/userInfo", userInfo)
 
-route.get("/logout", logout);
+route.post("/logout", logout);
 
 
 export default route;

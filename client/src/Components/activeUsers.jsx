@@ -1,24 +1,27 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from "../Contexts/authContext";
 import requestServer from "../axios";
 import './map.scss'
 import CloseIcon from '@mui/icons-material/Close';
 import FeedIcon from '@mui/icons-material/Feed';
 
-export const ActiveUsers = (error) => {   
-    const { userValues } = useContext(AuthContext);
-
+export const ActiveUsers = (props) => {   
+    const {userValues} = useContext(AuthContext)
     const queryClient = useQueryClient();
+
+    useEffect(() => {
+        queryClient.invalidateQueries("users")
+    }, [props.departmentId])
 
     const moreInfoClick = (e) => {
         console.log("more info");
     }
  
     const userQuery = useQuery({ 
-    queryKey: ["users"],
+    queryKey: ["users", props.departmentId],
     retry: false,
-    queryFn: () => {return requestServer.post("/admin/activeUsers", {"departmentId" : userValues.departmentId}).then(res => res.data)},
+    queryFn: () => {return requestServer.post("/admin/activeUsers", {"departmentId" : props.departmentId}).then(res => res.data)},
     })
 
     const revokeUser = useMutation({
@@ -51,18 +54,19 @@ export const ActiveUsers = (error) => {
     
                         <div key={user.userId} className='row-container'>
                             <div className='left-row'>
-                                <span>{user.lastName}</span>|<span>{user.firstName}</span>
+                                <span>{user.lastname}</span>, <span>{user.firstname}</span>|<span>{user.username}</span> : <span>{user.departmentName}</span>
                             </div>
     
                             <div className='right-row'>
                                 <button title="More Information" className="row-button" key="moreinfobutton" onClick={moreInfoClick}><FeedIcon className='icon'/></button>
-                                <button title="Revoke User Access" className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
+                                {userValues.userId === user.verifierId ? (
+                                    <button title="Revoke User Access" className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
+                                ) : (
+                                    null
+                                )}
                             </div>
                         </div>
                         <hr className='row-break'/>
-    
-    
-    
                     </div>
                 ))}
             </div>

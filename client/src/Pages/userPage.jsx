@@ -4,9 +4,9 @@ import "./userPage.scss"
 import { AuthContext } from '../Contexts/authContext';
 import DepartmentDropDown from "../Components/departmentDropDown";
 import AdminDropdown from '../Components/adminDropdown.jsx'
-import axios from "axios";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MemberDepartments from '../Components/memberDepartments.jsx';
+import requestServer from '../axios.js';
 
 
 const UserPage = () => {
@@ -36,6 +36,14 @@ const UserPage = () => {
         e.preventDefault();
 
         console.log(JSON.stringify(inputs))
+
+        const request = {
+            "userId" : userValues.userId,
+            "departmentId" : inputs.departmentId,
+            "verifierId" : inputs.adminId
+        };
+
+        requestServer.post("/user/createRequest", request)
     }
 
     return(

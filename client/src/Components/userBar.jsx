@@ -5,6 +5,7 @@ import './userBar.scss'
 
 export const UserBar = () => {
     const navigate = useNavigate();
+    const { logout } = useContext(AuthContext)
 
     const {userValues} = useContext(AuthContext)
 
@@ -18,10 +19,15 @@ export const UserBar = () => {
         else return null
     }
 
+    const handleLogout = async () => {
+        logout().then(navigate("/login"))
+    }
+
     return(
         <div className="infobar">
             <span><a href="/userpage">{userValues.username}</a></span>
-            <span><a href="/search">View Map</a></span>
+            <span><a href="/home">View Map</a></span>
+            <span><button onClick={handleLogout}>Logout</button></span>
             <AdminLink/>
         </div>
     )

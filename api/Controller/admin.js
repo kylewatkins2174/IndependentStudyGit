@@ -1,30 +1,30 @@
 import db from '../connect.js';
 
 export const requests = (req,res) => {
-    const q = `SELECT *
-                FROM users
-                WHERE departmentid = ?
-                AND verified = false`;
+    const q = `SELECT users.firstname, users.lastname, users.userId, department.departmentName, verifierId FROM usersOfDepartment
+                JOIN users ON usersofdepartment.userid = users.userId 
+                JOIN department ON usersOfDepartment.departmentId = department.departmentId
+                WHERE usersOfDepartment.departmentId = ? and verifierId = ? and verified = false`
 
-    db.query(q, req.body.departmentId, (error,rows,fields) => {
+    db.query(q, [req.body.departmentId, req.body.userId], (error,rows,fields) => {
         if(error){
             console.log(error);
             return res.status(500).json(error);
         }
-
-
         return res.status(200).json(rows);
     })
 }
 
 export const accept = (req,res) => {
-    const q = "UPDATE users SET verified = TRUE WHERE userid = ?"
+    const q = `UPDATE usersofdepartment SET verified = TRUE and verifierId = ?
+                WHERE userid = ? AND departmentid = ?`
 
-    db.query(q,req.body.userId, (error,fields) => {
+    db.query(q,[req.body.verifierId, req.body.userId, req.body.departmentId], (error,fields) => {
         if(error){
             console.log(error);
             return res.status(500).json(error);
         }
+        console.log("it worked " + req.body.userId + req.body.departmentId)
         return res.status(200).json(`verified user ${req.body.userId}`);
     })
 }
@@ -53,14 +53,14 @@ export const revoke = (req,res) => {
 }
 
 export const activeUsers = (req,res) => {
-    const q = `SELECT *
-                FROM users
-                WHERE departmentid = ?
-                AND verified = true
-                AND isAdmin = false`;
+    const q = `SELECT users.firstname, users.lastname, department.departmentName, users.username FROM usersOfDepartment
+            JOIN users ON usersofdepartment.userid = users.userId 
+            JOIN department ON usersOfDepartment.departmentId = department.departmentId
+            WHERE usersOfDepartment.departmentId = ? and verified = TRUE`;
 
-    db.query(q, req.body.departmentId, (error,rows,fields) => {
+    db.query(q, [req.body.departmentId], (error,rows,fields) => {
         if(error){
+            console.log(error)
             return res.status(500).json(error);
         }
 
