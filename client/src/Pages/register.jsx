@@ -12,7 +12,6 @@ const Register = () => {
         "primaryEmail" : "",
         "firstname" : "",
         "lastname" : "",
-        "departmentId" : "",
         "username" : "",
         "password" : ""
     });
@@ -61,9 +60,6 @@ const Register = () => {
                         
                         <span>Enter your last name <span style={{color:"red"}}>*</span>:</span><br/>
                         <input onChange={handleChange} type="text" placeholder="(Ex. Smith)" className="RegisterFormInput" autoComplete="true" name="lastname" required />
-                        <hr className="RegisterHr"/>
-
-                        <DepartmentDropdown onChange={handleChange}/>
                         <hr className="RegisterHr"/>
 
                         <span>Enter your username <span style={{color:"red"}}>*</span>:</span><br/>

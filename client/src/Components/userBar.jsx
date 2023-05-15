@@ -36,7 +36,7 @@ export const UserBar = () => {
                 <button><PersonIcon/> {userValues.username}</button>
             </Link>
             <Link to="/adminPage" alt="Institute for Homeland Security">
-                <span><button><PersonAddIcon/> Add Users</button></span>
+                <span><button><PersonAddIcon/> Manage Department</button></span>
             </Link>
             <Link to="/home">
                 <span><button><MapIcon/> View Map</button></span>

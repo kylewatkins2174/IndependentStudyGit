@@ -1,5 +1,5 @@
 import express from 'express';
-import { requests, accept, deny, revoke, activeUsers } from '../Controller/admin.js';
+import { requests, accept, deny, revoke, activeUsers, departments } from '../Controller/admin.js';
 
 
 
@@ -10,6 +10,7 @@ route.post("/accept", accept);
 route.post("/activeUsers", activeUsers);
 route.post("/deny", deny);
 route.post("/revoke", revoke);
+route.post("/departments", departments);
 
 
 export default route;

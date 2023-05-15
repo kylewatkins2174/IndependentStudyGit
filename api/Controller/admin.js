@@ -67,3 +67,20 @@ export const activeUsers = (req,res) => {
         return res.status(200).json(rows);
     })
 }
+
+export const departments = (req, res) => {
+    console.log("new request")
+
+    const q = `SELECT department.departmentName, department.departmentId from usersofdepartment
+                JOIN department ON usersofdepartment.departmentid = department.departmentid
+                WHERE userId = ? and isAdmin = true`
+
+    db.query(q, [req.body.userId], (error,rows,fields) => {
+        if(error){
+            console.log(error)
+            return res.status(500).json(error)
+        }
+
+        return res.status(200).json(rows)
+    })
+}

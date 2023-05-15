@@ -8,14 +8,13 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MemberDepartments from '../Components/memberDepartments.jsx';
 import requestServer from '../axios.js';
 
-
-
 const UserPage = () => {
     const {userValues} = useContext(AuthContext)
     const [departmentId, setDepartmentId] = useState(0)
     const [inputs, setInputs] = useState({
+        "userId" : userValues.userId,
         "departmentId" : null,
-        "adminId" : null
+        "adminId" : 1
     })
 
     useEffect(()=>{
@@ -33,6 +32,12 @@ const UserPage = () => {
         })
     }
 
+    const setAdminId = (id) => {
+        setInputs((prev) => {
+            return {...prev, ["adminId"] : id}
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -41,7 +46,7 @@ const UserPage = () => {
         const request = {
             "userId" : userValues.userId,
             "departmentId" : inputs.departmentId,
-            "verifierId" : inputs.adminId
+            "adminId" : inputs.adminId
         };
 
         requestServer.post("/user/createRequest", request)
@@ -63,7 +68,7 @@ const UserPage = () => {
                         <DepartmentDropDown name="departmentDropdown" onChange={handleChange}/>
                         <br/>
                         <label>Approver from Department:</label>
-                        <AdminDropdown name="adminDropdown" onChange={handleChange} departmentId={departmentId}/>
+                        <AdminDropdown name="adminDropdown" setAdminId={setAdminId} departmentId={departmentId}/>
                         <br/>
                         <button onClick={handleSubmit}>Submit Request</button>
                     </form>

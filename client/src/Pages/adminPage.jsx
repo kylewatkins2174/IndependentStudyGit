@@ -1,10 +1,9 @@
 import { useState } from 'react';
-
 import { UserBar } from '../Components/userBar.jsx'
 import { ActiveRequests } from "../Components/activeRequests.jsx";
 import { ActiveUsers } from "../Components/activeUsers.jsx"
 import "./adminPage.scss"
-import DepartmentDropdown from '../Components/departmentDropDown';
+import AdminDepartmentDropdown from '../Components/adminDepartmentDropdown.jsx';
 
 
 const AdminPage = () => {
@@ -20,10 +19,10 @@ const AdminPage = () => {
     return(
         <div className='admin-container'>
             <UserBar/>
-            <h1 className="main-title">Admin Page</h1>
+            <h1 className="main-title">Department Page</h1>
 
-            <DepartmentDropdown onChange={handleChange}/>
-            
+            <AdminDepartmentDropdown onChange={handleChange}/>
+
             <div className="container">
                 <h1 className='title'>Access Requests</h1>
                 <div className="map-container">

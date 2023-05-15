@@ -1,12 +1,11 @@
 import db from "../connect.js"
 
-
 export const departments = (req,res) => {
     const q =   `SELECT department.departmentName, department.departmentId
                 FROM usersOfDepartment
                 JOIN department ON usersOfDepartment.departmentId = department.departmentid
                 JOIN users ON usersOfDepartment.userid = users.userId
-                WHERE users.userId = ?`
+                WHERE users.userId = ? AND verified=true`
 
     db.query(q, req.body.userId,(error,rows,fields) => {
         if(error){
@@ -43,13 +42,17 @@ export const departmentAdmin = (req, res) => {
     })
 }
 
-export const createRequest = async (req, res) => {
+export const createRequest = (req, res) => {
+    console.log("new request")
+
     const q = "INSERT INTO usersOfDepartment VALUES (?)";
+
+    console.log(JSON.stringify(req.body))
 
     try{
         db.query(q, [[req.body.userId, req.body.departmentId, req.body.adminId, false, false]])
     }catch(error){
-        if(error.code === 'ER_DUP_ENTRY'){
+        if(error.code === '1062'){
             console.log("duplicate entry")
             return res.status(409).json("user already has access to this department")
         }

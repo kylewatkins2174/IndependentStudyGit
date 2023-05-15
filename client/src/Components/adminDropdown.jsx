@@ -1,16 +1,17 @@
 import { useQuery, useQueryClient } from "react-query";
 import requestServer from "../axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const AdminDropdown = (props) => {
     const client = useQueryClient();
 
     useEffect(() => {
         client.invalidateQueries('admin')
+        props.setAdminId(1)
     }, [props.departmentId])
 
     const handleChange = (e) => {
-        props.onChange(e)
+        props.setAdminId(e.target.value)
     }
 
     const adminQuery = useQuery({

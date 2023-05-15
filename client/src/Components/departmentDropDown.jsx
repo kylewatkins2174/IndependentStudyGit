@@ -14,7 +14,7 @@ const DepartmentDropdown = (props) => {
     })
 
     if(departmentQuery.isError){
-        return(departmentQuery.error)
+        return("error")
     }
 
 
