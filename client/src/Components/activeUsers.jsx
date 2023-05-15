@@ -25,7 +25,7 @@ export const ActiveUsers = (props) => {
     })
 
     const revokeUser = useMutation({
-        mutationFn: (userId) => {return requestServer.post('/admin/revoke', {"userId": userId})},
+        mutationFn: (userId) => {return requestServer.post('/admin/revoke', {"userId": userId, "departmentId" : props.departmentId })},
         onSuccess: () => {
             queryClient.invalidateQueries(["requests"]);
             queryClient.invalidateQueries(["users"]);
@@ -56,14 +56,13 @@ export const ActiveUsers = (props) => {
                             <div className='left-row'>
                                 <span>{user.lastname}</span>, <span>{user.firstname}</span>|<span>{user.username}</span> : <span>{user.departmentName}</span>
                             </div>
-    
                             <div className='right-row'>
-                                <button title="More Information" className="row-button" key="moreinfobutton" onClick={moreInfoClick}><FeedIcon className='icon'/></button>
                                 {userValues.userId === user.verifierId ? (
-                                    <button title="Revoke User Access" className="row-button" key="giveaccessbutton" index={user.userId} onClick={() => revokeUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
+                                    <button title="Revoke User Access" className="row-button" key="revokeaccessbutton" value={user.userId} onClick={() => revokeUser.mutate(user.userId)}><CloseIcon className="icon"/></button>
                                 ) : (
                                     null
                                 )}
+                                <button title="More Information" className="row-button" key="moreinfobutton" onClick={moreInfoClick}><FeedIcon className='icon'/></button>
                             </div>
                         </div>
                         <hr className='row-break'/>

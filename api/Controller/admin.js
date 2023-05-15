@@ -30,7 +30,7 @@ export const accept = (req,res) => {
 }
 
 export const deny = (req,res) => {
-    const q = "DELETE FROM users WHERE userid = ?"
+    const q = "DELETE FROM usersOfDepartment WHERE userid = ?"
     db.query(q, req.body.userId, (error,fields) => {
         if(error){
             console.log(error);
@@ -41,10 +41,10 @@ export const deny = (req,res) => {
     })
 }
 
-export const revoke = (req,res) => {
-    const q = "UPDATE users SET verified = FALSE WHERE userid = ?"
+export const revoke = (req,res) => {    
+    const q = "UPDATE usersOfDepartment SET verified = FALSE WHERE userId = ? and departmentId = ?"
 
-    db.query(q, req.body.userId, (error,fields) => {
+    db.query(q, [req.body.userId, req.body.departmentId], (error,fields) => {
         if(error){
             console.log(error)
         }
@@ -53,7 +53,7 @@ export const revoke = (req,res) => {
 }
 
 export const activeUsers = (req,res) => {
-    const q = `SELECT users.firstname, users.lastname, department.departmentName, users.username FROM usersOfDepartment
+    const q = `SELECT users.userId, users.firstname, users.lastname, users.username, department.departmentName, usersofdepartment.verifierId FROM usersOfDepartment
             JOIN users ON usersofdepartment.userid = users.userId 
             JOIN department ON usersOfDepartment.departmentId = department.departmentId
             WHERE usersOfDepartment.departmentId = ? and verified = TRUE`;
