@@ -11,6 +11,7 @@ import { AuthContext } from "./Contexts/authContext.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { useContext, useState } from "react";
 
+
 function App() {
   const {userValues, getUser} = useContext(AuthContext)
   const [refresh, setRefresh] = useState(true)
@@ -23,12 +24,10 @@ function App() {
       }
       return(<Navigate to="/login"/>)//if user is not logged in
     }
-    console.log(JSON.stringify(userValues))
     return children;
   }
 
   const ForwardRoute = ({children}) => {
-    console.log("user values: " + JSON.stringify(userValues))
     if(userValues !== undefined){ //user is logged in
       return(<Navigate to="/home"/>)
     }

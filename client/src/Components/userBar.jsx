@@ -34,7 +34,7 @@ export const UserBar = () => {
             <div className='profile-container'>
                 <div className="profile">
                     <h1><AccountCircleIcon fontSize="22px"/> {userValues.username}</h1>
-                    <p>{userValues.lastName}, {userValues.firstName}</p>
+                    <p>{userValues.lastname}, {userValues.firstname}</p>
                 </div>
             </div>
 

@@ -86,7 +86,7 @@ export const userInfo = (req, res) => {
         }
         const userId = jwt.verify(accessToken, "secretkey").userid;
 
-        const q = 'SELECT * FROM users WHERE userId = ?';
+        const q = 'SELECT userId, firstname, lastname, username FROM users WHERE userId = ?';
 
         db.query(q, [userId], async (error, rows, field) => {
             if(error){

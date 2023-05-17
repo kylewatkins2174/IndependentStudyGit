@@ -5,13 +5,14 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({children}) => {
     const [userValues, setUserValues] = useState();
+    const [sudo, setSudo] = useState(false);
     
     const login = async (inputs) => {
         const res = await requestServer.post("http://localhost:8800/api/auth/login", inputs, {
             withCredentials: true
         });
 
-        setUserValues(res.data);
+        getUser()
     }
 
     const logout = async () => {
@@ -26,13 +27,15 @@ export const AuthContextProvider = ({children}) => {
         
             const user = {
                 "userId" : res.data.userId,
-                "firstname" : res.data.firstName,
-                "lastname" : res.data.lastName,
+                "firstname" : res.data.firstname,
+                "lastname" : res.data.lastname,
                 "username" : res.data.username,
-                "verified" : res.data.verified,
-                "isAdmin" : res.data.isAdmin
             }
             setUserValues(user);
+
+            if(user.userId === 1){
+                setSudo(true)
+            }
 
             console.log(JSON.stringify(user))
 
@@ -42,7 +45,7 @@ export const AuthContextProvider = ({children}) => {
     }
 
     return(
-        <AuthContext.Provider value={{userValues, getUser, login, logout}}>
+        <AuthContext.Provider value={{userValues, sudo, getUser, login, logout}}>
             {children}
         </AuthContext.Provider>
     )
