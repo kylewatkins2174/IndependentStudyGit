@@ -63,3 +63,20 @@ export const createRequest = (req, res) => {
 
     return res.status(200).json("user request created!")
 }
+
+export const pending = (req,res) => {
+    const q =   `SELECT department.departmentName, department.departmentId
+                FROM usersOfDepartment
+                JOIN department ON usersOfDepartment.departmentId = department.departmentid
+                JOIN users ON usersOfDepartment.userid = users.userId
+                WHERE users.userId = ? AND verified=false`
+
+    db.query(q, req.body.userId,(error,rows,fields) => {
+        if(error){
+            console.log(error)
+            return res.status(500).json(error)
+        }
+
+        return res.status(200).json(rows)
+    })
+}

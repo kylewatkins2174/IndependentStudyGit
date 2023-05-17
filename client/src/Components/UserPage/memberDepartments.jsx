@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { useQuery } from "react-query";
-import { AuthContext } from "../Contexts/authContext";
-import requestServer from "../axios";
+import { AuthContext } from "../../Contexts/authContext";
+import requestServer from "../../axios";
+import "./memberDepartments.scss"
 
 const MemberDepartments = () => {
     const { userValues } = useContext(AuthContext)
@@ -24,13 +25,12 @@ const MemberDepartments = () => {
     
     
     return(
-        <div>
+        <div className="member-department-container">
+            <div className="department-list">
             <h1>Your member departments</h1>
-
-            <div>
                 {departmentQuery.data.map(data => (
                     <div key={data.departmentName}>
-                        <p style={{color: "white"}} key={data.departmentName}>{data.departmentName}</p>                        
+                        <p className="department-entry" key={data.departmentName}>{data.departmentName}</p>                    
                     </div>
                 ))}
             </div>

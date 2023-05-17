@@ -24,7 +24,6 @@ export const accept = (req,res) => {
             console.log(error);
             return res.status(500).json(error);
         }
-        console.log("it worked " + req.body.userId + req.body.departmentId)
         return res.status(200).json(`verified user ${req.body.userId}`);
     })
 }
@@ -69,8 +68,6 @@ export const activeUsers = (req,res) => {
 }
 
 export const departments = (req, res) => {
-    console.log("new request")
-
     const q = `SELECT department.departmentName, department.departmentId from usersofdepartment
                 JOIN department ON usersofdepartment.departmentid = department.departmentid
                 WHERE userId = ? and isAdmin = true`

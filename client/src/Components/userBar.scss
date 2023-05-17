@@ -1,16 +1,40 @@
 .infobar{
     display: flex;
     justify-content: center;
-    gap: 50px;
-    background-color: #14192B;
-    outline: 1px solid #f45624;
-    border-color: white;
+    gap: 20px;
+    background-color: #323232;
     width: 100%;
-    padding-top: 10px;
+    padding-top: 0px;
     font-family: 'proxima-nova', sans-serif;
+    height: 10%;
+
+    .link{
+        text-decoration: none;
+    }
+
+    .profile-container{
+        display: flex;
+        background-color: #323232;
+        color: white;
+    
+        .profile{
+            width: 100%;
+            background-color: #323232;
+            margin-bottom: 0px;
+    
+            h1{
+                margin: 3px;
+            }
+    
+            p{
+                margin: 3px;
+                margin-left: 6px;
+            }
+        }
+    }
 
     button{
-        margin: 5px;
+        margin-top: 20px;
         display: flex;
         flex-direction: row;
         justify-content: center;
